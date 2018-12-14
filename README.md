@@ -20,7 +20,7 @@ npm install
 
 ## Building
 
-The modules come as both standalone apps and Ableton integrated. To build both versions run:
+The modules come as both standalone apps and Ableton integrated (currently this only builds for macOS). To build both versions run:
 
 ```
 npm run build
