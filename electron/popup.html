@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="<%= components %>"></script>
+		<meta http-equiv="Content-Security-Policy" 
+			content="connect-src http://localhost:3333 file://* https://storage.googleapis.com/">
+		<style>
+			body {
+				color: white;
+				opacity: 1;
+				transition: opacity 0.2s;
+			}
+
+			body:not(.visible){
+				opacity: 0;
+			}
+
+			#buttons {
+				width: 60%;
+				position: absolute;
+				bottom: 0px;
+				right: 0px;
+			}
+
+			magenta-button {
+				--component-height: var(--small-component-height);
+				width: 45%;
+				left: 0px;
+			}
+
+			magenta-button:last-child{
+				left: 50%;
+			}
+
+			#cancel {
+				background-color: var(--background-color);
+			}
+
+			#popup-title {
+				font-size: var(--title-font-size);
+				letter-spacing: 0.1em;
+			}
+
+			#popup-body {
+				font-size: var(--font-size);
+				font-family: var(--font-family);
+				display: block;
+				position: relative;
+				margin: var(--margin) auto;
+			}
+
+			ul {
+				list-style-type: none;
+				color: var(--color-gray);
+				font-size: 0.9em;
+				column-count: 2;
+				column-gap: 30px;
+				margin-top: 10px;
+			}
+
+			li {
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="popup-title"></div>
+		<div id="popup-body"></div>
+		<div id="buttons">
+			<magenta-button outlined nofill id="cancel" label="Cancel"></magenta-button>
+			<magenta-button outlined id="ok" label="OK"></magenta-button>
+		</div>
+
+		<script type="text/javascript">
+
+			const {ipcRenderer} = require('electron')
+
+			ipcRenderer.on('setup', ({sender}, props) => {
+
+				Object.entries(props).forEach(([attr, value]) => {
+					const element = document.querySelector('#popup-'+attr)
+					if (element){
+						element.innerHTML = value
+					}
+				})
+
+				document.querySelector('#ok').addEventListener('click', e => {
+					sender.send('close-modal', 'ok')
+					window.close()
+				})
+
+				document.querySelector('#cancel').addEventListener('click', e => {
+					sender.send('close-modal', 'cancel')
+					window.close()
+				})
+				document.querySelector('#ok').focus()
+
+				document.body.classList.add('visible')
+
+				if (props.accentColor){
+					document.body.style = '--accent-color:' + props.accentColor
+				}
+			})
+
+
+		</script>
+	</body>
+</html>

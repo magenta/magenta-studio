@@ -1,0 +1,12 @@
+{
+  "name": "generate",
+  "version": "0.0.1",
+  "description": "Magenta Generate",
+  "main": "build/Main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tambien/magenta-plugins"
+  },
+  "author": "Yotam Mann <https://yotammann.info>",
+  "license": "Apache-2.0"
+}

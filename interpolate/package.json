@@ -1,0 +1,12 @@
+{
+  "name": "interpolate",
+  "version": "0.0.1",
+  "description": "Magenta Interpolate",
+  "main": "build/Main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tambien/magenta-plugins"
+  },
+  "author": "Yotam Mann <https://yotammann.info>",
+  "license": "Apache-2.0"
+}

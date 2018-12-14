@@ -1,0 +1,13 @@
+{
+  "name": "continue",
+  "version": "0.0.2",
+  "description": "Magenta Extend",
+  "main": "build/Main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tambien/magenta-plugins"
+  },
+  "author": "Yotam Mann <https://yotammann.info>",
+  "license": "Apache-2.0",
+  "devDependencies": {}
+}

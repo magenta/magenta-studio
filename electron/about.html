@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>About</title>
+	<head>
+		<meta charset="UTF-8">
+		<script src="<%= components %>"></script>
+		<meta http-equiv="Content-Security-Policy" 
+			content="connect-src http://localhost:3333 file://*">
+	</head>
+</head>
+<body>
+	<style type="text/css">
+		body {
+			color: white;
+			margin: 20px;
+			width: calc(100% - 40px);
+		}
+
+		h2, h3 {
+			margin-top: 20px;
+			font-family: var(--title-font-family);
+		}
+
+		a {
+			color: white;
+			text-decoration: underline;
+			cursor: pointer;
+		}
+
+	</style>
+
+	<h2 id="title">Magenta Studio</h3>
+	<p>
+		Find information and tutorials at 
+		<a onclick="require('electron').shell.openExternal('https://magenta.tensorflow.org/studio/')">our website.</a>
+	</p>
+	<p>
+		<h3>License</h3>
+		Copyright 2018 Google Inc.
+		<br><br>
+		Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+		<br><br>
+		http://www.apache.org/licenses/LICENSE-2.0
+		<br><br>
+		Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+	</p>
+</body>
+</html>

@@ -1,0 +1,84 @@
+body {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	--margin: 15px;
+	width: calc(100% - var(--margin) * 2);
+	height: calc(100% - var(--margin) * 2);
+	margin: var(--margin);
+	-ms-overflow-style: scrollbar;
+	-webkit-app-region:drag;
+	background-color: var(--background-color);
+	font-family: var(--font-family);
+	font-size: var(--font-size);
+
+
+	#title {
+		position: relative;
+		text-align: center;
+		color: white;
+		font-family: var(--title-font-family);
+		font-size: var(--title-font-size);
+		letter-spacing: 0.2em;
+		transition: letter-spacing 0.5s;
+		height: 20px;
+		margin: 10px auto;
+		display: inline-block;
+		left: 50%;
+		transform: translate(-50%, 0);
+		cursor: default;
+	}
+
+
+	#mode {
+		margin: 0 var(--margin);
+		margin-top: -20px;
+		width: 80px;
+	}
+
+	magenta-select {
+		--color-selected : var(--color-magenta);
+		--color-focused: var(--color-magenta);
+	}
+
+	magenta-slider {
+		display: block;
+		margin-top: 20px;
+	}
+
+	magenta-midi-file {
+		margin-bottom: 30px;
+		margin-top: 10px;
+		display: block;
+	}
+
+	magenta-button {
+		position: absolute;
+		// bottom: var(--margin);
+		// right: var(--margin);
+		bottom: 0px;
+		right: 0px;
+	}
+
+	magenta-slider {
+		// margin-left: 15px;
+	}
+
+	#status {
+		color: var(--color-gray);
+		font-size: 12px;
+		position: absolute;
+		bottom: var(--margin);
+		left: var(--margin);
+	}
+
+	#controls.generating {
+		pointer-events: none;
+		opacity: 0.5;
+	}
+
+	magenta-midi-file {
+		height: 110px;
+	}
+}

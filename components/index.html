@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>COMPONENTS</title>
+	<script type="text/javascript" src="../build/components.js"></script>
+	<script type="text/javascript" src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+</head>
+<body>
+	<style type="text/css">
+		body {
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			left: 0px;
+			position: absolute;
+			margin: 0;
+			background-color: var(--background-color);
+		}
+
+	</style>
+	<magenta-file></magenta-file>
+	<magenta-select label="file">
+		<option>hi</option>
+		<option>bye</option>
+	</magenta-select>
+	<br>
+	<magenta-tabs-group label="Input File">
+		<magenta-tab label="Ableton">
+			<magenta-select label="file">
+				<option>hi</option>
+				<option>bye</option>
+			</magenta-select>
+		</magenta-tab>
+		<magenta-tab label="Desktop">
+			<magenta-file></magenta-file>
+		</magenta-tab>
+	</magenta-tabs-group>
+	<script type="text/javascript">
+		document.querySelector('magenta-select').addEventListener('change', () => {
+			console.log('input')
+		})
+
+	</script>
+</body>
+</html>

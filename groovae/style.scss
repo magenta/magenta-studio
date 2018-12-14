@@ -1,0 +1,54 @@
+$letters: 7;
+
+
+body {
+	--accent-color: var(--color-accent-orange);
+
+	#title {
+		margin-bottom: 20px;
+	}
+
+	#mode {
+		display: block;
+		margin: 0 auto 20px;
+		width: 90%;
+		pointer-events: none;
+	}
+
+	#title {
+
+		span {
+			pointer-events: none;
+			float: left;
+			transition: margin 0.2s;
+			position: relative;
+		}
+
+		$letters: 7;
+
+		@for $i from 1 through $letters {
+			$delay: $i * 0.07s;
+			&:hover span:nth-child(#{$i}) {
+				animation: sweep 0.4s $delay ease-in-out;
+			}
+		}
+
+	}
+}
+
+$displacement: 10px;
+
+@keyframes sweep {
+	0% {
+		top: 0px;
+	}
+	33% {
+		top: -$displacement;
+	}
+	66% {
+		top: $displacement;
+	}
+	100% {
+		top: 0px;
+	}
+}
