@@ -166,7 +166,9 @@ class MagentaFile extends LitElement {
 	async _openFile(){
 		if (this.output){
 			await this.chooseOutput()
-			this.value = this.folder
+			if (this.folder){
+				this.value = this.folder
+			}
 		} else {
 			dialog.showOpenDialog({ 
 				title : 'Input MIDI file',
@@ -181,6 +183,7 @@ class MagentaFile extends LitElement {
 	}
 
 	async chooseOutput(){
+
 
 		const dir = await new Promise(done => {
 			dialog.showOpenDialog({
