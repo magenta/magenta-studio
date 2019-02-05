@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 1,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 623.0, 255.0, 961.0, 609.0 ],
+		"rect" : [ 445.0, 255.0, 707.0, 609.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -81,7 +81,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 497.0, 562.0, 50.0, 35.0 ],
-					"text" : "ignoreclick 0"
+					"text" : "ignoreclick 1"
 				}
 
 			}
@@ -339,7 +339,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -595,16 +595,17 @@
 					"bgcolor" : [ 0.905882352941176, 0.247058823529412, 0.964705882352941, 1.0 ],
 					"bgoncolor" : [ 231.0, 63.0, 246.0, 1.0 ],
 					"id" : "obj-1",
+					"ignoreclick" : 1,
 					"maxclass" : "textbutton",
 					"mode" : 1,
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 291.0, 297.0, 100.0, 20.0 ],
+					"patching_rect" : [ 291.0, 297.0, 100.0, 16.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 100.0, 20.0 ],
-					"rounded" : 20.0,
+					"presentation_rect" : [ 0.0, 0.0, 132.0, 20.0 ],
+					"rounded" : 2.0,
 					"text" : "EXTEND",
 					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"texton" : "EXTEND",

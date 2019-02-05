@@ -16,20 +16,16 @@
  */
 
 const max = require('max-api')
-const { spawn, fork } = require('child_process')
-const kill = require('tree-kill')
 const opn = require('opn')
-const apps = ['continue', 'interpolate', 'groovae', 'generate']
-const os = require('os')
 const fs = require('fs-extra')
 const { resolve } = require('path')
 
-const appNames = ['continue', 'interpolate', 'generate', 'groovae']
+const appNames = ['continue', 'interpolate', 'generate', 'groove', 'translate2drums']
 
 max.addHandler('open', async app => {
 
 	if (appNames.includes(app)){
-		const appDir = resolve(__dirname, '../.apps')
+		const appDir = resolve(__dirname, '../apps')
 		const apps = await fs.readdir(appDir)
 		const executable = apps.find(a => a.toLowerCase().includes(app))
 
@@ -41,8 +37,8 @@ max.addHandler('open', async app => {
 	}
 })
 
-max.addHandler('close', app => {
+/* max.addHandler('close', app => {
 
-})
+}) */
 
 appNames.forEach(a => max.outlet(a, 0))
