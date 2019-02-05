@@ -18,6 +18,10 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const glob = require('glob')
+const fs = require('fs')
+const { argv } = require('yargs')
+const { resolve } = require('path')
 
 function getDefinitions(env, width=100, height=100){
 	return new webpack.DefinePlugin({
@@ -126,23 +130,25 @@ function makeConfig(name, mainFile, env, width=380, height=520){
 	]
 }
 
-module.exports = env => {
-	const continueConfig = makeConfig('continue', './continue/Main.js', env, 375, 600)
-	const groovaeConfig = makeConfig('groovae', './groovae/Main.js', env, 330, 450)
-	const interpolateConfig = makeConfig('interpolate', './interpolate/Main.js', env, 375, 580)
-	const generateConfig = makeConfig('generate', './generate/Main.js', env, 375, 540)
-	const componentsConfig = componentConfig('components', './components/index.js', env)
-	if (env.continue){
-		return continueConfig
-	} else if (env.groovae){
-		return groovaeConfig
-	} else if (env.interpolate){
-		return interpolateConfig
-	} else if (env.generate){
-		return generateConfig
-	} else if (env.components){
-		return componentsConfig
-	} else if (env.all){
-		return [...continueConfig, ...groovaeConfig, ...interpolateConfig, ...generateConfig, componentsConfig]
+module.exports = (env={}) => {
+
+	const apps = JSON.parse(fs.readFileSync(resolve(__dirname, './apps.json')))
+	let configs = []
+
+	if (typeof argv.dir !== 'string'){
+		Object.entries(apps).forEach(([key, data]) => {
+			const config = makeConfig(key, `./${key}/Main.js`, env, data.width, data.height)
+			configs = configs.concat(config)
+		})
+	} else {
+		const data = apps[argv.dir]
+		const config = makeConfig(argv.dir, `./${argv.dir}/Main.js`, env, data.width, data.height)
+		configs = configs.concat(config)
 	}
+
+	//append the components to it
+	const componentsConfig = componentConfig('components', './components/index.js', env)
+	configs.push(componentsConfig)
+
+	return configs
 }
