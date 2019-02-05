@@ -1,0 +1,35 @@
+body {
+	--accent-color: var(--color-accent-blue);
+
+	#title {
+		margin-bottom: 20px;
+	}
+
+	#mode {
+		display: block;
+		margin: 0 auto 20px;
+		width: 90%;
+		pointer-events: none;
+	}
+
+	#title {
+
+		span {
+			pointer-events: none;
+			float: left;
+			display: inline-block;
+			position: relative;
+		}
+
+		#transform {
+			overflow: hidden;
+			width: 120px;
+			transition: width 0.5s;
+		}
+
+		&:hover #transform{
+			width: 0px;
+		}
+
+	}
+}
