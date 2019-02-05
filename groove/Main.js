@@ -74,7 +74,6 @@ render(html`
 		<span>O</span>
 		<span>O</span>
 		<span>V</span>
-		<span>A</span>
 		<span>E</span>
 	</div>
 	<magenta-radio-group
