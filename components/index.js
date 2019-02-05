@@ -32,7 +32,7 @@ import './src/Close'
 //FORCE CPU BACKEND WHEN WEBGL IS VERSION !
 import { tf } from '@magenta/music'
 
-if (window.ENV && window.ENV.features && window.ENV.features.WEBGL_VERSION === 1) {
+if (window.ENV && window.ENV.features && window.ENV.features.WEBGL_VERSION === 1){
 	tf.setBackend('cpu')
 	console.log('backend set to', tf.getBackend())
 }
