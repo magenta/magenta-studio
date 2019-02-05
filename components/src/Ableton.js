@@ -20,7 +20,7 @@ import './File'
 import './Select'
 import './Tabs'
 import { toNoteSequence, fromNoteSequence } from './Convert'
-import * as Live from '../../max/src/Client'
+import * as Live from './Client'
 const { dialog } = require('electron').remote
 import { throttle } from 'throttle-debounce'
 import chroma from 'chroma-js'
