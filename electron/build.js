@@ -22,70 +22,77 @@ const fs = require('fs-extra')
 const { promisify } = require('util')
 const exec = promisify(require('child_process').exec)
 const { spawn } = require('child_process')
-const colors = require('colors')
-const package = require('../package.json')
-
-
-// const platform = ['darwin', 'win32']
-// const platform = ['darwin']
+require('colors')
+const tmp = require('tmp')
+const packageJson = require('../package.json')
+const apps = require('../apps.json')
+const argv = require('yargs').argv
 
 async function main(){
 
-	const { name, version } = package
-	const outName = `${name}-${version}`
+	if (argv.output === 'windows-ableton' || argv.output === true){
+		await buildAndCompress('windows', 'ableton')
+	}
 
-	console.log(outName.magenta)
-	console.log('\n')
+	if (argv.output === 'mac-ableton' || argv.output === true){
+		await buildAndCompress('macOS', 'ableton')
+	}
 
-	const platform = 'macOS'
-
-	/**
-	 * ABLETON
-	 */
-	console.log('BUILDING ABLETON'.green)
-	await runNpm('webpack:build')
-
-	console.log('\n')
-
-	console.log('BUNDLE ABLETON'.green)
-	const buildDir = resolve(__dirname, '../dist', platform)
-	const maxDir = resolve(__dirname, '../max/.apps')
-	await output(platform, 'magenta_logo', buildDir)
-	await moveFiles(buildDir, maxDir)
-	await fs.copy(resolve(__dirname, '../max/'), resolve(__dirname, '../dist', `${outName}-ableton-${platform}`))
-
-	console.log('\n')
-
-	/**
-	 * STANDALONE
-	 */
-	console.log('BUILDING STANDALONE'.green)
-	await runNpm('webpack:standalone')
-
-	console.log('\n')
-
-	console.log('BUNDLE STANDALONE'.green)
-	const standaloneOut = resolve(__dirname, '../dist', `${outName}-standalone-${platform}`)
-	await output(platform, 'magenta_logo', buildDir)
-	// await moveFiles(buildDir, standaloneOut)
-
-	console.log('COMPRESSSSSS'.green)
-	//compress the max dir
-	await toBeSigned()
+	if (argv.output === 'mac=standalone' || argv.output === true){
+		await buildAndCompress('macOS', 'standalone')
+	}
 }
 
+async function buildAndCompress(platform, type){
+
+	const { version } = packageJson
+	const outName = `${platform}-${type}-${version}`
+
+	// const buildDir = resolve(__dirname, '../dist/build')
+	const buildDir = tmp.dirSync().name
+	
+	console.log(`BUILDING ${type.toUpperCase()}`.green)
+	await runNpm(`webpack:${type === 'standalone' ? 'standalone' : 'build'}`)
+	
+	//bundle the output
+	console.log('BUNDLING'.green)
+	await output(platform, buildDir)
+	//copy to it's location
+	let outputDir = resolve(__dirname, '../dist', outName)
+	await fs.remove(outputDir)
+	await fs.ensureDir(outputDir)
+	
+	if (type === 'standalone'){
+		await moveFiles(buildDir, outputDir)
+	} else {
+		const maxDir = resolve(__dirname, '../magenta4live.amxd/')
+		outputDir = resolve(outputDir, './magenta4live.amxd/')
+		//copy the mix dir to the output folder
+		await fs.copy(maxDir, outputDir)
+		//move files to the apps folder
+		outputDir = resolve(outputDir, './apps')
+		await moveFiles(buildDir, outputDir, platform === 'windows')
+	}
+
+	//create a folder for signing
+	await toBeSigned(resolve(__dirname, `../dist/to-sign/${outName}`), outputDir, type)
+}
+
+/**
+ * RUN THE NPM COMMAND TO BUILD THE STANDALONE OR PLUGINS
+ */
 async function runNpm(command){
-	process.chdir(resolve(__dirname, '../'));
+	process.chdir(resolve(__dirname, '../'))
 	const child = spawn('npm', ['run', command])
 	child.stdout.on('data', d => console.log(d.toString().gray))
 	return new Promise(done => child.stdout.on('close', () => done()))
 }
 
-async function output(platform, icon, out){
+async function output(platform, out){
 
 	const nameToPlatform = {
-		'windows' : 'win32',
-		'macOS' : 'darwin'
+		windows : 'win32',
+		macOS : 'darwin'
 	}
 
 	const config = {
@@ -97,71 +104,61 @@ async function output(platform, icon, out){
 		osxSign : false,
 	}
 	try {
-		await packager(Object.assign({}, config, {
-			dir : resolve(__dirname, '../continue'),
-			name : 'Continue',
-			icon : resolve(__dirname, './assets/Continue_icon'),
-		}))
-		await packager(Object.assign({}, config, {
-			dir : resolve(__dirname, '../groovae'),
-			name : 'GrooVAE',
-			icon : resolve(__dirname, './assets/GrooVAE_icon'),
-		}))
-		await packager(Object.assign({}, config, {
-			dir : resolve(__dirname, '../interpolate'),
-			name : 'Interpolate',
-			icon : resolve(__dirname, './assets/Interpolate_icon'),
-		}))
-		await packager(Object.assign({}, config, {
-			dir : resolve(__dirname, '../generate'),
-			name : 'Generate',
-			icon : resolve(__dirname, './assets/Generate_icon'),
-		}))
+		//build all of the apps
+		for (let appName in apps){
+			const app = apps[appName]
+			await packager(Object.assign({}, config, {
+				dir : resolve(__dirname, `../${appName}`),
+				name : app.name,
+				icon : resolve(__dirname, `./assets/${app.icon}`),
+			}))
+		}
 	} catch (e){
 		console.log(e)
 	}
 }
 
-
-async function moveFiles(buildDir, outDir){
+async function moveFiles(buildDir, outDir, entireDir=false){
 	await fs.remove(outDir)
 	await fs.ensureDir(outDir)
-	const match = resolve(buildDir, './*/*.app')
+	const match = resolve(buildDir, './*/*.+(app|exe)')
 	const files = await glob(match)
-	await Promise.all(files.map(f => {
-		const src = f
-		const dst = resolve(outDir, basename(f))
-		return fs.rename(src, dst)
-	}))
+	for (let i = 0; i < files.length; i++){
+		const file = files[i]
+		const src = entireDir ? dirname(file) : file
+		const dst = entireDir ? outDir : resolve(outDir, basename(file))
+		await fs.copy(src, dst, {
+			overwrite : true,
+			errorOnExist : false
+		})
+	}
 	await fs.remove(buildDir)
 }
 
-async function toBeSigned(){
-	const outDir = resolve(__dirname, `../dist/to-sign-${package.version}`)
-	if (await fs.exists(outDir)){
-		await fs.remove(outDir)
-	}
+async function toBeSigned(outDir, appFolder, type){
+	await fs.remove(outDir)
 	await fs.ensureDir(outDir)
-	const standaloneApps = await glob(resolve(__dirname, '../dist/*/*.app'))
-	const abletonApps = await glob(resolve(__dirname, '../dist/*/.apps/*.app'))
-	await Promise.all(standaloneApps.map(a => fs.copy(a, resolve(outDir, 'standalone', basename(a)))))
-	await Promise.all(abletonApps.map(a => fs.copy(a, resolve(outDir, 'ableton', basename(a)))))
-	//get all of the files in the standalone
-	await compressAndDelete(outDir, 'standalone')
-	await compressAndDelete(outDir, 'ableton')
+	const apps = await glob(`${appFolder}/*.+(app|exe)`)
+	// console.log(outDir, appFolder)
+	await Promise.all(apps.map(a => fs.copy(a, resolve(outDir, basename(a)))))
+	// apps.map()
+	await compressAndDelete(outDir, apps, type)
 }
 
-async function compressAndDelete(outDir, type){
-	const appDir = resolve(outDir, type)
-	process.chdir(appDir)
-	const appFiles = await glob(resolve(appDir, '*.app'))
+async function compressAndDelete(outDir, appFiles, type){
+
+	console.log('COMPRESSSSSS'.green)
+
+	appFiles = appFiles.map(f => resolve(outDir, basename(f)))
+	process.chdir(outDir)
 	await Promise.all(appFiles.map(appFile => {
+		const appName = basename(basename(appFile, '.app'), '.exe')
 		console.log(`compressing ${basename(appFile)}`)
-		return exec(`zip -r -y ${basename(appFile, '.app')}.zip ${basename(appFile)}`)
+		return exec(`zip -vr -y ${appName}.zip ${basename(appFile)} -x "*.DS_Store"`)
 	}))
-	//delete all of them
+	// //delete all of the originals
 	await Promise.all(appFiles.map(f => fs.remove(f)))
 }
 
 main()
-// toBeSigned()
+// toBeSigned(resolve(__dirname, '../dist/to-sign/macOS-ableton-0.0.7'), resolve(__dirname, '../dist/macOS-ableton-0.0.7/apps'))

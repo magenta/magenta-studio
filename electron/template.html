@@ -4,8 +4,8 @@
 		<meta charset="UTF-8">
 		<script src="<%= components %>"></script>
 		<title>Magenta</title>
-		<meta http-equiv="Content-Security-Policy" 
-			content="connect-src http://localhost:3333 file://* https://storage.googleapis.com/">
+		<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'none'"> -->
+		<meta http-equiv="Content-Security-Policy" content="connect-src 'self' http://localhost:3333 file://*">
 	</head>
 	<body>
 		

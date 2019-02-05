@@ -44,7 +44,7 @@ export class Window extends EventEmitter {
 			fullscreenable : false,
 			backgroundThrottling : false,
 			webPreferences : {
-				nodeIntegrationInWorker : true
+				nodeIntegration : true,
 			}
 		})
 
