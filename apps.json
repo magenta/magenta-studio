@@ -17,10 +17,10 @@
 		"name": "Interpolate",
 		"icon": "Interpolate_icon"
 	},
-	"clip2drum": {
+	"drumify": {
 		"width": 330,
 		"height": 450,
-		"name": "Translate2Drums",
+		"name": "Drumify",
 		"icon": "Interpolate_icon"
 	},
 	"generate": {

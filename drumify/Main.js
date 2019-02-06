@@ -40,8 +40,8 @@ async function generate(){
 	} catch (e){
 		const snackbar = document.createElement('magenta-snackbar')
 		snackbar.setAttribute('message', e)
-		snackbar.setAttribute('error', '')			
-		snackbar.setAttribute('whoops', '')			
+		snackbar.setAttribute('error', '')
+		snackbar.setAttribute('whoops', '')
 		document.body.appendChild(snackbar)
 		setStatus('')
 		throw e
@@ -78,10 +78,10 @@ render(html`
 		id="mode">
 	</magenta-radio-group>
 	<div id="controls">
-		<magenta-midi-file 
+		<magenta-midi-file
 			label="Input ${ABLETON ? 'Clip' : 'File'}"
 			@change=${validate}></magenta-midi-file>
-		
+
 	</div>
 	<magenta-output-text></magenta-output-text>
 	<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>

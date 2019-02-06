@@ -23,13 +23,10 @@ const modelPath = PRODUCTION ? `${process.resourcesPath}/app/` : '.'
 
 export class Model {
 	constructor(){
-		// const drumUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/groovae_unquantize_1bar'
-		// const drumUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/groovae_unquantize_2bar'
-		// const drumUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/groovae_unquantize_4bar'
 		const models = [
-			resolve(modelPath, 'model/groovae_unquantize_1bar'), 
-			resolve(modelPath, 'model/groovae_unquantize_2bar'), 
-			resolve(modelPath, 'model/groovae_unquantize_3bar'), 
+			resolve(modelPath, 'model/groovae_unquantize_1bar'),
+			resolve(modelPath, 'model/groovae_unquantize_2bar'),
+			resolve(modelPath, 'model/groovae_unquantize_3bar'),
 			resolve(modelPath, 'model/groovae_unquantize_4bar')
 		]
 		this.models = models.map(url => new MusicVAE(url))

@@ -17,15 +17,19 @@
 
 import { MusicVAE, sequences } from '@magenta/music'
 const { quantizeNoteSequence, unquantizeSequence, clone } = sequences
-import { resolve } from 'path'
+import { resolve } from 'f'
 
 const modelPath = PRODUCTION ? `${process.resourcesPath}/app/` : '.'
 
 export class Model {
 	constructor(){
-		// const url = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/groovae_tap2drum_2bar'
-		const url = resolve(modelPath, 'model')
-		this.model = new MusicVAE(url)
+		const models = [
+			resolve(modelPath, 'model/groovae_tap2drum_1bar'),
+			resolve(modelPath, 'model/groovae_tap2drum_2bar'),
+			resolve(modelPath, 'model/groovae_tap2drum_3bar'),
+			resolve(modelPath, 'model/groovae_tap2drum_4bar')
+		]
+		this.models = models.map(url => new MusicVAE(url))
 	}
 
 	async load(){
@@ -41,26 +45,25 @@ export class Model {
 	async todrums(inSeq, temp=1){
 		inSeq = quantizeNoteSequence(inSeq, 4)
 		//split up by measure
-		//two measure groups
-		const grouping = 16 * 2
+		const inputSeqs = []
+		const grouping = 16 * 4
 		const outputs = []
 		for (let startOffset = 0; startOffset < inSeq.totalQuantizedSteps; startOffset+=grouping){
-			// const duration = Math.min(inSeq.totalQuantizedSteps - startOffset, grouping)
+			const duration = Math.min(inSeq.totalQuantizedSteps - startOffset, grouping)
+			const measures = Math.ceil(duration / 16)
 			const measure = clone(inSeq)
-			measure.totalQuantizedSteps = grouping
 			const endOffset = startOffset + grouping
 			measure.notes = inSeq.notes
 				.map(n => Object.assign({}, n))
-				.filter(n => startOffset <= n.quantizedEndStep && n.quantizedStartStep < endOffset)
+				.filter(n => startOffset <= n.quantizedStartStep && n.quantizedStartStep < endOffset)
 				.map(n => {
 					n.quantizedStartStep -= startOffset
 					n.quantizedEndStep -= startOffset
-					n.startTime -= startOffset * 0.25
-					n.endTime -= startOffset * 0.25
 					return n
 				})
-			const z = await this.model.encode([measure])
-			const output = await this.model.decode(z, temp)
+			const modelIndex = measures-1
+			const z = await this.models[modelIndex].encode([measure])
+			const output = await this.models[modelIndex].decode(z, temp)
 			z.dispose()
 			outputs.push(output[0])
 		}
