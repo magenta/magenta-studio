@@ -38,7 +38,7 @@ async function main(){
 		await buildAndCompress('macOS', 'ableton')
 	}
 
-	if (argv.output === 'mac=standalone' || argv.output === true){
+	if (argv.output === 'mac-standalone' || argv.output === true){
 		await buildAndCompress('macOS', 'standalone')
 	}
 }
