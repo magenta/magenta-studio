@@ -38,7 +38,7 @@ async function main(){
 		await buildAndCompress('macOS', 'ableton')
 	}
 
-	if (argv.output === 'mac=standalone' || argv.output === true){
+	if (argv.output === 'mac-standalone' || argv.output === true){
 		await buildAndCompress('macOS', 'standalone')
 	}
 }
@@ -50,10 +50,10 @@ async function buildAndCompress(platform, type){
 
 	// const buildDir = resolve(__dirname, '../dist/build')
 	const buildDir = tmp.dirSync().name
-	
+
 	console.log(`BUILDING ${type.toUpperCase()}`.green)
 	await runNpm(`webpack:${type === 'standalone' ? 'standalone' : 'build'}`)
-	
+
 	//bundle the output
 	console.log('BUNDLING'.green)
 	await output(platform, buildDir)
@@ -61,7 +61,7 @@ async function buildAndCompress(platform, type){
 	let outputDir = resolve(__dirname, '../dist', outName)
 	await fs.remove(outputDir)
 	await fs.ensureDir(outputDir)
-	
+
 	if (type === 'standalone'){
 		await moveFiles(buildDir, outputDir)
 	} else {
