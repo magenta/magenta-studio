@@ -1,11 +1,11 @@
 {
   "name": "generate",
-  "version": "0.0.1",
-  "description": "Magenta Generate",
+  "version": "0.1.0",
+  "description": "Magenta Studio Generate",
   "main": "build/Main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tambien/magenta-plugins"
+    "url": "https://github.com/tensorflow/magenta-studio"
   },
   "author": "Yotam Mann <https://yotammann.info>",
   "license": "Apache-2.0"
