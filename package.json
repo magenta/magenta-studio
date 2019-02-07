@@ -5,7 +5,7 @@
   "main": "wrong.js",
   "scripts": {
     "watch": "concurrently \"npm run watch:plugin --dir $npm_config_dir\" \"npm run electron:plugin $npm_config_dir\"",
-    "postinstall": "cd magenta4live.amxd; npm install",
+    "postinstall": "npm run download:models; cd magenta4live.amxd; npm install",
     "watch:standalone": "concurrently \"webpack -w --mode=development --env.standalone --dir $npm_config_dir\" \"npm run electron:plugin $npm_config_dir\"",
     "watch:plugin": "webpack -w --mode=development --dir $npm_config_dir",
     "electron:plugin": "cd $npm_config_dir && electron ./build/Main.js",
@@ -15,7 +15,7 @@
     "build": "node electron/build.js --output $npm_config_output",
     "signed": "node electron/post_signing.js",
     "test": "node test/Test.js",
-    "download:models": "node scripts/download_models"
+    "download:models": "node ./scripts/download_models"
   },
   "repository": {
     "type": "git",
@@ -59,13 +59,13 @@
     "throttle-debounce": "^2.0.1",
     "tmp": "0.0.33",
     "tone": "^13.3.6",
-    "unzipper": "^0.9.10",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
     "whatwg-fetch": "^2.0.4",
     "yargs": "^12.0.5"
   },
   "dependencies": {
-    "@magenta/music": "^1.4.3"
+    "@magenta/music": "^1.4.3",
+    "tmp-promise": "^1.0.5"
   }
 }
