@@ -5,6 +5,7 @@
   "main": "wrong.js",
   "scripts": {
     "watch": "concurrently \"npm run watch:plugin --dir $npm_config_dir\" \"npm run electron:plugin $npm_config_dir\"",
+    "postinstall": "cd magenta4live.amxd; npm install",
     "watch:standalone": "concurrently \"webpack -w --mode=development --env.standalone --dir $npm_config_dir\" \"npm run electron:plugin $npm_config_dir\"",
     "watch:plugin": "webpack -w --mode=development --dir $npm_config_dir",
     "electron:plugin": "cd $npm_config_dir && electron ./build/Main.js",
@@ -13,7 +14,8 @@
     "copy": "node components/copy.js",
     "build": "node electron/build.js --output $npm_config_output",
     "signed": "node electron/post_signing.js",
-    "test": "node test/Test.js"
+    "test": "node test/Test.js",
+    "download:models": "node scripts/download_models"
   },
   "repository": {
     "type": "git",
@@ -49,6 +51,7 @@
     "node-sass": "^4.9.3",
     "node-zip": "^1.1.1",
     "postcss-loader": "^3.0.0",
+    "request": "^2.88.0",
     "sass-loader": "^7.1.0",
     "spectron": "^5.0.0",
     "string-to-dom": "^0.1.5",
@@ -56,6 +59,7 @@
     "throttle-debounce": "^2.0.1",
     "tmp": "0.0.33",
     "tone": "^13.3.6",
+    "unzipper": "^0.9.10",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
     "whatwg-fetch": "^2.0.4",
