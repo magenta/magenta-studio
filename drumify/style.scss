@@ -21,15 +21,6 @@ body {
 			position: relative;
 		}
 
-		#transform {
-			overflow: hidden;
-			width: 120px;
-			transition: width 0.5s;
-		}
-
-		&:hover #transform{
-			width: 0px;
-		}
 
 	}
 }

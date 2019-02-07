@@ -1,13 +1,12 @@
 {
   "name": "continue",
-  "version": "0.0.2",
-  "description": "Magenta Extend",
+  "version": "0.1.0",
+  "description": "Magenta Studio Continue",
   "main": "build/Main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tambien/magenta-plugins"
+    "url": "https://github.com/tensorflow/magenta-studio"
   },
   "author": "Yotam Mann <https://yotammann.info>",
-  "license": "Apache-2.0",
-  "devDependencies": {}
+  "license": "Apache-2.0"
 }
