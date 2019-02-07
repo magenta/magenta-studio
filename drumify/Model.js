@@ -17,17 +17,17 @@
 
 import { MusicVAE, sequences } from '@magenta/music'
 const { quantizeNoteSequence, unquantizeSequence, clone } = sequences
-import { resolve } from 'f'
+import { resolve } from 'path'
 
 const modelPath = PRODUCTION ? `${process.resourcesPath}/app/` : '.'
 
 export class Model {
 	constructor(){
 		const models = [
-			resolve(modelPath, 'model/groovae_tap2drum_1bar'),
-			resolve(modelPath, 'model/groovae_tap2drum_2bar'),
-			resolve(modelPath, 'model/groovae_tap2drum_3bar'),
-			resolve(modelPath, 'model/groovae_tap2drum_4bar')
+			resolve(modelPath, 'model/groovae_drumify_1bar'),
+			resolve(modelPath, 'model/groovae_drumify_2bar'),
+			resolve(modelPath, 'model/groovae_drumify_3bar'),
+			resolve(modelPath, 'model/groovae_drumify_4bar')
 		]
 		this.models = models.map(url => new MusicVAE(url))
 	}

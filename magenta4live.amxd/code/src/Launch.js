@@ -20,7 +20,7 @@ const opn = require('opn')
 const fs = require('fs-extra')
 const { resolve } = require('path')
 
-const appNames = ['continue', 'interpolate', 'generate', 'groove', 'translate2drums']
+const appNames = ['continue', 'interpolate', 'generate', 'groove', 'drumify']
 
 max.addHandler('open', async app => {
 

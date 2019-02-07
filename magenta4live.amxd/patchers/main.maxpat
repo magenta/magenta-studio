@@ -258,7 +258,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 322.0, 444.0, 50.0, 62.0 ],
-									"text" : "close translate2drums"
+									"text" : "close drumify"
 								}
 
 							}
@@ -605,7 +605,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 117.0, 409.0, 54.0, 62.0 ],
-									"text" : "close translate2drums"
+									"text" : "close drumify"
 								}
 
 							}
@@ -618,7 +618,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 38.0, 409.0, 45.0, 62.0 ],
-									"text" : "open translate2drums"
+									"text" : "open drumify"
 								}
 
 							}

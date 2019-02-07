@@ -36,7 +36,7 @@ async function generate(){
 	try {
 		const inputMidi = await document.querySelector('magenta-midi-file').read()
 		const output = await model.todrums(inputMidi, temp)
-		await document.querySelector('magenta-midi-file').write([output], 'GROOVAE')
+		await document.querySelector('magenta-midi-file').write([output], 'DRUMIFY')
 	} catch (e){
 		const snackbar = document.createElement('magenta-snackbar')
 		snackbar.setAttribute('message', e)
