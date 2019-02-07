@@ -29,8 +29,8 @@ export class Model {
 	constructor(drums=false){
 		// const drumUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/drum_kit_rnn'
 		// const melodyUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/melody_rnn'
-		const drumUrl = resolve(modelPath, 'models/drums_rnn_v1')
-		const melodyUrl = resolve(modelPath, 'models/mono_rnn_rc1026')
+		const drumUrl = resolve(modelPath, 'models/drum_kit_rnn')
+		const melodyUrl = resolve(modelPath, 'models/melody_rnn')
 		this.model = new MusicRNN(drums ? drumUrl : melodyUrl)
 		this.tempo = 120
 		this.drums = drums
@@ -69,7 +69,7 @@ export class Model {
 		outputSequence.totalTime += seqB.totalTime
 		outputSequence.totalQuantizedSteps += seqB.totalQuantizedSteps
 		return outputSequence
-		
+
 	}
 }
 

@@ -24,10 +24,10 @@ const modelPath = PRODUCTION ? `${process.resourcesPath}/app/` : '.'
 export class Model {
 	constructor(){
 		const models = [
-			resolve(modelPath, 'model/groovae_drumify_1bar'),
-			resolve(modelPath, 'model/groovae_drumify_2bar'),
-			resolve(modelPath, 'model/groovae_drumify_3bar'),
-			resolve(modelPath, 'model/groovae_drumify_4bar')
+			resolve(modelPath, 'models/groovae_drumify_1bar'),
+			resolve(modelPath, 'models/groovae_drumify_2bar'),
+			resolve(modelPath, 'models/groovae_drumify_3bar'),
+			resolve(modelPath, 'models/groovae_drumify_4bar')
 		]
 		this.models = models.map(url => new MusicVAE(url))
 	}

@@ -25,8 +25,8 @@ export class Model {
 	constructor(drums=false){
 		// const melodyUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/mel_4bar_med_q2'
 		// const drumsUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/drums_4bar_med_q2'
-		const drumUrl = resolve(modelPath, 'models/drums_4bar_med_rc1026')
-		const melodyUrl = resolve(modelPath, 'models/mel_4bar_med_rc1026')
+		const drumUrl = resolve(modelPath, 'models/drums_4bar_med')
+		const melodyUrl = resolve(modelPath, 'models/mel_4bar_med')
 		this.model = new MusicVAE(drums ? drumUrl : melodyUrl)
 	}
 
@@ -99,7 +99,7 @@ export class Model {
 			const first = args.shift()
 			return this.concat(first, this.concat(...args))
 		} else {
-			throw new Error('concat requires at least two arrays')						
+			throw new Error('concat requires at least two arrays')
 		}
 	}
 

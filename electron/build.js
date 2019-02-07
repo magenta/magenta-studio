@@ -57,7 +57,7 @@ async function buildAndCompress(platform, type){
 	//bundle the output
 	console.log('BUNDLING'.green)
 	await output(platform, buildDir)
-	//copy to it's location
+	//copy to its location
 	let outputDir = resolve(__dirname, '../dist', outName)
 	await fs.remove(outputDir)
 	await fs.ensureDir(outputDir)
@@ -67,7 +67,7 @@ async function buildAndCompress(platform, type){
 	} else {
 		const maxDir = resolve(__dirname, '../magenta4live.amxd/')
 		outputDir = resolve(outputDir, './magenta4live.amxd/')
-		//copy the mix dir to the output folder
+		//copy the max dir to the output folder
 		await fs.copy(maxDir, outputDir)
 		//move files to the apps folder
 		outputDir = resolve(outputDir, './apps')
