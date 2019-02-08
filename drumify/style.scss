@@ -19,27 +19,24 @@ body {
 		}
 
     $letters: 1 3 5 6 7;
-    $hits: boom cat boom boom cat;
+    $hits: boot cat boot boot cat;
 		@for $i from 1 through length($letters) {
       $letter: nth($letters, $i);
       $hit: nth($hits, $i);
       $delay: ($letter - 1) * 0.25s;
 			&:hover span:nth-child(#{$letter}) {
-				animation: $hit 0.2s $delay ease-in-out;
+				animation: $hit 0.2s $delay ease-out;
 			}
 		}
 	}
 }
 
-@keyframes boom {
+@keyframes boot {
 	0% {
 		top: 0px;
 	}
 	50% {
-		top: 10px;
-	}
-	90% {
-		top: -1px;
+		top: 6px;
 	}
 	100% {
 		top: 0px;
@@ -51,11 +48,8 @@ body {
 		top: 0px;
 	}
 	50% {
-		top: -10px;
+		top: -12px;
   }
-  90% {
-		top: 1px;
-	}
 	100% {
 		top: 0px;
 	}
