@@ -1,11 +1,7 @@
 body {
-	--accent-color: var(--color-accent-blue);
+	--accent-color: var(--color-accent-orange);
 
-	#title {
-		margin-bottom: 20px;
-	}
-
-	#mode {
+  #mode {
 		display: block;
 		margin: 0 auto 20px;
 		width: 90%;
@@ -13,14 +9,54 @@ body {
 	}
 
 	#title {
+		margin-bottom: 20px;
 
 		span {
 			pointer-events: none;
 			float: left;
-			display: inline-block;
+			transition: margin 0.2s;
 			position: relative;
 		}
 
+    $letters: 1 3 5 6 7;
+    $hits: boom cat boom boom cat;
+		@for $i from 1 through length($letters) {
+      $letter: nth($letters, $i);
+      $hit: nth($hits, $i);
+      $delay: ($letter - 1) * 0.25s;
+			&:hover span:nth-child(#{$letter}) {
+				animation: $hit 0.2s $delay ease-in-out;
+			}
+		}
+	}
+}
 
+@keyframes boom {
+	0% {
+		top: 0px;
+	}
+	50% {
+		top: 10px;
+	}
+	90% {
+		top: -1px;
+	}
+	100% {
+		top: 0px;
+	}
+}
+
+@keyframes cat {
+	0% {
+		top: 0px;
+	}
+	50% {
+		top: -10px;
+  }
+  90% {
+		top: 1px;
+	}
+	100% {
+		top: 0px;
 	}
 }
