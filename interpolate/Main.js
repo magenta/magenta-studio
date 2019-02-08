@@ -108,3 +108,15 @@ function setStatus(status, error=false){
 		controls.classList.add('generating')
 	}
 }
+
+if (ANIMATE){
+	//title animation
+	setInterval(() => {
+		if (document.querySelector('#title').classList.contains('hover')){
+			document.querySelector('#title').classList.remove('hover')
+		} else {
+			document.querySelector('#title').classList.add('hover')
+		}
+	}, 500)
+}
+

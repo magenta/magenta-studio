@@ -83,6 +83,20 @@ $shadowCount : 6;
 	text-shadow: $outp
 }
 
+@keyframes hover-animation {
+	0% {
+		@include shadow(0px);
+	}
+
+	50% {
+		@include shadow(16px);
+	}
+
+	100% {
+		@include shadow(0px);
+	}
+}
+
 #title {
 	span {
 		position: relative;
@@ -93,6 +107,10 @@ $shadowCount : 6;
 
 	&:hover span {
 		@include shadow(16px);	
+	}
+
+	&.animate span {
+		animation: hover-animation 0.8s infinite;
 	}
 
 }

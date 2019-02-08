@@ -51,14 +51,12 @@ $letterWidth: 15px;
 
 	span {
 		pointer-events: none;
-		// animation: text-retract 0.2s ease-out;
-		// animation-fill-mode: forwards;
 		float: left;
 		text-align: left;
 		width: auto;
 	}
 
-	&:hover span.expand{
+	&:hover span.expand, &.hover span.expand{
 		// animation: text-extend 0.7s ease-in;
 		// animation-fill-mode: forwards;
 		margin-right: $letterWidth;

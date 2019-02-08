@@ -65,7 +65,7 @@ function validate(){
 
 render(html`
 	<magenta-close-button></magenta-close-button>
-	<div id="title">
+	<div id="title" class="${ANIMATE ? 'animate' : ''}">
     <span>D</span>
     <span>R</span>
     <span>U</span>

@@ -27,6 +27,11 @@ body {
 			&:hover span:nth-child(#{$letter}) {
 				animation: $hit 0.2s $delay ease-out;
 			}
+
+			&.animate span:nth-child(#{$letter}) {
+				animation: #{$hit}-animate 2s $delay ease-out;
+				animation-iteration-count: infinite;
+			}
 		}
 	}
 }
@@ -51,6 +56,31 @@ body {
 		top: -12px;
   }
 	100% {
+		top: 0px;
+	}
+}
+
+
+@keyframes boot-animate {
+	0% {
+		top: 0px;
+	}
+	5% {
+		top: 10px;
+	}
+	10% {
+		top: 0px;
+	}
+}
+
+@keyframes cat-animate {
+	0% {
+		top: 0px;
+	}
+	5% {
+		top: -12px;
+  }
+	10% {
 		top: 0px;
 	}
 }

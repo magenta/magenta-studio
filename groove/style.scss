@@ -25,6 +25,11 @@ body {
 			&:hover span:nth-child(#{$i}) {
 				animation: sweep 0.4s $delay ease-in-out;
 			}
+
+			&.animate span:nth-child(#{$i}){
+				animation: title-animation 1.0s $delay ease-in-out;
+				animation-iteration-count: infinite;
+			}
 		}
 
 	}
@@ -43,6 +48,21 @@ $displacement: 10px;
 		top: $displacement;
 	}
 	100% {
+		top: 0px;
+	}
+}
+
+@keyframes title-animation {
+	0% {
+		top: 0px;
+	}
+	20% {
+		top: -$displacement;
+	}
+	40% {
+		top: $displacement;
+	}
+	60% {
 		top: 0px;
 	}
 }

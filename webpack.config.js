@@ -26,6 +26,7 @@ const { resolve } = require('path')
 function getDefinitions(env, width=100, height=100){
 	return new webpack.DefinePlugin({
 		PRODUCTION : JSON.stringify(Boolean(env.production)),
+		ANIMATE : JSON.stringify(Boolean(env.animate)),
 		INDEX_FILE : JSON.stringify('index.html'),
 		ABOUT_FILE : JSON.stringify('about.html'),
 		ABLETON : JSON.stringify(!env.standalone),

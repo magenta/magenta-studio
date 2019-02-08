@@ -76,7 +76,9 @@ function validate(){
 
 render(html`
 	<magenta-close-button></magenta-close-button>
-	<div id="title">CONTINU<span>E</span></div>
+	<div id="title" class="${ANIMATE ? 'animate' : ''}">
+		CONTINU<span>E</span>
+	</div>
 	<div id="controls">
 		<magenta-radio-group
 			values=${JSON.stringify(['drums', 'melody'])}

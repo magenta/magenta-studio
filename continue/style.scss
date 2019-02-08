@@ -18,7 +18,7 @@ $shadowCount: 10;
 		$offset: 12px;
 		$outp: #{$outp}, $offset * $i 0px #{$col};
 	}
-	text-shadow: $outp
+	text-shadow: $outp;
 }
 
 
@@ -53,7 +53,7 @@ $shadowCount: 10;
 	}
 }
 
-@keyframes text-show {
+@keyframes text-animate {
 
 	0% {
 		text-shadow: 0px 0px white;
@@ -75,3 +75,13 @@ $shadowCount: 10;
 	animation-fill-mode: forwards;
 }
 
+#title:hover span {
+	animation: text-extend 0.7s ease-in;
+	animation-fill-mode: forwards;
+}
+
+#title.animate span {
+	animation: text-animate 1.3s ease-in-out;
+	animation-fill-mode: forwards;
+	animation-iteration-count: infinite;
+}

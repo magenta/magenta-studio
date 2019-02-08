@@ -69,7 +69,7 @@ function validate(){
 }
 
 render(html`
-	<div id="title">
+	<div id="title" class="${ANIMATE ? 'animate' : ''}">
 		<span>
 			GENERATE
 		</span> 4 BARS
