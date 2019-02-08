@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-import { MusicVAE, sequences } from '@magenta/music'
-const { quantizeNoteSequence, unquantizeSequence, clone } = sequences
+import { MusicVAE } from '@magenta/music'
+import { reconstructBySize } from '../shared';
 import { resolve } from 'path'
 
 const modelPath = PRODUCTION ? `${process.resourcesPath}/app/` : '.'
@@ -28,74 +28,21 @@ export class Model {
 			resolve(modelPath, 'models/groovae_humanize_2bar'),
 			resolve(modelPath, 'models/groovae_humanize_3bar'),
 			resolve(modelPath, 'models/groovae_humanize_4bar')
-		]
-		this.models = models.map(url => new MusicVAE(url))
+		];
+		this.models = models.map(url => new MusicVAE(url));
 	}
 
 	async load(){
 		try {
-			await Promise.all(this.models.map(m => m.initialize()))
+			await Promise.all(this.models.map(m => m.initialize()));
 		} catch (e){
-			const snackbar = document.createElement('magenta-snackbar')
-			snackbar.setAttribute('message', e)
-			document.body.appendChild(snackbar)
+			const snackbar = document.createElement('magenta-snackbar');
+			snackbar.setAttribute('message', e);
+			document.body.appendChild(snackbar);
 		}
 	}
 
-	async unquantize(inSeq, temp=1){
-		inSeq = quantizeNoteSequence(inSeq, 4)
-		//split up by measure
-		const inputSeqs = []
-		const grouping = 16 * 4
-		const outputs = []
-		for (let startOffset = 0; startOffset < inSeq.totalQuantizedSteps; startOffset+=grouping){
-			const duration = Math.min(inSeq.totalQuantizedSteps - startOffset, grouping)
-			const measures = Math.ceil(duration / 16)
-			const measure = clone(inSeq)
-			const endOffset = startOffset + grouping
-			measure.notes = inSeq.notes
-				.map(n => Object.assign({}, n))
-				.filter(n => startOffset <= n.quantizedStartStep && n.quantizedStartStep < endOffset)
-				.map(n => {
-					n.quantizedStartStep -= startOffset
-					n.quantizedEndStep -= startOffset
-					return n
-				})
-			const modelIndex = measures-1
-			const z = await this.models[modelIndex].encode([measure])
-			const output = await this.models[modelIndex].decode(z, temp)
-			z.dispose()
-			outputs.push(output[0])
-		}
-		const reconstruction = this.concat(...outputs)
-		reconstruction.notes.forEach(n => {
-			n.startTime *= 2
-			n.endTime *= 2
-		})
-		reconstruction.totalTime *= 2
-		return reconstruction
-	}
-
-	concat(...args){
-		if (args.length === 2){
-			const [seqA, seqB] = args
-			const outputSequence = clone(seqA)
-			seqB.notes.forEach(note => {
-				const clonedNote = Object.assign({}, note)
-				clonedNote.startTime += seqA.totalTime
-				clonedNote.endTime += seqA.totalTime
-				outputSequence.notes.push(clonedNote)
-			})
-			outputSequence.totalTime = seqA.totalTime + seqB.totalTime
-			return outputSequence
-		} else if (args.length > 2){
-			//concat the last two
-			//get the first arg
-			const first = args.shift()
-			return this.concat(first, this.concat(...args))
-		} else {
-			return args[0]
-		}
-	}
+	async unquantize(inSeq, temperature=1){
+		return reconstructBySize(inSeq, this.models, temperature);
+  }
 }
-
