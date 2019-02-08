@@ -63,13 +63,16 @@ function validate(){
 	return valid
 }
 
-// <magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
-// <magenta-slider id="variations" value="4" min="1" max="8" label="Variations"></magenta-slider>
-
 render(html`
 	<magenta-close-button></magenta-close-button>
 	<div id="title">
-		<span>Drumify</span>
+    <span>D</span>
+    <span>R</span>
+    <span>U</span>
+    <span>M</span>
+    <span>I</span>
+    <span>F</span>
+    <span>Y</span>
 	</div>
 	<magenta-radio-group
 		values=${JSON.stringify(['drums'])}

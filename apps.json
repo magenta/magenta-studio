@@ -24,7 +24,7 @@
 		"width": 330,
 		"height": 450,
 		"name": "Drumify",
-		"icon": "Interpolate_icon",
+		"icon": "Drumify_icon",
 		"models": "https://storage.googleapis.com/magenta-studio/models/drumify.zip"
 	},
 	"generate": {

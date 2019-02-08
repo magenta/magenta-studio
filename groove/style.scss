@@ -1,14 +1,7 @@
-$letters: 7;
-
-
 body {
 	--accent-color: var(--color-accent-orange);
 
-	#title {
-		margin-bottom: 20px;
-	}
-
-	#mode {
+  #mode {
 		display: block;
 		margin: 0 auto 20px;
 		width: 90%;
@@ -16,6 +9,7 @@ body {
 	}
 
 	#title {
+		margin-bottom: 20px;
 
 		span {
 			pointer-events: none;
