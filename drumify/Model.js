@@ -42,7 +42,7 @@ export class Model {
 		}
 	}
 
-	async todrums(inSeq, temperature=1) {
+	async drumify(inSeq, temperature=1) {
 		return await reconstructBySize(inSeq, this.models, temperature);
 	}
 }

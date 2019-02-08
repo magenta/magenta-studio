@@ -35,7 +35,7 @@ async function generate(){
 	// const variations = document.querySelector('#variations').value
 	try {
 		const inputMidi = await document.querySelector('magenta-midi-file').read()
-		const output = await model.todrums(inputMidi, temp)
+		const output = await model.drumify(inputMidi, temp)
 		await document.querySelector('magenta-midi-file').write([output], 'DRUMIFY')
 	} catch (e){
 		const snackbar = document.createElement('magenta-snackbar')
