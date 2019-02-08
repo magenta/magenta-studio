@@ -18,7 +18,7 @@
 const { outlet } = require('./src/Comm')
 const express = require('express')
 const app = express()
-app.use(require('body-parser').json())   
+app.use(require('body-parser').json())
 const kill = require('kill-port')
 const detect = require('detect-port')
 const max = require('max-api')
@@ -42,7 +42,7 @@ async function getId(path){
 // ID /////////////////////////////////////////////////////////////////////////
 
 /**
- * Get the current connecte status of Live
+ * Get the current connection status of Live
  */
 app.get('/status', (req, res) => res.send('connected'))
 
