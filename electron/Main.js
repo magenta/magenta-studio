@@ -36,13 +36,13 @@ app.on('ready', () => {
 			label : 'Debug',
 			accelerator : process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
 			click(){
-				main.dev() 
+				main.dev()
 			}
-		}, 
+		},
 		{
 			label : 'Info',
 			click(){
-				const popup = new Window(ABOUT_FILE, 520, 390, true)
+				const popup = new Window(ABOUT_FILE, 520, 450, true)
 			}
 		},
 		{
@@ -55,7 +55,7 @@ app.on('ready', () => {
 			label : 'Reload',
 			accelerator : 'CmdOrCtrl+R',
 			click(){
-				main.reload() 
+				main.reload()
 			}
 		})
 	}

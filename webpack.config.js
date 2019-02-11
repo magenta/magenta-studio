@@ -18,10 +18,10 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
-const glob = require('glob')
 const fs = require('fs')
 const { argv } = require('yargs')
 const { resolve } = require('path')
+const { version } = require('./package.json')
 
 function getDefinitions(env, width=100, height=100){
 	return new webpack.DefinePlugin({
@@ -55,14 +55,14 @@ function getCommonConfig(name, mainFile, env, width, height){
 		plugins : [definitions],
 		module : {
 			rules : [
-				{ 
-					test : /\.js$/, 
-					exclude : /node_modules/, 
-					loader : 'babel-loader' 
+				{
+					test : /\.js$/,
+					exclude : /node_modules/,
+					loader : 'babel-loader'
 				},
-				{ 
-					test : /\.scss$/, 
-					loader : 'style-loader!css-loader!sass-loader' 
+				{
+					test : /\.scss$/,
+					loader : 'style-loader!css-loader!sass-loader'
 				},
 			]
 		},
@@ -91,8 +91,8 @@ function makeConfig(name, mainFile, env, width=380, height=520){
 
 	const definitions = getDefinitions(env, width, height)
 
-	const templateParameters = { components : env.production ? 'components.js' : '../../build/components.js' }
-	
+	const templateParameters = { components : env.production ? 'components.js' : '../../build/components.js', version }
+
 	return [
 		//electron main
 		Object.assign({}, commonConfig, {
@@ -107,20 +107,20 @@ function makeConfig(name, mainFile, env, width=380, height=520){
 				Renderer : [mainFile],
 			},
 			plugins : [
-				definitions, 
-				new HtmlWebpackPlugin({ title : 'Main', 
-					filename : 'index.html', 
+				definitions,
+				new HtmlWebpackPlugin({ title : 'Main',
+					filename : 'index.html',
 					template : './electron/template.html',
 					templateParameters
 				}),
-				new HtmlWebpackPlugin({ title : 'About', 
-					filename : 'about.html', 
-					inject : false,
+				new HtmlWebpackPlugin({ title : 'About',
+          filename : 'about.html',
+          inject: false,
 					template : './electron/about.html',
-					templateParameters
+          templateParameters
 				}),
-				new HtmlWebpackPlugin({ title : 'Popup', 
-					filename : 'popup.html', 
+				new HtmlWebpackPlugin({ title : 'Popup',
+					filename : 'popup.html',
 					inject : false,
 					template : './electron/popup.html',
 					templateParameters

@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<script src="<%= components %>"></script>
-		<meta http-equiv="Content-Security-Policy" 
+		<meta http-equiv="Content-Security-Policy"
 			content="connect-src http://localhost:3333 file://*">
 	</head>
 </head>
@@ -30,9 +30,10 @@
 
 	</style>
 
-	<h2 id="title">Magenta Studio</h3>
+  <h2 id="title">Magenta Studio</h2>
+  <center><p>Version: <%= version %></p></center>
 	<p>
-		Find information and tutorials at 
+		Find information and tutorials at
 		<a onclick="require('electron').shell.openExternal('https://magenta.tensorflow.org/studio/')">our website.</a>
 	</p>
 	<p>
