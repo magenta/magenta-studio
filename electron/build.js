@@ -31,19 +31,19 @@ const argv = require('yargs').argv
 async function main(){
 
 	if (argv.output === 'windows-ableton' || argv.output === true){
-		await buildAndCompress('windows', 'ableton')
+		await build('windows', 'ableton')
 	}
 
 	if (argv.output === 'mac-ableton' || argv.output === true){
-		await buildAndCompress('macOS', 'ableton')
+		await build('macOS', 'ableton')
 	}
 
 	if (argv.output === 'mac-standalone' || argv.output === true){
-		await buildAndCompress('macOS', 'standalone')
+		await build('macOS', 'standalone')
 	}
 }
 
-async function buildAndCompress(platform, type){
+async function build(platform, type){
 
 	const { version } = packageJson
 	const outName = `${platform}-${type}-${version}`
@@ -73,9 +73,6 @@ async function buildAndCompress(platform, type){
 		outputDir = resolve(outputDir, './apps')
 		await moveFiles(buildDir, outputDir, platform === 'windows')
 	}
-
-	//create a folder for signing
-	await toBeSigned(resolve(__dirname, `../dist/to-sign/${outName}`), outputDir, type)
 }
 
 /**
@@ -135,30 +132,4 @@ async function moveFiles(buildDir, outDir, entireDir=false){
 	await fs.remove(buildDir)
 }
 
-async function toBeSigned(outDir, appFolder, type){
-	await fs.remove(outDir)
-	await fs.ensureDir(outDir)
-	const apps = await glob(`${appFolder}/*.+(app|exe)`)
-	// console.log(outDir, appFolder)
-	await Promise.all(apps.map(a => fs.copy(a, resolve(outDir, basename(a)))))
-	// apps.map()
-	await compressAndDelete(outDir, apps, type)
-}
-
-async function compressAndDelete(outDir, appFiles, type){
-
-	console.log('COMPRESSSSSS'.green)
-
-	appFiles = appFiles.map(f => resolve(outDir, basename(f)))
-	process.chdir(outDir)
-	await Promise.all(appFiles.map(appFile => {
-		const appName = basename(basename(appFile, '.app'), '.exe')
-		console.log(`compressing ${basename(appFile)}`)
-		return exec(`zip -vr -y ${appName}.zip ${basename(appFile)} -x "*.DS_Store"`)
-	}))
-	// //delete all of the originals
-	await Promise.all(appFiles.map(f => fs.remove(f)))
-}
-
 main()
-// toBeSigned(resolve(__dirname, '../dist/to-sign/macOS-ableton-0.0.7'), resolve(__dirname, '../dist/macOS-ableton-0.0.7/apps'))

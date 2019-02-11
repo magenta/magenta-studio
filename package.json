@@ -13,7 +13,6 @@
     "webpack:standalone": "webpack -p --mode=production --env.production --env.standalone && npm run copy",
     "copy": "node components/copy.js",
     "build": "node electron/build.js --output $npm_config_output",
-    "signed": "node electron/post_signing.js",
     "test": "node test/Test.js",
     "download:models": "node ./scripts/download_models"
   },
