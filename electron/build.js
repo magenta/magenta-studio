@@ -123,7 +123,8 @@ async function moveFiles(buildDir, outDir, entireDir=false){
 	for (let i = 0; i < files.length; i++){
 		const file = files[i]
 		const src = entireDir ? dirname(file) : file
-		const dst = entireDir ? outDir : resolve(outDir, basename(file))
+		const dst = entireDir ? resolve(outDir, basename(file, '.exe')) : resolve(outDir, basename(file))
+		await fs.ensureDir(dst)
 		await fs.copy(src, dst, {
 			overwrite : true,
 			errorOnExist : false

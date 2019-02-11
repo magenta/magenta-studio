@@ -29,11 +29,16 @@ max.addHandler('open', async app => {
 		const apps = await fs.readdir(appDir)
 		const executable = apps.find(a => a.toLowerCase().includes(app))
 
-		const executablePath = resolve(appDir, executable)
+		let executablePath = resolve(appDir, executable)
 
-		opn(executablePath).then(() => {
-			max.outlet(app, 0)
-		})
+		//for windows, there's an exe inside the dir with the same name
+		if (await fs.exists(resolve(executablePath, `${executable}.exe`))){
+			executablePath = resolve(executablePath, `${executable}.exe`)
+		}
+
+		await opn(executablePath)
+		//resolves when the app is closed
+		max.outlet(app, 0)
 	}
 })
 
