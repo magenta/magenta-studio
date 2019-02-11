@@ -64,11 +64,7 @@ class CloseButton extends LitElement {
 				</svg>
 			</button>
 		`
-		if (ABLETON || process.platform === 'win32'){
-			return closeButton
-		} else {
-			return html``
-		}
+    return closeButton
 	}
 }
 customElements.define('magenta-close-button', CloseButton)
