@@ -16,7 +16,6 @@
  */
 
 import { sequences } from '@magenta/music';
-import { matMul } from '@tensorflow/tfjs';
 const { quantizeNoteSequence, clone } = sequences;
 
 const STEPS_PER_BAR = 16;
