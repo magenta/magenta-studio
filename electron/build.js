@@ -39,11 +39,11 @@ async function main(){
 		await build('windows', 'standalone')
 	}
 
-	if (argv.output === 'mac-ableton' || argv.output === true){
+	if (argv.output === 'macos-ableton' || argv.output === true){
 		await build('macOS', 'ableton')
 	}
 
-	if (argv.output === 'mac-standalone' || argv.output === true){
+	if (argv.output === 'macos-standalone' || argv.output === true){
 		await build('macOS', 'standalone')
 	}
 }
