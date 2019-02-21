@@ -7,6 +7,17 @@
     "type": "git",
     "url": "https://github.com/tensorflow/magenta-studio"
   },
-  "author": "Yotam Mann <https://yotammann.info>",
-  "license": "Apache-2.0"
+  "author": "Magenta Team (https://g.co/magenta)",
+  "license": "Apache-2.0",
+  "build": {
+    "appId": "com.magentastudio.interpolate",
+    "productName": "Interpolate",
+    "copyright": "Copyright 2019 Magenta Team",
+    "nsis": {
+      "installerIcon": "../electron/assets/Interpolate_icon.ico"
+    },
+    "directories": {
+      "output": "../dist/windows-standalone-${version}"
+    }
+  }
 }

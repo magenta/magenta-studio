@@ -27,6 +27,7 @@ const tmp = require('tmp')
 const packageJson = require('../package.json')
 const apps = require('../apps.json')
 const argv = require('yargs').argv
+const { execSync } = require('child_process');
 
 async function main(){
 
@@ -34,11 +35,15 @@ async function main(){
 		await build('windows', 'ableton')
 	}
 
-	if (argv.output === 'mac-ableton' || argv.output === true){
+  if (argv.output === 'windows-standalone' || argv.output === true){
+		await build('windows', 'standalone')
+	}
+
+	if (argv.output === 'macos-ableton' || argv.output === true){
 		await build('macOS', 'ableton')
 	}
 
-	if (argv.output === 'mac-standalone' || argv.output === true){
+	if (argv.output === 'macos-standalone' || argv.output === true){
 		await build('macOS', 'standalone')
 	}
 }
@@ -62,8 +67,18 @@ async function build(platform, type){
 	await fs.remove(outputDir)
 	await fs.ensureDir(outputDir)
 
-	if (type === 'standalone'){
-		await moveFiles(buildDir, outputDir)
+	if (type === 'standalone') {
+    if (platform === 'windows') {
+      console.log('BUILDING WINDOWS INSTALLERS'.green)
+      for (let appName in apps){
+        const app = apps[appName]
+        console.log(`Building Windows installer for ${app.name}...`)
+        execSync(`./node_modules/.bin/build --prepackaged=${buildDir}/${app.name}-win32-x64 --project=./${appName} --win`)
+      }
+      fs.remove(buildDir)
+    } else {
+      await moveFiles(buildDir, outputDir)
+    }
 	} else {
 		const maxDir = resolve(__dirname, '../magenta4live.amxd/')
 		outputDir = resolve(outputDir, './magenta4live.amxd/')
