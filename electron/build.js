@@ -71,8 +71,8 @@ async function build(platform, type){
     if (platform === 'windows') {
       console.log('BUILDING WINDOWS INSTALLERS'.green)
       for (let appName in apps){
-        console.log(`Building Windows installer for ${app.name}...`)
         const app = apps[appName]
+        console.log(`Building Windows installer for ${app.name}...`)
         execSync(`./node_modules/.bin/build --prepackaged=${buildDir}/${app.name}-win32-x64 --project=./${appName} --win`)
       }
       fs.remove(buildDir)
