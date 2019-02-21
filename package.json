@@ -38,6 +38,7 @@
     "css-loader": "^1.0.0",
     "drag-drop": "^4.2.0",
     "electron": "^2.0.6",
+    "electron-builder": "^20.38.5",
     "electron-packager": "^13.1.0",
     "eslint": "^5.12.1",
     "exports-loader": "^0.7.0",
@@ -65,7 +66,6 @@
   },
   "dependencies": {
     "@magenta/music": "^1.4.4",
-    "electron-builder": "^20.38.5",
     "tmp-promise": "^1.0.5"
   }
 }
