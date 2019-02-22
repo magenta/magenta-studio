@@ -98,15 +98,17 @@ $shadowCount : 6;
 }
 
 #title {
+  -webkit-app-region: no-drag;
+  user-select: none;
+
 	span {
 		position: relative;
-		pointer-events: none;
 		@include shadow(0px);
 		transition: text-shadow 0.2s;
 	}
 
 	&:hover span {
-		@include shadow(16px);	
+		@include shadow(16px);
 	}
 
 	&.animate span {
