@@ -19,15 +19,12 @@ const packager = require('electron-packager')
 const { resolve, basename, dirname } = require('path')
 const glob = require('glob-promise')
 const fs = require('fs-extra')
-const { promisify } = require('util')
-const exec = promisify(require('child_process').exec)
-const { spawn } = require('child_process')
+const { execSync, spawn } = require('child_process')
 require('colors')
 const tmp = require('tmp')
 const packageJson = require('../package.json')
 const apps = require('../apps.json')
 const argv = require('yargs').argv
-const { execSync } = require('child_process');
 
 async function main(){
 
