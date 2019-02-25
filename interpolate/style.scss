@@ -48,9 +48,10 @@ $darkColor: rgba(255, 255, 255, 0.3);
 $letterWidth: 15px;
 
 #title {
+  user-select: none;
+  -webkit-app-region: no-drag;
 
 	span {
-		pointer-events: none;
 		float: left;
 		text-align: left;
 		width: auto;

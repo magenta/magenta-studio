@@ -21,10 +21,12 @@ $shadowCount: 10;
 	text-shadow: $outp;
 }
 
-
+#title {
+  user-select: none;
+  -webkit-app-region: no-drag;
+}
 
 #title span {
-	pointer-events: none;
 	animation: text-retract 0.2s ease-out;
 	animation-fill-mode: forwards;
 }

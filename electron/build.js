@@ -36,6 +36,10 @@ async function main(){
 		await build('windows', 'standalone')
 	}
 
+  if (argv.output === 'linux-standalone' || argv.output === true){
+		await build('linux', 'standalone')
+	}
+
 	if (argv.output === 'macos-ableton' || argv.output === true){
 		await build('macOS', 'ableton')
 	}
@@ -53,7 +57,7 @@ async function build(platform, type){
 	// const buildDir = resolve(__dirname, '../dist/build')
 	const buildDir = tmp.dirSync().name
 
-	console.log(`BUILDING ${type.toUpperCase()}`.green)
+	console.log(`BUILDING ${platform.toUpperCase()} ${type.toUpperCase()}`.green)
 	await runNpm(`webpack:${type === 'standalone' ? 'standalone' : 'build'}`)
 
 	//bundle the output
@@ -74,7 +78,7 @@ async function build(platform, type){
       }
       fs.remove(buildDir)
     } else {
-      await moveFiles(buildDir, outputDir)
+      await moveFiles(buildDir, outputDir, platform === 'linux')
     }
 	} else {
 		const maxDir = resolve(__dirname, '../magenta4live.amxd/')
@@ -101,7 +105,8 @@ async function output(platform, out){
 
 	const nameToPlatform = {
 		windows : 'win32',
-		macOS : 'darwin'
+    macOS : 'darwin',
+    linux: 'linux'
 	}
 
 	const config = {
@@ -128,8 +133,13 @@ async function output(platform, out){
 }
 
 async function moveFiles(buildDir, outDir, entireDir=false){
-	await fs.remove(outDir)
-	await fs.ensureDir(outDir)
+  if (entireDir) {
+    await fs.move(buildDir, outDir, {overwrite: true});
+    return;
+  }
+
+  await fs.remove(outDir)
+  await fs.ensureDir(outDir)
 	const match = resolve(buildDir, './*/*.+(app|exe)')
 	const files = await glob(match)
 	for (let i = 0; i < files.length; i++){
