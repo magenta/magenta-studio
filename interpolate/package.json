@@ -1,6 +1,6 @@
 {
   "name": "interpolate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Magenta Studio Interpolate",
   "main": "build/Main.js",
   "repository": {
