@@ -77,8 +77,11 @@ async function build(platform, type){
         execSync(`./node_modules/.bin/build --prepackaged=${buildDir}/${app.name}-win32-x64 --project=./${appName} --win`)
       }
       fs.remove(buildDir)
+    } else if (platform == 'linux') {
+      await fs.remove(outDir)
+      await fs.move(buildDir, outDir, {overwrite: true});
     } else {
-      await moveFiles(buildDir, outputDir, platform === 'linux')
+      await moveFiles(buildDir, outputDir)
     }
 	} else {
 		const maxDir = resolve(__dirname, '../magenta4live.amxd/')
@@ -133,11 +136,6 @@ async function output(platform, out){
 }
 
 async function moveFiles(buildDir, outDir, entireDir=false){
-  if (entireDir) {
-    await fs.move(buildDir, outDir, {overwrite: true});
-    return;
-  }
-
   await fs.remove(outDir)
   await fs.ensureDir(outDir)
 	const match = resolve(buildDir, './*/*.+(app|exe)')
