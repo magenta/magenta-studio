@@ -1,12 +1,23 @@
 {
   "name": "drumify",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Magenta Studio Drumify",
   "main": "build/Main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/tensorflow/magenta-studio"
   },
-  "author": "Yotam Mann <https://yotammann.info>",
-  "license": "Apache-2.0"
+  "author": "Magenta Team (https://g.co/magenta)",
+  "license": "Apache-2.0",
+  "build": {
+    "appId": "com.magentastudio.drumify",
+    "productName": "Drumify",
+    "copyright": "Copyright 2019 Magenta Team",
+    "nsis": {
+      "installerIcon": "../electron/assets/Drumify_icon.ico"
+    },
+    "directories": {
+      "output": "../dist/windows-standalone-${version}"
+    }
+  }
 }

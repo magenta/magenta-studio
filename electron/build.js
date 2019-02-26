@@ -6,7 +6,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ *		http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,9 +19,7 @@ const packager = require('electron-packager')
 const { resolve, basename, dirname } = require('path')
 const glob = require('glob-promise')
 const fs = require('fs-extra')
-const { promisify } = require('util')
-const exec = promisify(require('child_process').exec)
-const { spawn } = require('child_process')
+const { execSync, spawn } = require('child_process')
 require('colors')
 const tmp = require('tmp')
 const packageJson = require('../package.json')
@@ -34,11 +32,19 @@ async function main(){
 		await build('windows', 'ableton')
 	}
 
-	if (argv.output === 'mac-ableton' || argv.output === true){
+	if (argv.output === 'windows-standalone' || argv.output === true){
+		await build('windows', 'standalone')
+	}
+
+	if (argv.output === 'linux-standalone' || argv.output === true){
+		await build('linux', 'standalone')
+	}
+
+	if (argv.output === 'macos-ableton' || argv.output === true){
 		await build('macOS', 'ableton')
 	}
 
-	if (argv.output === 'mac-standalone' || argv.output === true){
+	if (argv.output === 'macos-standalone' || argv.output === true){
 		await build('macOS', 'standalone')
 	}
 }
@@ -51,7 +57,7 @@ async function build(platform, type){
 	// const buildDir = resolve(__dirname, '../dist/build')
 	const buildDir = tmp.dirSync().name
 
-	console.log(`BUILDING ${type.toUpperCase()}`.green)
+	console.log(`BUILDING ${platform.toUpperCase()} ${type.toUpperCase()}`.green)
 	await runNpm(`webpack:${type === 'standalone' ? 'standalone' : 'build'}`)
 
 	//bundle the output
@@ -62,8 +68,21 @@ async function build(platform, type){
 	await fs.remove(outputDir)
 	await fs.ensureDir(outputDir)
 
-	if (type === 'standalone'){
-		await moveFiles(buildDir, outputDir)
+	if (type === 'standalone') {
+		if (platform === 'windows') {
+			console.log('BUILDING WINDOWS INSTALLERS'.green)
+			for (let appName in apps){
+				const app = apps[appName]
+				console.log(`Building Windows installer for ${app.name}...`)
+				execSync(`./node_modules/.bin/build --prepackaged=${buildDir}/${app.name}-win32-x64 --project=./${appName} --win`)
+			}
+			fs.remove(buildDir)
+		} else if (platform == 'linux') {
+			await fs.remove(outDir)
+			await fs.move(buildDir, outDir, {overwrite: true});
+		} else {
+			await moveFiles(buildDir, outputDir)
+		}
 	} else {
 		const maxDir = resolve(__dirname, '../magenta4live.amxd/')
 		outputDir = resolve(outputDir, './magenta4live.amxd/')
@@ -89,7 +108,8 @@ async function output(platform, out){
 
 	const nameToPlatform = {
 		windows : 'win32',
-		macOS : 'darwin'
+		macOS : 'darwin',
+		linux: 'linux'
 	}
 
 	const config = {

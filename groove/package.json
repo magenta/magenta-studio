@@ -1,12 +1,23 @@
 {
   "name": "groove",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Magenta Studio Groove",
   "main": "build/Main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/tensorflow/magenta-studio"
   },
-  "author": "Yotam Mann <https://yotammann.info>",
-  "license": "Apache-2.0"
+  "author": "Magenta Team (https://g.co/magenta)",
+  "license": "Apache-2.0",
+  "build": {
+    "appId": "com.magentastudio.groove",
+    "productName": "Groove",
+    "copyright": "Copyright 2019 Magenta Team",
+    "nsis": {
+      "installerIcon": "../electron/assets/Groove_icon.ico"
+    },
+    "directories": {
+      "output": "../dist/windows-standalone-${version}"
+    }
+  }
 }

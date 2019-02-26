@@ -1,6 +1,6 @@
 {
   "name": "magenta-studio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Magenta Studio plugins as Standalone applications and for Ableton Live",
   "main": "wrong.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "type": "git",
     "url": "https://github.com/tensorflow/magenta-studio"
   },
-  "author": "Yotam Mann (ymann@google.com)",
+  "author": "Magenta Team (https://g.co/magenta)",
   "license": "Apache-2.0",
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -38,6 +38,7 @@
     "css-loader": "^1.0.0",
     "drag-drop": "^4.2.0",
     "electron": "^2.0.6",
+    "electron-builder": "^20.38.5",
     "electron-packager": "^13.0.1",
     "eslint": "^5.12.1",
     "exports-loader": "^0.7.0",
