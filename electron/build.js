@@ -6,7 +6,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ *		http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -32,11 +32,11 @@ async function main(){
 		await build('windows', 'ableton')
 	}
 
-  if (argv.output === 'windows-standalone' || argv.output === true){
+	if (argv.output === 'windows-standalone' || argv.output === true){
 		await build('windows', 'standalone')
 	}
 
-  if (argv.output === 'linux-standalone' || argv.output === true){
+	if (argv.output === 'linux-standalone' || argv.output === true){
 		await build('linux', 'standalone')
 	}
 
@@ -69,20 +69,20 @@ async function build(platform, type){
 	await fs.ensureDir(outputDir)
 
 	if (type === 'standalone') {
-    if (platform === 'windows') {
-      console.log('BUILDING WINDOWS INSTALLERS'.green)
-      for (let appName in apps){
-        const app = apps[appName]
-        console.log(`Building Windows installer for ${app.name}...`)
-        execSync(`./node_modules/.bin/build --prepackaged=${buildDir}/${app.name}-win32-x64 --project=./${appName} --win`)
-      }
-      fs.remove(buildDir)
-    } else if (platform == 'linux') {
-      await fs.remove(outDir)
-      await fs.move(buildDir, outDir, {overwrite: true});
-    } else {
-      await moveFiles(buildDir, outputDir)
-    }
+		if (platform === 'windows') {
+			console.log('BUILDING WINDOWS INSTALLERS'.green)
+			for (let appName in apps){
+				const app = apps[appName]
+				console.log(`Building Windows installer for ${app.name}...`)
+				execSync(`./node_modules/.bin/build --prepackaged=${buildDir}/${app.name}-win32-x64 --project=./${appName} --win`)
+			}
+			fs.remove(buildDir)
+		} else if (platform == 'linux') {
+			await fs.remove(outDir)
+			await fs.move(buildDir, outDir, {overwrite: true});
+		} else {
+			await moveFiles(buildDir, outputDir)
+		}
 	} else {
 		const maxDir = resolve(__dirname, '../magenta4live.amxd/')
 		outputDir = resolve(outputDir, './magenta4live.amxd/')
@@ -108,8 +108,8 @@ async function output(platform, out){
 
 	const nameToPlatform = {
 		windows : 'win32',
-    macOS : 'darwin',
-    linux: 'linux'
+		macOS : 'darwin',
+		linux: 'linux'
 	}
 
 	const config = {
@@ -136,8 +136,8 @@ async function output(platform, out){
 }
 
 async function moveFiles(buildDir, outDir, entireDir=false){
-  await fs.remove(outDir)
-  await fs.ensureDir(outDir)
+	await fs.remove(outDir)
+	await fs.ensureDir(outDir)
 	const match = resolve(buildDir, './*/*.+(app|exe)')
 	const files = await glob(match)
 	for (let i = 0; i < files.length; i++){
