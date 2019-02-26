@@ -14,6 +14,7 @@ body {
     -webkit-app-region: no-drag;
 
 		span {
+			pointer-events: none;
 			float: left;
 			transition: margin 0.2s;
 			position: relative;

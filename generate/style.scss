@@ -103,6 +103,7 @@ $shadowCount : 6;
 
 	span {
 		position: relative;
+		pointer-events: none;
 		@include shadow(0px);
 		transition: text-shadow 0.2s;
 	}
