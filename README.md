@@ -8,7 +8,7 @@ The Magenta Studio plugins are Electron apps. Electron has the advantage of bein
 
 All of the plugins share common UI and communication components which can be found in the 'components' folder. These objects are built using [Polymer's LitElement](https://github.com/Polymer/lit-element). 
 
-The Ableton integration is achieved through [Max4Live](https://www.ableton.com/en/live/max-for-live/). The object and related javascript files can be found in the folder called 'max'. The Max component and the Electron apps communication over a local server running on port 3333. 
+The Ableton integration is achieved through [Max4Live](https://www.ableton.com/en/live/max-for-live/). The object and related javascript files can be found in the folder called 'magenta4live.amxd'. The Max component and the Electron apps communication over a local server running on port 3333. 
 
 ## Installation
 
