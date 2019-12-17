@@ -31,7 +31,7 @@ All of the build files will be put into the 'dist' folder.
 You can also build a specific target by passing it as an argument:
 
 ```
-npm run build macos-standlone
+npm run build macos-standalone
 ```
 
 The current options are:
