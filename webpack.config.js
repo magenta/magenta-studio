@@ -62,11 +62,11 @@ function getCommonConfig(name, mainFile, env, width, height){
 				},
 				{
 					test : /\.scss$/,
-					loader : 'style-loader!css-loader!sass-loader'
+					use : ['style-loader', 'css-loader', 'sass-loader']
 				},
 			]
 		},
-		devtool : env.production ? '' : 'source-map'
+		devtool : env.production ? undefined : 'source-map'
 	}
 }
 
