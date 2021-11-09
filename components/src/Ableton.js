@@ -15,16 +15,14 @@
  * limitations under the License.
  */
 
-import { LitElement, html } from '@polymer/lit-element'
-import './File'
+import { LitElement, html } from 'lit'
+// import './File'
 import './Select'
 import './Tabs'
 import { toNoteSequence, fromNoteSequence } from './Convert'
 import * as Live from './Client'
-const { dialog } = require('electron').remote
 import { throttle } from 'throttle-debounce'
 import chroma from 'chroma-js'
-import { popup } from './Popup'
 
 export class AbletonFile extends LitElement {
 
@@ -117,16 +115,16 @@ export class AbletonFile extends LitElement {
 			paths = paths.slice(0, maxLen)
 			paths[maxLen-1] = `${len-(maxLen-1)} more...`
 		}
-		const response = await popup({
-			title : `Overwrite clip${paths.length > 1 ? 's' : ''}?`,
-			body : `
-				These clips will be saved over:
-				<ul>
-					${paths.map(p => `<li>${p}</li>`).join(' ')}
-				</ul>
-			`
-		})
-		return response === 'ok'
+		const title = `Overwrite clip${paths.length > 1 ? 's' : ''}?`;
+		const body = `
+		These clips will be saved over:
+		<ul>
+			${paths.map(p => `<li>${p}</li>`).join(' ')}
+		</ul>
+	`;
+		if (window.confirm(body, title)) {
+			return response === 'ok';
+		}
 	}
 
 	get selectedTrackIndex(){

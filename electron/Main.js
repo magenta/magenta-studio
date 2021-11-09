@@ -32,6 +32,7 @@ app.on('ready', () => {
 
 	//add the menu
 	const template = [{
+		label: app.name,
 		submenu : [{
 			label : 'Debug',
 			accelerator : process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',

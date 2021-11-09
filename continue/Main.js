@@ -17,8 +17,7 @@
 
 // import '../../components/theme.scss'
 // import './main.scss'
-import { render, html } from 'lit-html'
-import { resolve, dirname, basename, extname } from 'path'
+import { render, html } from 'lit'
 import { Model } from './Model'
 import './style.scss'
 

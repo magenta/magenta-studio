@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-import { LitElement, html } from '@polymer/lit-element'
+import { LitElement, html } from 'lit'
 import { commonStyle } from './InputStyle'
-import './File'
+// import './File'
 import './Select'
 import './Tabs'
 import './Ableton'
@@ -43,46 +43,19 @@ class MagentaFile extends LitElement {
 	}
 
 	async read(){
-		if (ABLETON){
-			return await this.shadowRoot.querySelector('magenta-ableton-file').read()
-		} else {
-			const files = await Promise.all(Array.from(this.shadowRoot.querySelectorAll('magenta-file')).map(e => e.read()))
-			if (files.length > 1){
-				return files
-			} else {
-				return files[0]
-			}
-		}
+		return await this.shadowRoot.querySelector('magenta-ableton-file').read()
 	}
 
 	async write(sequence, prefix='EXT'){
-		if (ABLETON){
-			await this.shadowRoot.querySelector('magenta-ableton-file').write(sequence, prefix)
-		} else {
-			await this.shadowRoot.querySelector('magenta-file').write(sequence, prefix)
-		}
+		await this.shadowRoot.querySelector('magenta-ableton-file').write(sequence, prefix)
 	}
 
 	_testValid(){
-		if (ABLETON){
-			this.valid = this.shadowRoot.querySelector('magenta-ableton-file').valid
-		} else {
-			this.valid = Array.from(this.shadowRoot.querySelectorAll('magenta-file')).every(e => e.valid)
-		}
+		this.valid = this.shadowRoot.querySelector('magenta-ableton-file').valid
 	}
 
 	get outputPath(){
-		if (ABLETON){
-			return this.shadowRoot.querySelector('magenta-ableton-file').outputPath
-		} else {
-			return this.shadowRoot.querySelector('magenta-file').outputPath
-		}
-	}
-
-	async chooseOutput(){
-		if (!ABLETON){
-			return this.shadowRoot.querySelector('magenta-file').chooseOutput()
-		} 
+		return this.shadowRoot.querySelector('magenta-ableton-file').outputPath
 	}
 
 	update(changed){

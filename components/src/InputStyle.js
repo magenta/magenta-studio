@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { html } from '@polymer/lit-element'
+import { html } from 'lit'
 
 export const inputStyle = html`
 	<style>

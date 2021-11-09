@@ -40,7 +40,10 @@ function getCommonConfig(name, mainFile, env, width, height){
 	const definitions = getDefinitions(env, width, height)
 
 	return {
-		mode : env.production ? 'production' : 'development',
+		mode: env.production ? 'production' : 'development',
+		entry : {
+			Renderer : [mainFile],
+		},
 		context : __dirname,
 		output : {
 			path : path.resolve(__dirname, name, './build'),
@@ -80,7 +83,7 @@ function componentConfig(name, mainFile, env, width, height){
 			path : path.resolve(__dirname, './build'),
 			filename : '[name].js'
 		},
-		target : 'electron-renderer',
+		target : 'browserslist:last 2 versions',
 	})
 	return config
 }
@@ -94,40 +97,45 @@ function makeConfig(name, mainFile, env, width=380, height=520){
 	const templateParameters = { components : env.production ? 'components.js' : '../../build/components.js', version }
 
 	return [
-		//electron main
-		Object.assign({}, commonConfig, {
-			entry : {
-				Main : './electron/Main.js',
-			},
-			target : 'electron-main',
-		}),
-		//electron renderer
-		Object.assign({}, commonConfig, {
-			entry : {
-				Renderer : [mainFile],
-			},
-			plugins : [
-				definitions,
-				new HtmlWebpackPlugin({ title : 'Main',
-					filename : 'index.html',
-					template : './electron/template.html',
-					templateParameters
-				}),
-				new HtmlWebpackPlugin({ title : 'About',
-          filename : 'about.html',
-          inject: false,
-					template : './electron/about.html',
-          templateParameters
-				}),
-				new HtmlWebpackPlugin({ title : 'Popup',
-					filename : 'popup.html',
-					inject : false,
-					template : './electron/popup.html',
-					templateParameters
-				}),
-			],
-			target : 'electron-renderer',
-		})
+		commonConfig
+		// //electron main
+		// Object.assign({}, commonConfig, {
+		// 	entry : {
+		// 		Main : './electron/Main.js',
+		// 	},
+		// 	target : 'electron-main',
+		// }),
+		// //electron renderer
+		// Object.assign({}, commonConfig, {
+		// 	entry : {
+		// 		Renderer : [mainFile],
+		// 	},
+		// 	node: {
+		// 		__dirname: false,
+		// 		__filename: false
+  	// 	},
+		// 	plugins : [
+		// 		definitions,
+		// 		new HtmlWebpackPlugin({ title : 'Main',
+		// 			filename : 'index.html',
+		// 			template : './electron/template.html',
+		// 			templateParameters
+		// 		}),
+		// 		new HtmlWebpackPlugin({ title : 'About',
+    //       filename : 'about.html',
+    //       inject: false,
+		// 			template : './electron/about.html',
+    //       templateParameters
+		// 		}),
+		// 		new HtmlWebpackPlugin({ title : 'Popup',
+		// 			filename : 'popup.html',
+		// 			inject : false,
+		// 			template : './electron/popup.html',
+		// 			templateParameters
+		// 		}),
+		// 	],
+		// 	target : 'electron-renderer',
+		// })
 	]
 }
 

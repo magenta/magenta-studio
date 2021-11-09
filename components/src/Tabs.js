@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { LitElement, html } from '@polymer/lit-element'
+import { LitElement, html } from 'lit'
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js'
 import { commonStyle } from './InputStyle'
 

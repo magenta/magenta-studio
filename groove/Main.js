@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { render, html } from 'lit-html'
+import { render, html } from 'lit'
 import { Model } from './Model'
 import './style.scss'
 

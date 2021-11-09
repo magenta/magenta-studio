@@ -17,7 +17,6 @@
 
 import './theme.scss'
 import './main.scss'
-import './src/File'
 import './src/Select'
 import './src/Tabs'
 import './src/MidiFile'
@@ -26,7 +25,6 @@ import './src/Button'
 import './src/Snackbar'
 import './src/Radio'
 import './src/OutputText'
-import './src/Popup'
 import './src/Close'
 
 //FORCE CPU BACKEND WHEN WEBGL IS VERSION !

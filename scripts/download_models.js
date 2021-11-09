@@ -25,8 +25,8 @@ async function downloadZip(appName, url){
 
 	//move to the proper location
 	const [sourceFolder] = await glob(resolve(tmpDir.path, '*/models'))
-	await fs.move(sourceFolder, resolve(__dirname, '../', appName, 'models'), {
-		overwrite : true
+	await fs.move(sourceFolder, resolve(__dirname, '../public', appName, 'models'), {
+		overwrite: true
 	})
 
 	tmpDir.cleanup()

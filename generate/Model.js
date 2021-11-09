@@ -17,16 +17,13 @@
 
 import { MusicVAE, sequences } from '@magenta/music'
 const { quantizeNoteSequence, unquantizeSequence, clone } = sequences
-import { resolve } from 'path'
-
-const modelPath = PRODUCTION ? `${process.resourcesPath}/app/` : '.'
 
 export class Model {
 	constructor(drums=false){
 		//const drumUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/drums_4bar_med_lokl_q2'
 		//const melodyUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/mel_4bar_med_lokl_q2'
-		const drumUrl = resolve(modelPath, 'models/drums_4bar_med_lokl')
-		const melodyUrl = resolve(modelPath, 'models/mel_4bar_med_lokl')
+		const drumUrl = 'models/drums_4bar_med_lokl';
+		const melodyUrl = 'models/mel_4bar_med_lokl';
 		this.model = new MusicVAE(drums ? drumUrl : melodyUrl)
 	}
 

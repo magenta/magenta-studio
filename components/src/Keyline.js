@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-import { LitElement, html } from '@polymer/lit-element'
-import './File'
+import { LitElement, html } from 'lit'
+// import './File'
 import './Select'
 import './Tabs'
 import './Ableton'

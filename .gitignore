@@ -72,3 +72,9 @@ magenta4live.amxd/apps
 *.zip
 TODO.txt
 modelz
+
+public/continue/models
+public/drumify/models
+public/generate/models
+public/groove/models
+public/interpolate/models

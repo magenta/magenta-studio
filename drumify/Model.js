@@ -17,17 +17,14 @@
 
 import { MusicVAE } from '@magenta/music';
 import { reconstructBySize } from '../shared';
-import { resolve } from 'path';
-
-const modelPath = PRODUCTION ? `${process.resourcesPath}/app/` : '.';
 
 export class Model {
 	constructor() {
 		const models = [
-			resolve(modelPath, 'models/groovae_tap2drum_1bar'),
-			resolve(modelPath, 'models/groovae_tap2drum_2bar'),
-			resolve(modelPath, 'models/groovae_tap2drum_3bar'),
-			resolve(modelPath, 'models/groovae_tap2drum_4bar')
+			'models/groovae_tap2drum_1bar',
+			'models/groovae_tap2drum_2bar',
+			'models/groovae_tap2drum_3bar',
+			'models/groovae_tap2drum_4bar'
 		];
 		this.models = models.map(url => new MusicVAE(url));
 	}
