@@ -58,11 +58,19 @@ function getCommonConfig(name, mainFile, env, width, height){
 		plugins : [definitions],
 		module : {
 			rules : [
-				{
-					test : /\.js$/,
-					exclude : /node_modules/,
-					loader : 'babel-loader'
-				},
+				// {
+				// 	test : /\.js$/,
+				// 	exclude: /node_modules/,
+				// 	use: {
+				// 		loader : 'babel-loader',
+				// 		options: {
+				// 			plugins: [
+				// 				["@babel/plugin-proposal-decorators", { decoratorsBeforeExport: true }],
+				// 				["@babel/plugin-proposal-class-properties", { "loose": true }]
+				// 			]
+				// 		}
+				// 	}
+				// },
 				{
 					test : /\.scss$/,
 					use : ['style-loader', 'css-loader', 'sass-loader']
@@ -77,13 +85,13 @@ function componentConfig(name, mainFile, env, width, height){
 	const config = {}
 	Object.assign(config, getCommonConfig(name, mainFile, env, width, height), {
 		entry : {
-			components : ['core-js', mainFile],
+			components : [mainFile],
 		},
 		output : {
 			path : path.resolve(__dirname, './build'),
 			filename : '[name].js'
 		},
-		target : 'browserslist:last 2 versions',
+		target : 'web',
 	})
 	return config
 }
