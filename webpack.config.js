@@ -46,7 +46,7 @@ function getCommonConfig(name, mainFile, env, width, height){
 		},
 		context : __dirname,
 		output : {
-			path : path.resolve(__dirname, name, './build'),
+			path : path.resolve(__dirname, 'magenta4live.amxd/code/public', name),
 			filename : '[name].js'
 		},
 		resolve : {
@@ -105,45 +105,29 @@ function makeConfig(name, mainFile, env, width=380, height=520){
 	const templateParameters = { components : env.production ? 'components.js' : '../../build/components.js', version }
 
 	return [
-		commonConfig
-		// //electron main
-		// Object.assign({}, commonConfig, {
-		// 	entry : {
-		// 		Main : './electron/Main.js',
-		// 	},
-		// 	target : 'electron-main',
-		// }),
-		// //electron renderer
-		// Object.assign({}, commonConfig, {
-		// 	entry : {
-		// 		Renderer : [mainFile],
-		// 	},
-		// 	node: {
-		// 		__dirname: false,
-		// 		__filename: false
-  	// 	},
-		// 	plugins : [
-		// 		definitions,
-		// 		new HtmlWebpackPlugin({ title : 'Main',
-		// 			filename : 'index.html',
-		// 			template : './electron/template.html',
-		// 			templateParameters
-		// 		}),
-		// 		new HtmlWebpackPlugin({ title : 'About',
-    //       filename : 'about.html',
-    //       inject: false,
-		// 			template : './electron/about.html',
-    //       templateParameters
-		// 		}),
-		// 		new HtmlWebpackPlugin({ title : 'Popup',
-		// 			filename : 'popup.html',
-		// 			inject : false,
-		// 			template : './electron/popup.html',
-		// 			templateParameters
-		// 		}),
-		// 	],
-		// 	target : 'electron-renderer',
-		// })
+		// commonConfig,
+		Object.assign({}, commonConfig, {
+			plugins : [
+				definitions,
+				new HtmlWebpackPlugin({ title : 'Main',
+					filename : 'index.html',
+					template : './template.html',
+					templateParameters
+				}),
+				// new HtmlWebpackPlugin({ title : 'About',
+        //   filename : 'about.html',
+        //   inject: false,
+				// 	template : './electron/about.html',
+        //   templateParameters
+				// }),
+				// new HtmlWebpackPlugin({ title : 'Popup',
+				// 	filename : 'popup.html',
+				// 	inject : false,
+				// 	template : './electron/popup.html',
+				// 	templateParameters
+				// }),
+			]
+		})
 	]
 }
 

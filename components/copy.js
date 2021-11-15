@@ -8,8 +8,8 @@ async function main(){
 	
 	const promises = dirs.map(f => {
 		const components = resolve(__dirname, '../build/components.js')
-		const outFolder = resolve(__dirname, '../', f, 'build/components.js')
-		return fs.copy(components, outFolder)
+		const outFolder = resolve(__dirname, '../magenta4live.amxd/code/public', f, 'components.js')
+		return fs.copy(components, outFolder, { overwrite: true })
 	})
 	await Promise.all(promises)
 }

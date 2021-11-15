@@ -2,7 +2,7 @@
 	"name" : "magenta4live.amxd",
 	"version" : 1,
 	"creationdate" : 3631616511,
-	"modificationdate" : 3631779341,
+	"modificationdate" : 3719856907,
 	"viewrect" : [ 973.0, 151.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 0,
@@ -15,7 +15,7 @@
 				"local" : 1,
 				"toplevel" : 1,
 				"singleton" : 				{
-					"bootpath" : "~/Development/magenta-studio/magenta4live.amxd/patchers",
+					"bootpath" : "~/Development/projects/magenta-studio/magenta4live.amxd/patchers",
 					"projectrelativepath" : "./patchers"
 				}
 
@@ -23,25 +23,19 @@
 
 		}
 ,
+		"media" : 		{
+
+		}
+,
 		"code" : 		{
 			"magenta-index.js" : 			{
 				"kind" : "javascript",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Development/magenta-studio/magenta4live.amxd/code",
-					"projectrelativepath" : "./code"
-				}
-
+				"local" : 1
 			}
 ,
 			"magenta-js.js" : 			{
 				"kind" : "javascript",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Development/magenta-studio/magenta4live.amxd/code",
-					"projectrelativepath" : "./code"
-				}
-
+				"local" : 1
 			}
 
 		}
@@ -54,16 +48,7 @@
 ,
 	"searchpath" : 	{
 		"0" : 		{
-			"bootpath" : "~/Development/magenta-studio/magenta4live.amxd/apps",
-			"projectrelativepath" : "./apps",
-			"label" : "",
-			"recursive" : 1,
-			"enabled" : 1,
-			"includeincollective" : 1
-		}
-,
-		"1" : 		{
-			"bootpath" : "~/Development/magenta-studio/magenta4live.amxd/node_modules",
+			"bootpath" : "~/Development/projects/magenta-studio/magenta4live.amxd/node_modules",
 			"projectrelativepath" : "./node_modules",
 			"label" : "",
 			"recursive" : 1,
@@ -71,9 +56,18 @@
 			"includeincollective" : 1
 		}
 ,
-		"2" : 		{
-			"bootpath" : "~/Development/magenta-studio/magenta4live.amxd/code/src",
+		"1" : 		{
+			"bootpath" : "~/Development/projects/magenta-studio/magenta4live.amxd/code/src",
 			"projectrelativepath" : "./code/src",
+			"label" : "",
+			"recursive" : 1,
+			"enabled" : 1,
+			"includeincollective" : 1
+		}
+,
+		"2" : 		{
+			"bootpath" : "~/Development/projects/magenta-studio/magenta4live.amxd/code/public",
+			"projectrelativepath" : "./code/public",
 			"label" : "",
 			"recursive" : 1,
 			"enabled" : 1,

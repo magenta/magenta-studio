@@ -10,8 +10,8 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 134.0, 150.0, 280.0, 169.0 ],
-		"openrect" : [ 0.0, 0.0, 280.0, 169.0 ],
+		"rect" : [ 34.0, 87.0, 709.0, 743.0 ],
+		"openrect" : [ 0.0, 0.0, 659.0, 169.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -41,13 +41,109 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-54",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 704.0, 775.0, 73.0, 22.0 ],
+					"text" : "route server"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-52",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 704.0, 737.0, 71.0, 22.0 ],
+					"text" : "r from-node"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-60",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 468.0, 681.0, 181.0, 22.0 ],
+					"text" : "url http://localhost:3333/continue"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-58",
+					"maxclass" : "jweb",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 27.0, 655.0, 322.0, 546.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 270.0, 0.0, 389.0, 169.0 ],
+					"rendermode" : 0,
+					"url" : "http://localhost:3333/continue"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-55",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "n4m.monitor.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 696.0, 265.0, 400.0, 220.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-53",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 322.0, 183.0, 63.0, 22.0 ],
+					"text" : "script stop"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-51",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 327.0, 134.0, 64.0, 22.0 ],
+					"text" : "script start"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-48",
 					"maxclass" : "live.line",
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 334.0, 309.0, 5.0, 100.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 280.0, -3.5, 5.0, 170.5 ]
+					"presentation_rect" : [ 661.0, 1.75, 5.0, 170.5 ]
 				}
 
 			}
@@ -59,7 +155,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 319.0, 294.0, 5.0, 100.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 1.0, 169.0, 278.0, 5.0 ]
+					"presentation_rect" : [ 1.0, 169.0, 665.0, 5.0 ]
 				}
 
 			}
@@ -4945,6 +5041,8 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
+						"node_bin_path" : "",
+						"npm_bin_path" : "",
 						"watch" : 0
 					}
 ,
@@ -4974,10 +5072,6 @@
 							"expression" : ""
 						}
 ,
-						"bordercolor" : 						{
-							"expression" : ""
-						}
-,
 						"focusbordercolor" : 						{
 							"expression" : ""
 						}
@@ -4986,11 +5080,15 @@
 							"expression" : ""
 						}
 ,
-						"bgcolor" : 						{
+						"bgoncolor" : 						{
 							"expression" : ""
 						}
 ,
-						"bgoncolor" : 						{
+						"bordercolor" : 						{
+							"expression" : ""
+						}
+,
+						"bgcolor" : 						{
 							"expression" : ""
 						}
 ,
@@ -5032,10 +5130,6 @@
 							"expression" : ""
 						}
 ,
-						"bordercolor" : 						{
-							"expression" : ""
-						}
-,
 						"focusbordercolor" : 						{
 							"expression" : ""
 						}
@@ -5044,11 +5138,15 @@
 							"expression" : ""
 						}
 ,
-						"bgcolor" : 						{
+						"bgoncolor" : 						{
 							"expression" : ""
 						}
 ,
-						"bgoncolor" : 						{
+						"bordercolor" : 						{
+							"expression" : ""
+						}
+,
+						"bgcolor" : 						{
 							"expression" : ""
 						}
 ,
@@ -5176,6 +5274,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-55", 0 ],
+					"source" : [ "obj-3", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-8", 0 ],
 					"order" : 0,
 					"source" : [ "obj-3", 0 ]
@@ -5284,6 +5389,41 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-51", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-54", 0 ],
+					"source" : [ "obj-52", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-53", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-60", 0 ],
+					"source" : [ "obj-54", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-58", 0 ],
+					"source" : [ "obj-60", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-4", 0 ],
 					"source" : [ "obj-8", 0 ]
 				}
@@ -5326,6 +5466,24 @@
 				"bootpath" : "~/Development/projects/magenta-studio/magenta4live.amxd/media",
 				"patcherrelativepath" : "../media",
 				"type" : "PNG",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "n4m.monitor.maxpat",
+				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "resize_n4m_monitor_patcher.js",
+				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "fit_jweb_to_bounds.js",
+				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
  ],
