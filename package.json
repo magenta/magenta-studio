@@ -8,6 +8,7 @@
     "postinstall": "npm run download:models; cd magenta4live.amxd; npm install",
     "watch:standalone": "concurrently \"webpack -w --mode=development --env standalone --dir $npm_config_dir\" \"npm run electron:plugin $npm_config_dir\"",
     "watch:plugin": "webpack -w --mode=development --dir $npm_config_dir",
+    "watch:all": "webpack -w --mode=development --env production",
     "electron:plugin": "cd $npm_config_dir && electron ./build/Main.js",
     "webpack:build": "webpack --mode=production --env production && npm run copy",
     "webpack:standalone": "webpack --mode=production --env production --env standalone && npm run copy",

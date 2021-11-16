@@ -87,3 +87,11 @@ $shadowCount: 10;
 	animation-fill-mode: forwards;
 	animation-iteration-count: infinite;
 }
+
+.lower-controls {
+	display: flex;
+}
+
+.lower-controls__panel {
+	width: 50%;
+}

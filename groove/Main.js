@@ -67,7 +67,6 @@ function validate(){
 // <magenta-slider id="variations" value="4" min="1" max="8" label="Variations"></magenta-slider>
 
 render(html`
-	<magenta-close-button></magenta-close-button>
 	<div id="title" class="${ANIMATE ? 'animate' : ''}">
 		<span>G</span>
 		<span>R</span>

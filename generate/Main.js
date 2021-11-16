@@ -74,7 +74,6 @@ render(html`
 			GENERATE
 		</span> 4 BARS
 	</div>
-	<magenta-close-button></magenta-close-button>
 	<div id="controls">
 		<magenta-radio-group
 				values=${JSON.stringify(['drums', 'melody'])}
