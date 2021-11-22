@@ -21,10 +21,6 @@ import './style.scss'
 
 const model = new Model()
 
-model.load().then(() => {
-	setStatus('')
-})
-
 async function generate(){
 	if (!validate()){
 		return
@@ -63,31 +59,6 @@ function validate(){
 	return valid
 }
 
-render(html`
-	<div id="title" class="${ANIMATE ? 'animate' : ''}">
-    <span>D</span>
-    <span>R</span>
-    <span>U</span>
-    <span>M</span>
-    <span>I</span>
-    <span>F</span>
-    <span>Y</span>
-	</div>
-	<magenta-radio-group
-		values=${JSON.stringify(['drums'])}
-		id="mode">
-	</magenta-radio-group>
-	<div id="controls">
-		<magenta-midi-file
-			label="Input ${ABLETON ? 'Clip' : 'File'}"
-			@change=${validate}></magenta-midi-file>
-
-	</div>
-	<magenta-output-text></magenta-output-text>
-	<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
-	<magenta-button disabled id="generate" label="Initializing..." @click=${generate}></magenta-button>
-`, document.body)
-
 function setStatus(status, error=false){
 	const element = document.querySelector('magenta-button')
 	const controls = document.querySelector('#controls')
@@ -98,5 +69,36 @@ function setStatus(status, error=false){
 		element.setAttribute('label', status)
 		controls.classList.add('generating')
 	}
+}
+
+export function Drumify(parentElement) {
+	model.load().then(() => {
+		setStatus('')
+	})
+	
+	render(html`
+		<div id="title" class="${ANIMATE ? 'animate' : ''}">
+			<span>D</span>
+			<span>R</span>
+			<span>U</span>
+			<span>M</span>
+			<span>I</span>
+			<span>F</span>
+			<span>Y</span>
+		</div>
+		<magenta-radio-group
+			values=${JSON.stringify(['drums'])}
+			id="mode">
+		</magenta-radio-group>
+		<div id="controls">
+			<magenta-midi-file
+				label="Input ${ABLETON ? 'Clip' : 'File'}"
+				@change=${validate}></magenta-midi-file>
+
+		</div>
+		<magenta-output-text></magenta-output-text>
+		<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
+		<magenta-button disabled id="generate" label="Initializing..." @click=${generate}></magenta-button>
+	`, parentElement)
 }
 

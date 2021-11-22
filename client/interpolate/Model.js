@@ -22,8 +22,8 @@ export class Model {
 	constructor(drums=false){
 		// const melodyUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/mel_4bar_med_q2'
 		// const drumsUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/drums_4bar_med_q2'
-		const drumUrl = 'models/drums_4bar_med';
-		const melodyUrl = 'models/mel_4bar_med';
+		const drumUrl = 'interpolate/models/drums_4bar_med';
+		const melodyUrl = 'interpolate/models/mel_4bar_med';
 		this.model = new MusicVAE(drums ? drumUrl : melodyUrl)
 	}
 

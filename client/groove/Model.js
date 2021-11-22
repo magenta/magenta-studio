@@ -21,10 +21,10 @@ import { reconstructBySize } from '../shared';
 export class Model {
 	constructor(){
 		const models = [
-			'models/groovae_humanize_1bar',
-			'models/groovae_humanize_2bar',
-			'models/groovae_humanize_3bar',
-			'models/groovae_humanize_4bar'
+			'groove/models/groovae_humanize_1bar',
+			'groove/models/groovae_humanize_2bar',
+			'groove/models/groovae_humanize_3bar',
+			'groove/models/groovae_humanize_4bar'
 		];
 		this.models = models.map(url => new MusicVAE(url));
 	}

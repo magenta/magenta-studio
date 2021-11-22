@@ -16,7 +16,7 @@
  */
 
 const ROUTE = 'http://localhost:3333'
-import { encode, decode } from '../../magenta4live.amxd/code/src/Notes'
+import { encode, decode } from '../../../magenta4live.amxd/code/src/Notes'
 
 async function GET(path){
 	return await fetch(`${ROUTE}/${path}`)

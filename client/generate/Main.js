@@ -24,11 +24,6 @@ const models = {
 	melody : new Model(false),
 }
 
-const initialized = Promise.all([models.drums.load(), models.melody.load()])
-initialized.then(() => {
-	setStatus('')
-})
-
 async function generate(){
 
 	if (!validate()){
@@ -68,25 +63,6 @@ function validate(){
 	return valid
 }
 
-render(html`
-	<div id="title" class="${ANIMATE ? 'animate' : ''}">
-		<span>
-			GENERATE
-		</span> 4 BARS
-	</div>
-	<div id="controls">
-		<magenta-radio-group
-				values=${JSON.stringify(['drums', 'melody'])}
-				id="mode">
-			</magenta-radio-group>
-		<magenta-midi-file label="Output Location" output @change=${validate} inputs="1"></magenta-midi-file>
-		<magenta-slider id="variations" value="8" min="1" max="16" label="Variations"></magenta-slider>
-		<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
-	</div>
-	<magenta-output-text></magenta-output-text>
-	<magenta-button id="generate" label="Initializing..." disabled @click=${generate}></magenta-button>
-`, document.body)
-
 function setStatus(status, error=false){
 	const element = document.querySelector('magenta-button')
 	const controls = document.querySelector('#controls')
@@ -97,4 +73,30 @@ function setStatus(status, error=false){
 		element.setAttribute('label', status)
 		controls.classList.add('generating')
 	}
+}
+
+export function Generate(parentElement) {
+	const initialized = Promise.all([models.drums.load(), models.melody.load()])
+	initialized.then(() => {
+		setStatus('')
+	})
+	
+	render(html`
+		<div id="title" class="${ANIMATE ? 'animate' : ''}">
+			<span>
+				GENERATE
+			</span> 4 BARS
+		</div>
+		<div id="controls">
+			<magenta-radio-group
+					values=${JSON.stringify(['drums', 'melody'])}
+					id="mode">
+				</magenta-radio-group>
+			<magenta-midi-file label="Output Location" output @change=${validate} inputs="1"></magenta-midi-file>
+			<magenta-slider id="variations" value="8" min="1" max="16" label="Variations"></magenta-slider>
+			<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
+		</div>
+		<magenta-output-text></magenta-output-text>
+		<magenta-button id="generate" label="Initializing..." disabled @click=${generate}></magenta-button>
+	`, parentElement)
 }

@@ -22,6 +22,9 @@ app.use(require('body-parser').json())
 const kill = require('kill-port')
 const detect = require('detect-port')
 const max = require('max-api')
+const webpack = require('webpack')
+const webpackDevMiddleware = require('webpack-dev-middleware')
+const webpackHotMiddleware = require('webpack-hot-middleware')
 require('./src/Launch')
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -29,6 +32,17 @@ require('./src/Launch')
 ///////////////////////////////////////////////////////////////////////////////
 
 const PORT = 3333
+// Run Webpack dev server in development mode
+// if (process.env.NODE_ENV === 'development') {
+	const config = require('../../webpack.config');
+  const compiler = webpack(config);
+  app.use(
+    webpackDevMiddleware(compiler, {
+      publicPath: config.output.publicPath
+    })
+  );
+  app.use(webpackHotMiddleware(compiler));
+// }
 app.use(express.static('./public'));
 
 ///////////////////////////////////////////////////////////////////////////////

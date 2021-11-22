@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+// import '../../components/theme.scss'
+// import './main.scss'
 import { render, html } from 'lit'
 import { Model } from './Model'
 import './style.scss'
@@ -24,11 +26,6 @@ const models = {
 	melody : new Model(false),
 }
 
-const initialized = Promise.all([models.drums.load(), models.melody.load()])
-initialized.then(() => {
-	setStatus('')
-})
-
 async function generate(){
 
 	if (!validate()){
@@ -37,17 +34,18 @@ async function generate(){
 	setStatus('Generating...')
 	//get all the attributes
 	const mode = document.querySelector('#mode').value
-	const steps = document.querySelector('#variations').value
+	const length = document.querySelector('#length').value
 	const temp = document.querySelector('#temperature').value
+	const variations = document.querySelector('#variations').value
 	try {
-		const [inputMidiA, inputMidiB] = await document.querySelector('magenta-midi-file').read()
-		const output = await models[mode].predict(inputMidiA, inputMidiB, steps, temp)
-		await document.querySelector('magenta-midi-file').write(output, 'INTERPOLATE')
+		const inputMidi = await document.querySelector('magenta-midi-file').read()
+		const output = await models[mode].predict(inputMidi, length * 16, temp, variations)
+		await document.querySelector('magenta-midi-file').write(output, 'CONTINUE')
 	} catch (e){
 		const snackbar = document.createElement('magenta-snackbar')
 		snackbar.setAttribute('message', e)
-		snackbar.setAttribute('error', '')			
 		snackbar.setAttribute('whoops', '')
+		snackbar.setAttribute('error', '')			
 		document.body.appendChild(snackbar)
 		setStatus('')
 		throw e
@@ -69,33 +67,6 @@ function validate(){
 	return valid
 }
 
-render(html`
-	<div id="title">
-		<span>I</span>
-		<span class="expand">N</span>
-		<span class="expand">T</span>
-		<span class="expand">E</span>
-		<span class="expand">R</span>
-		<span class="expand">P</span>
-		<span class="expand">O</span>
-		<span class="expand">L</span>
-		<span class="expand">A</span>
-		<span>T</span>
-		<span>E</span>
-	</div>
-	<div id="controls">
-		<magenta-radio-group
-				values=${JSON.stringify(['drums', 'melody'])}
-				id="mode">
-			</magenta-radio-group>
-		<magenta-midi-file label="Input ${ABLETON ? 'Clips' : 'Files'}" @change=${validate} inputs="2"></magenta-midi-file>
-		<magenta-slider id="variations" value="3" min="1" max="16" label="Steps"></magenta-slider>
-		<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
-	</div>
-	<magenta-output-text></magenta-output-text>
-	<magenta-button id="generate" label="Initializing..." disabled @click=${generate}></magenta-button>
-`, document.body)
-
 function setStatus(status, error=false){
 	const element = document.querySelector('magenta-button')
 	const controls = document.querySelector('#controls')
@@ -108,14 +79,36 @@ function setStatus(status, error=false){
 	}
 }
 
-if (ANIMATE){
-	//title animation
-	setInterval(() => {
-		if (document.querySelector('#title').classList.contains('hover')){
-			document.querySelector('#title').classList.remove('hover')
-		} else {
-			document.querySelector('#title').classList.add('hover')
-		}
-	}, 500)
+export function Continue(parentElement) {
+	const initialized = Promise.all([models.drums.load(), models.melody.load()])
+	initialized.then(() => {
+		setStatus('')
+		validate()
+	})
+	
+	render(html`
+		<div id="title" class="${ANIMATE ? 'animate' : ''}">
+			CONTINU<span>E</span>
+		</div>
+		<div id="controls">
+			<magenta-radio-group
+				values=${JSON.stringify(['drums', 'melody'])}
+				id="mode">
+			</magenta-radio-group>
+			<div class="lower-controls">
+				<div class="lower-controls__panel">
+					<magenta-midi-file 
+						label="Input ${ABLETON ? 'Clip' : 'File'}"
+						@change=${validate}></magenta-midi-file>
+				</div>
+				<div class="lower-controls__panel">
+					<magenta-slider id="variations" value="4" min="1" max="8" label="Variations"></magenta-slider>
+					<magenta-slider id="length" value="2" min="1" max="32" label="Length" units="Bars"></magenta-slider>
+					<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
+				</div>
+			</div>
+		</div>
+		<magenta-output-text></magenta-output-text>
+		<magenta-button disabled id="generate" label="Initializing..." @click=${generate}></magenta-button>
+	`, parentElement)
 }
-
