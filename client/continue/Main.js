@@ -87,28 +87,30 @@ export function Continue(parentElement) {
 	})
 	
 	render(html`
-		<div id="title" class="${ANIMATE ? 'animate' : ''}">
-			CONTINU<span>E</span>
-		</div>
-		<div id="controls">
-			<magenta-radio-group
-				values=${JSON.stringify(['drums', 'melody'])}
-				id="mode">
-			</magenta-radio-group>
-			<div class="lower-controls">
-				<div class="lower-controls__panel">
-					<magenta-midi-file 
-						label="Input ${ABLETON ? 'Clip' : 'File'}"
-						@change=${validate}></magenta-midi-file>
-				</div>
-				<div class="lower-controls__panel">
-					<magenta-slider id="variations" value="4" min="1" max="8" label="Variations"></magenta-slider>
-					<magenta-slider id="length" value="2" min="1" max="32" label="Length" units="Bars"></magenta-slider>
-					<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
+		<div id="continue">
+			<div id="title" class="${ANIMATE ? 'animate' : ''}">
+				CONTINU<span>E</span>
+			</div>
+			<div id="controls">
+				<magenta-radio-group
+					values=${JSON.stringify(['drums', 'melody'])}
+					id="mode">
+				</magenta-radio-group>
+				<div class="lower-controls">
+					<div class="lower-controls__panel">
+						<magenta-midi-file 
+							label="Input ${ABLETON ? 'Clip' : 'File'}"
+							@change=${validate}></magenta-midi-file>
+					</div>
+					<div class="lower-controls__panel">
+						<magenta-slider id="variations" value="4" min="1" max="8" label="Variations"></magenta-slider>
+						<magenta-slider id="length" value="2" min="1" max="32" label="Length" units="Bars"></magenta-slider>
+						<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
+					</div>
 				</div>
 			</div>
+			<magenta-output-text></magenta-output-text>
+			<magenta-button disabled id="generate" label="Initializing..." @click=${generate}></magenta-button>
 		</div>
-		<magenta-output-text></magenta-output-text>
-		<magenta-button disabled id="generate" label="Initializing..." @click=${generate}></magenta-button>
 	`, parentElement)
 }

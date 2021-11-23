@@ -82,21 +82,23 @@ export function Generate(parentElement) {
 	})
 	
 	render(html`
-		<div id="title" class="${ANIMATE ? 'animate' : ''}">
-			<span>
-				GENERATE
-			</span> 4 BARS
+		<div id="generate">
+			<div id="title" class="${ANIMATE ? 'animate' : ''}">
+				<span>
+					GENERATE
+				</span> 4 BARS
+			</div>
+			<div id="controls">
+				<magenta-radio-group
+						values=${JSON.stringify(['drums', 'melody'])}
+						id="mode">
+					</magenta-radio-group>
+				<magenta-midi-file label="Output Location" output @change=${validate} inputs="1"></magenta-midi-file>
+				<magenta-slider id="variations" value="8" min="1" max="16" label="Variations"></magenta-slider>
+				<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
+			</div>
+			<magenta-output-text></magenta-output-text>
+			<magenta-button id="generate" label="Initializing..." disabled @click=${generate}></magenta-button>
 		</div>
-		<div id="controls">
-			<magenta-radio-group
-					values=${JSON.stringify(['drums', 'melody'])}
-					id="mode">
-				</magenta-radio-group>
-			<magenta-midi-file label="Output Location" output @change=${validate} inputs="1"></magenta-midi-file>
-			<magenta-slider id="variations" value="8" min="1" max="16" label="Variations"></magenta-slider>
-			<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
-		</div>
-		<magenta-output-text></magenta-output-text>
-		<magenta-button id="generate" label="Initializing..." disabled @click=${generate}></magenta-button>
 	`, parentElement)
 }
