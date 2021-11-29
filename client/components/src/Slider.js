@@ -87,7 +87,7 @@ customElements.define('magenta-slider', class MagentaSlider extends LitElement {
 				label, #units, #value {
 					color: white;
 					font-family: var(--title-font-family);
-					font-size: 14px;
+					font-size: var(--font-size);
 				}
 
 				#units {
@@ -95,8 +95,9 @@ customElements.define('magenta-slider', class MagentaSlider extends LitElement {
 				}
 
 				div {
-					margin-top: 10px;
+					margin-top: 5px;
 					width: 100%;
+					min-width: 260px;
 					display: flex;
 					flex-direction: row;
 					align-items: stretch;

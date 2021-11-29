@@ -73,7 +73,7 @@ customElements.define('magenta-radio-group', class MagentaRadio extends LitEleme
 				button {
 					border-color: var(--accent-color);
 					--shadow-color: var(--accent-color);
-					background-color: var(--barkground-color);
+					background-color: var(--background-color);
 					height: var(--component-height);
 					text-align: center;
 					flex-grow: 1;
@@ -81,6 +81,7 @@ customElements.define('magenta-radio-group', class MagentaRadio extends LitEleme
 					text-transform: capitalize;
 					margin-right: var(--margin);
 					color: white;
+					font-size: var(--font-size);
 				}
 
 				button:last-child{

@@ -42,7 +42,7 @@ customElements.define('magenta-button', class MagentaButton extends LitElement {
 			<style>
 
 				:host {
-					--component-height: var(--large-component-height);
+					--component-height: var(--small-component-height);
 					width: 100%;
 				}
 

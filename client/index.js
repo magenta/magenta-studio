@@ -39,11 +39,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 render(html`
-  <a href="/" data-navigo>About</a>
-  <a href="/continue" data-navigo>Continue</a>
-  <a href="/drumify" data-navigo>Drumify</a>
-  <a href="/generate" data-navigo>Generate</a>
-  <a href="/groove" data-navigo>Groove</a>
-  <a href="/interpolate" data-navigo>Interpolate</a>
+  <nav>
+    <a href="/" data-navigo class="about-button">About</a>
+    <a href="/continue" data-navigo class="continue-button">Continue</a>
+    <a href="/drumify" data-navigo class="drumify-button">Drumify</a>
+    <a href="/generate" data-navigo class="generate-button">Generate</a>
+    <a href="/groove" data-navigo class="groove-button">Groove</a>
+    <a href="/interpolate" data-navigo class="interpolate-button">Interpolate</a>
+  </nav>
   <div id="plugin-container"></div>
 `, document.body)

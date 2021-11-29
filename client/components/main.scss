@@ -12,7 +12,9 @@ body {
 	background-color: var(--background-color);
 	font-family: var(--font-family);
 	font-size: var(--font-size);
-
+	display: flex;
+	height: 169px;
+	border: 1px solid red;
 
 	#title {
 		position: relative;
@@ -44,21 +46,18 @@ body {
 
 	magenta-slider {
 		display: block;
-		margin-top: 20px;
 	}
 
 	magenta-midi-file {
-		margin-bottom: 30px;
-		margin-top: 10px;
 		display: block;
 	}
 
 	magenta-button {
-		position: absolute;
-		// bottom: var(--margin);
-		// right: var(--margin);
-		bottom: 0px;
-		right: 0px;
+		// position: absolute;
+		// // bottom: var(--margin);
+		// // right: var(--margin);
+		// bottom: 0px;
+		// right: 0px;
 	}
 
 	magenta-slider {
@@ -81,4 +80,61 @@ body {
 	magenta-midi-file {
 		height: 110px;
 	}
+}
+
+nav {
+	display: flex;
+	flex-direction: column;
+	margin-right: 15px;
+	justify-content: center;
+	& a {
+		text-transform: uppercase;
+		width: 100px;
+		height: 16px;
+		text-decoration: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 5px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.about-button {
+		background-color: var(--color-gray);
+	}
+
+	.continue-button {
+		background-color: var(--color-magenta);
+	}
+
+	.drumify-button {
+		background-color: var(--color-accent-blue);
+	}
+
+	.generate-button {
+		background-color: var(--color-accent-teal);
+	}
+
+	.groove-button {
+		background-color: var(--color-accent-orange);
+	}
+
+	.interpolate-button {
+		background-color: var(--color-accent-yellow);
+	}
+}
+
+.plugin-content {
+	display: flex;
+}
+
+#controls {
+	display: flex;
+}
+
+.plugin-panel {
+	margin-right: 15px;
+	min-width: 260px;
 }

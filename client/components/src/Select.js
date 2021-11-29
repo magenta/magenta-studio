@@ -115,6 +115,7 @@ class MagentaSelect extends LitElement {
 					background-color: var(--background-color);
 					color: white;
 					border-color: var(--border-color);
+					font-size: var(--font-size);
 				}
 
 				select[valid]{

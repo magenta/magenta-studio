@@ -242,10 +242,6 @@ export class AbletonFile extends LitElement {
 					margin-bottom: 10px;
 				}
 
-				magenta-select:first-child{
-					margin-top: 12px;
-				}
-
 				div[disabled]{
 					pointer-events: none;
 					opacity: 0.4;
