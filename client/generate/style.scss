@@ -72,7 +72,7 @@
 	
 	$shadowCount : 6;
 	
-	@mixin shadow($offset){
+	@mixin generateShadow($offset){
 		$outp: 0px 0px transparent;
 		@for $i from 1 through $shadowCount {
 			$col: rgba(255, 255, 255, 0.3);
@@ -86,15 +86,15 @@
 	
 	@keyframes hover-animation {
 		0% {
-			@include shadow(0px);
+			@include generateShadow(0px);
 		}
 	
 		50% {
-			@include shadow(16px);
+			@include generateShadow(16px);
 		}
 	
 		100% {
-			@include shadow(0px);
+			@include generateShadow(0px);
 		}
 	}
 	
@@ -105,12 +105,12 @@
 		span {
 			position: relative;
 			pointer-events: none;
-			@include shadow(0px);
+			@include generateShadow(0px);
 			transition: text-shadow 0.2s;
 		}
 	
 		&:hover span {
-			@include shadow(16px);
+			@include generateShadow(16px);
 		}
 	
 		&.animate span {

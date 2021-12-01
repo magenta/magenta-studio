@@ -76,10 +76,6 @@ class OutputText extends LitElement {
 					font-family: var(--font-family);
 					font-size : var(--font-size);
 					color: var(--color-gray);
-					position: fixed;
-					bottom: calc(var(--large-component-height) + 25px);
-					width: 80%;
-					left: 10%;
 				}
 
 				div {
@@ -90,6 +86,7 @@ class OutputText extends LitElement {
 					text-overflow: ellipsis;
 					opacity: 1;
 					transition: opacity 0.1s;
+					margin-bottom: 5px;
 				}
 
 				div span {

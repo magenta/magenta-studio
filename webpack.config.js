@@ -26,7 +26,7 @@ const { ModuleFilenameHelpers } = require('webpack')
 
 function getDefinitions(env, width=100, height=100){
 	return new webpack.DefinePlugin({
-		PRODUCTION : JSON.stringify(Boolean(process.env.NODE_ENV === 'production')),
+		PRODUCTION : JSON.stringify(Boolean(env.production)),
 		// ANIMATE : JSON.stringify(Boolean(env.animate)),
 		ANIMATE : JSON.stringify(false),
 		INDEX_FILE : JSON.stringify('index.html'),
@@ -157,41 +157,43 @@ function getDefinitions(env, width=100, height=100){
 // 	return configs
 // }
 
-const templateParameters = { version }
-const definitions = getDefinitions(process.env.NODE_ENV)
-const PRODUCTION = process.env.NODE_ENV === 'production';
 
-module.exports = {
-	mode: PRODUCTION  ? 'production' : 'development',
-	devtool: PRODUCTION ? undefined : 'eval-cheap-module-source-map',
-	entry : {
-		Renderer: [path.resolve(__dirname, 'client/index.js')],
-		components : [path.resolve(__dirname, 'client/components/index.js')]
-	},
-	output: {
-		path: path.resolve(__dirname, 'magenta4live.amxd/code/public'),
-    filename: '[name].js',
-    publicPath: '/'
-	},
-	resolve : {
-		modules : [
-			'node_modules',
-			path.resolve(__dirname, '.'),
-		],
-	},
-	plugins: [
-		definitions,
-		new HtmlWebpackPlugin({
-			title: 'Main',
-			filename : 'index.html',
-			template : path.resolve(__dirname, 'template.html'),
-			templateParameters
-	})],
-	module: {
-		rules: [{
-			test: /\.scss$/,
-			use: ['style-loader', 'css-loader', 'sass-loader']
+module.exports = (env = {}) => {
+	const templateParameters = { version }
+	const definitions = getDefinitions(env)
+	const PRODUCTION = env.production;
+	return {
+		mode: PRODUCTION ? 'production' : 'development',
+		devtool: PRODUCTION ? undefined : 'eval-cheap-module-source-map',
+		entry: {
+			Renderer: [path.resolve(__dirname, 'client/index.js')],
+			components: [path.resolve(__dirname, 'client/components/index.js')]
 		},
-		]
-	}				
+		output: {
+			path: path.resolve(__dirname, 'magenta4live.amxd/code/public'),
+			filename: '[name].js',
+			publicPath: '/'
+		},
+		resolve: {
+			modules: [
+				'node_modules',
+				path.resolve(__dirname, '.'),
+			],
+		},
+		plugins: [
+			definitions,
+			new HtmlWebpackPlugin({
+				title: 'Main',
+				filename: 'index.html',
+				template: path.resolve(__dirname, 'template.html'),
+				templateParameters
+			})],
+		module: {
+			rules: [{
+				test: /\.scss$/,
+				use: ['style-loader', 'css-loader', 'sass-loader']
+			},
+			]
+		}
+	}
 }

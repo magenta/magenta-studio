@@ -73,7 +73,6 @@ customElements.define('magenta-slider', class MagentaSlider extends LitElement {
 
 				#top {
 					display: block;
-					margin-bottom: 5px;
 				}
 
 				#value-group {
@@ -95,9 +94,8 @@ customElements.define('magenta-slider', class MagentaSlider extends LitElement {
 				}
 
 				div {
-					margin-top: 5px;
 					width: 100%;
-					min-width: 260px;
+					min-width: 200px;
 					display: flex;
 					flex-direction: row;
 					align-items: stretch;

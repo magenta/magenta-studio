@@ -22,9 +22,6 @@ app.use(require('body-parser').json())
 const kill = require('kill-port')
 const detect = require('detect-port')
 const max = require('max-api')
-const webpack = require('webpack')
-const webpackDevMiddleware = require('webpack-dev-middleware')
-const webpackHotMiddleware = require('webpack-hot-middleware')
 require('./src/Launch')
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -34,16 +31,31 @@ require('./src/Launch')
 const PORT = 3333
 // Run Webpack dev server in development mode
 // if (process.env.NODE_ENV === 'development') {
-	const config = require('../../webpack.config');
-  const compiler = webpack(config);
-  app.use(
-    webpackDevMiddleware(compiler, {
-      publicPath: config.output.publicPath
-    })
-  );
-  app.use(webpackHotMiddleware(compiler));
+	// const config = require('../../webpack.config');
+  // const compiler = webpack(config);
+  // app.use(
+  //   webpackDevMiddleware(compiler, {
+  //     publicPath: config.output.publicPath
+  //   })
+  // );
+  // app.use(webpackHotMiddleware(compiler));
 // }
 app.use(express.static('./public'));
+app.get('/continue', function (req, res) {
+	res.sendFile('./public/index.html', { root: __dirname });
+});
+app.get('/drumify', function (req, res) {
+	res.sendFile('./public/index.html', { root: __dirname });
+});
+app.get('/generate', function (req, res) {
+	res.sendFile('./public/index.html', { root: __dirname });
+});
+app.get('/groove', function (req, res) {
+	res.sendFile('./public/index.html', { root: __dirname });
+});
+app.get('/interpolate', function (req, res) {
+	res.sendFile('./public/index.html', { root: __dirname });
+});
 
 ///////////////////////////////////////////////////////////////////////////////
 // ROUTES

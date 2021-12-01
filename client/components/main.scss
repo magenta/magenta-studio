@@ -1,20 +1,20 @@
 body {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	overflow: hidden;
-	--margin: 15px;
-	width: calc(100% - var(--margin) * 2);
-	height: calc(100% - var(--margin) * 2);
+	// position: absolute;
+	// top: 0px;
+	// left: 0px;
+	// overflow: hidden;
+	--margin: 10px;
+	// width: calc(100% - var(--margin) * 2);
+	// height: calc(100% - var(--margin) * 2);
 	margin: var(--margin);
-	-ms-overflow-style: scrollbar;
-	-webkit-app-region:drag;
+	// -ms-overflow-style: scrollbar;
+	// -webkit-app-region:drag;
 	background-color: var(--background-color);
 	font-family: var(--font-family);
 	font-size: var(--font-size);
 	display: flex;
-	height: 169px;
-	border: 1px solid red;
+	height: 149px;
+	// border: 1px solid red;
 
 	#title {
 		position: relative;
@@ -30,13 +30,6 @@ body {
 		left: 50%;
 		transform: translate(-50%, 0);
 		cursor: default;
-	}
-
-
-	#mode {
-		margin: 0 var(--margin);
-		margin-top: -20px;
-		width: 80px;
 	}
 
 	magenta-select {
@@ -73,7 +66,7 @@ body {
 	}
 
 	#controls.generating {
-		pointer-events: none;
+		// pointer-events: none;
 		opacity: 0.5;
 	}
 
@@ -136,5 +129,5 @@ nav {
 
 .plugin-panel {
 	margin-right: 15px;
-	min-width: 260px;
+	min-width: 200px;
 }

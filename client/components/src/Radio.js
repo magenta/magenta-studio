@@ -68,6 +68,7 @@ customElements.define('magenta-radio-group', class MagentaRadio extends LitEleme
 					height: var(--component-height);
 					display: flex;
 					align-content: space-between;
+					margin-bottom: 5px;
 				}
 
 				button {

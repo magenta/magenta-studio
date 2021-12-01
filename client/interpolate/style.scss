@@ -9,42 +9,42 @@ body #interpolate {
 }
 
 #interpolate {
-	$shadowCount: 1;
+	// $interpolateShadowCount: 1;
 	$darkColor: rgba(255, 255, 255, 0.3);
 	
 	
-	@mixin shadow($step){
-		$outp: 0px 0px transparent;
-		@for $i from 1 through $step {
-			$inv_i: $shadowCount - $i;
-			$offset: 15px;
-			$outp: #{$outp}, $offset * $i 0px #{$darkColor};
-		}
-		text-shadow: $outp
-	}
+	// @mixin interpolateShadow($step){
+	// 	$outp: 0px 0px transparent;
+	// 	@for $i from 1 through $step {
+	// 		$inv_i: $interpolateShadowCount - $i;
+	// 		$offset: 15px;
+	// 		$outp: #{$outp}, $offset * $i 0px #{$darkColor};
+	// 	}
+	// 	text-shadow: $outp
+	// }
 	
 	
 	
-	@keyframes text-extend {
+	// @keyframes text-extend {
 	
-		@for $i from 0 through $shadowCount {
-			#{$i/$shadowCount*100}% {
-				@include shadow($i);
-				width: $i/$shadowCount * 40px;
-			}
-		}
-	}
+	// 	@for $i from 0 through $interpolateShadowCount {
+	// 		#{$i/$interpolateShadowCount*100}% {
+	// 			@include interpolateShadow($i);
+	// 			width: $i/$interpolateShadowCount * 40px;
+	// 		}
+	// 	}
+	// }
 	
-	@keyframes text-retract {
+	// @keyframes text-retract {
 	
-		0% {
-			@include shadow($shadowCount);
-		}
+	// 	0% {
+	// 		@include interpolateShadow($interpolateShadowCount);
+	// 	}
 	
-		100% {
-			text-shadow: 0px 0px white;
-		}
-	}
+	// 	100% {
+	// 		text-shadow: 0px 0px white;
+	// 	}
+	// }
 	
 	$letterWidth: 15px;
 	

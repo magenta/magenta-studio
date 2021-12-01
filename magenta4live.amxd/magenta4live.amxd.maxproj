@@ -2,7 +2,7 @@
 	"name" : "magenta4live.amxd",
 	"version" : 1,
 	"creationdate" : 3631616511,
-	"modificationdate" : 3719856907,
+	"modificationdate" : 3721149072,
 	"viewrect" : [ 973.0, 151.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 0,
@@ -13,12 +13,17 @@
 			"main.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1,
-				"toplevel" : 1,
 				"singleton" : 				{
 					"bootpath" : "~/Development/projects/magenta-studio/magenta4live.amxd/patchers",
 					"projectrelativepath" : "./patchers"
 				}
 
+			}
+,
+			"testing.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1,
+				"toplevel" : 1
 			}
 
 		}
@@ -36,6 +41,19 @@
 			"magenta-js.js" : 			{
 				"kind" : "javascript",
 				"local" : 1
+			}
+
+		}
+,
+		"other" : 		{
+			"testing.html" : 			{
+				"kind" : "webpage",
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/Development/projects/magenta-studio/magenta4live.amxd",
+					"projectrelativepath" : "."
+				}
+
 			}
 
 		}

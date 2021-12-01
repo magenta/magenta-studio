@@ -103,10 +103,6 @@ class MagentaFile extends LitElement {
 
 				}
 
-				magenta-ableton-file, magenta-file {
-					margin-top: 8px;
-				}
-
 				magenta-file{
 					display: block;
 				}

@@ -19,7 +19,8 @@ import { html } from 'lit'
 
 export const inputStyle = html`
 	<style>
-		input, select, #filedialog, .bordered {
+		// input, select, #filedialog, .bordered {
+		input, #filedialog, .bordered {
 			border: 2px solid var(--border-color);
 			background-color: var(--background-color);
 			border-radius: var(--border-radius);
@@ -35,17 +36,20 @@ export const inputStyle = html`
 			-webkit-app-region: no-drag;
 		}
 
-		input[disabled], select[disabled] {
+		// input[disabled], select[disabled] {
+		input[disabled] {
 			opacity: 0.25;
 			pointer-events: none;
 		}
 
-		input:focus, select:focus {
+		// input:focus, select:focus {
+		input:focus {
 			--border-color: var(--color-focused);
 			color: var(--color-focused);
 		}
 
-		input:hover, select:hover {
+		// input:hover, select:hover {
+		input:hover {
 			--border-color: var(--color-hover);
 			color: var(--color-hover);
 		}
