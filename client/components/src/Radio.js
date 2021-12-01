@@ -27,12 +27,14 @@ customElements.define('magenta-radio-group', class MagentaRadio extends LitEleme
 		return {
 			values : { type : String },
 			selectedIndex : { type : Number },
-			disabled : { type : Boolean }
+			disabled: { type: Boolean },
+			label : { type: String}
 		}
 	}
 
 	constructor(){
 		super()
+		this.label = ''
 		this.selectedIndex = 0
 	}
 
@@ -65,8 +67,9 @@ customElements.define('magenta-radio-group', class MagentaRadio extends LitEleme
 			<style>
 				#container {
 					--component-height : var(--small-component-height);
-					height: var(--component-height);
+					// height: var(--component-height);
 					display: flex;
+					flex-direction: column;
 					align-content: space-between;
 					margin-bottom: 5px;
 				}
@@ -80,7 +83,8 @@ customElements.define('magenta-radio-group', class MagentaRadio extends LitEleme
 					flex-grow: 1;
 					align-content: space-between;
 					text-transform: capitalize;
-					margin-right: var(--margin);
+					margin-top: 5px;
+					margin-bottom: 5px;
 					color: white;
 					font-size: var(--font-size);
 				}
@@ -94,6 +98,7 @@ customElements.define('magenta-radio-group', class MagentaRadio extends LitEleme
 				}
 			</style>
 			<div id="container">
+				<label>${this.label}</label>
 				${buttons}
 			</div>
 		`

@@ -238,8 +238,8 @@ export class AbletonFile extends LitElement {
 					display: block;
 					width: 80%;
 					margin: 0 auto;
-					min-width: 200px;
-					margin-bottom: 10px;
+					min-width: 180px;
+					margin-bottom: 5px;
 				}
 
 				div[disabled]{

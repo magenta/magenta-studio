@@ -93,10 +93,13 @@ export function Continue(parentElement) {
 			</div>
 			<div class="plugin-content">
 				<div id="controls">
-					<div class="plugin-panel">
+					<div class="plugin-panel__type">
 						<magenta-radio-group
+							label="Type"
 							values=${JSON.stringify(['drums', 'melody'])}
 							id="mode">
+					</div>
+					<div class="plugin-panel">
 						</magenta-radio-group>
 						<magenta-midi-file 
 							label="Input ${ABLETON ? 'Clip' : 'File'}"

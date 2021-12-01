@@ -107,17 +107,28 @@ export function Interpolate(parentElement) {
 				<span>T</span>
 				<span>E</span>
 			</div>
-			<div id="controls">
-				<magenta-radio-group
-						values=${JSON.stringify(['drums', 'melody'])}
-						id="mode">
-					</magenta-radio-group>
-				<magenta-midi-file label="Input ${ABLETON ? 'Clips' : 'Files'}" @change=${validate} inputs="2"></magenta-midi-file>
-				<magenta-slider id="variations" value="3" min="1" max="16" label="Steps"></magenta-slider>
-				<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
+			<div class="plugin-content">
+				<div id="controls">
+					<div class="plugin-panel__type">
+						<magenta-radio-group
+								label="Type"
+								values=${JSON.stringify(['drums', 'melody'])}
+								id="mode">
+							</magenta-radio-group>
+					</div>
+					<div class="plugin-panel">
+						<magenta-midi-file label="Input ${ABLETON ? 'Clips' : 'Files'}" @change=${validate} inputs="2"></magenta-midi-file>
+					</div>
+					<div class="plugin-panel">
+						<magenta-slider id="variations" value="3" min="1" max="16" label="Steps"></magenta-slider>
+						<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
+					</div>
+				</div>
+				<div class="plugin-panel">
+					<magenta-output-text></magenta-output-text>
+					<magenta-button id="generate" label="Initializing..." disabled @click=${generate}></magenta-button>
+				</div>
 			</div>
-			<magenta-output-text></magenta-output-text>
-			<magenta-button id="generate" label="Initializing..." disabled @click=${generate}></magenta-button>
 		</div>
 	`, parentElement)
 }

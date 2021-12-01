@@ -14,7 +14,7 @@ body {
 	font-size: var(--font-size);
 	display: flex;
 	height: 149px;
-	border: 1px solid red;
+	// border: 1px solid red;
 
 	#title {
 		position: relative;
@@ -129,5 +129,10 @@ nav {
 
 .plugin-panel {
 	margin-right: 15px;
-	min-width: 200px;
+	min-width: 180px;
+}
+
+.plugin-panel__type {
+	margin-right: 15px;
+	min-width: 80px;
 }

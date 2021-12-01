@@ -90,11 +90,14 @@ export function Generate(parentElement) {
 			</div>
 			<div class="plugin-content">
 				<div id="controls">
-					<div class="plugin-panel">
+					<div class="plugin-panel__type">
 						<magenta-radio-group
+								label="Type"
 								values=${JSON.stringify(['drums', 'melody'])}
 								id="mode">
 							</magenta-radio-group>
+					</div>
+					<div class="plugin-panel">
 						<magenta-midi-file label="Output Location" output @change=${validate} inputs="1"></magenta-midi-file>
 					</div>
 					<div class="plugin-panel">

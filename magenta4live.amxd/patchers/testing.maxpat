@@ -10,8 +10,8 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 286.0, 900.0, 580.0 ],
-		"openrect" : [ 0.0, 0.0, 900.0, 169.0 ],
+		"rect" : [ 34.0, 166.0, 920.0, 169.0 ],
+		"openrect" : [ 0.0, 0.0, 920.0, 169.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -328,7 +328,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 73.0, 142.0, 320.0, 240.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 120.0, 0.0, 800.0, 169.0 ],
+					"presentation_rect" : [ 120.0, 0.0, 810.0, 169.0 ],
 					"rendermode" : 0,
 					"url" : "http://localhost:3333"
 				}
@@ -508,7 +508,7 @@
 			}
  ],
 		"autosave" : 0,
-		"bgcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
+		"bgcolor" : [ 0.101960784313725, 0.101960784313725, 0.101960784313725, 1.0 ]
 	}
 
 }

@@ -101,7 +101,7 @@ customElements.define('magenta-slider', class MagentaSlider extends LitElement {
 
 				div {
 					width: 100%;
-					min-width: 200px;
+					min-width: 180px;
 					display: flex;
 					flex-direction: row;
 					align-items: stretch;
