@@ -80,7 +80,7 @@ export function Groove(parentElement) {
 	})
 
 	render(html`
-		<div id="groove>
+		<div id="groove">
 			<div id="title" class="${ANIMATE ? 'animate' : ''}">
 				<span>G</span>
 				<span>R</span>
@@ -89,19 +89,26 @@ export function Groove(parentElement) {
 				<span>V</span>
 				<span>E</span>
 			</div>
-			<magenta-radio-group
-				values=${JSON.stringify(['drums'])}
-				id="mode">
-			</magenta-radio-group>
-			<div id="controls">
-				<magenta-midi-file
-					label="Input ${ABLETON ? 'Clip' : 'File'}"
-					@change=${validate}></magenta-midi-file>
-
+			<div class="plugin-content">
+				<div id="controls">
+					<div class="plugin-panel">
+						<magenta-radio-group
+							values=${JSON.stringify(['drums'])}
+							id="mode">
+						</magenta-radio-group>
+							<magenta-midi-file
+								label="Input ${ABLETON ? 'Clip' : 'File'}"
+								@change=${validate}></magenta-midi-file>
+					</div>
+					<div class="plugin-panel">
+						<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
+					</div>
+				</div>
+				<div class="plugin-panel">
+					<magenta-output-text></magenta-output-text>
+					<magenta-button disabled id="generate" label="Initializing..." @click=${generate}></magenta-button>
+				</div>
 			</div>
-			<magenta-output-text></magenta-output-text>
-			<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
-			<magenta-button disabled id="generate" label="Initializing..." @click=${generate}></magenta-button>
 		</div>
 	`, parentElement)
 }
