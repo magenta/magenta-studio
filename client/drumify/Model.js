@@ -31,7 +31,7 @@ export class Model {
 
 	async load() {
 		try {
-			await this.model.initialize();
+			await Promise.all(this.models.map(m => m.initialize()));
 		} catch (e){
 			const snackbar = document.createElement('magenta-snackbar');
 			snackbar.setAttribute('message', e);

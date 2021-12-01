@@ -3,13 +3,12 @@ body #drumify {
 
   #mode {
 		display: block;
-		margin: 0 auto 20px;
+		margin: 0 auto;
 		width: 90%;
 		pointer-events: none;
 	}
 
 	#title {
-		margin-bottom: 20px;
     user-select: none;
     -webkit-app-region: no-drag;
 

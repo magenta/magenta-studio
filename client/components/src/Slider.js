@@ -18,6 +18,12 @@
 import { LitElement, html } from 'lit'
 import { commonStyle } from './InputStyle'
 
+// Taken from p5.js
+// https://github.com/processing/p5.js/blob/v1.4.0/src/math/calculation.js#L409
+function scale(n, start1, stop1, start2, stop2) {
+	return (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
+}
+
 customElements.define('magenta-slider', class MagentaSlider extends LitElement {
 
 	static get properties(){
@@ -43,7 +49,7 @@ customElements.define('magenta-slider', class MagentaSlider extends LitElement {
 	_generateGradient(e){
 		this.value = (e && e.target.value) || this.value
 		const input = this.shadowRoot.querySelector('input')
-		const pos = Math.scale(parseFloat(this.value), parseFloat(this.min), parseFloat(this.max), 0, 1)
+		const pos = scale(parseFloat(this.value), parseFloat(this.min), parseFloat(this.max), 0, 1)
 		this.dispatchEvent(new CustomEvent('input', {
 			bubbles : true, composed : true, 
 			detail : {
