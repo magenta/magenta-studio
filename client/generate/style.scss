@@ -5,6 +5,10 @@
 //      http://japborst.net/posts/sass-sines-and-cosines //
 ///////////////////////////////////////////////////////////
 
+body #generate {
+	--accent-color: var(--color-accent-teal);
+}
+
 #generate {
 	$pi: 3.14159265359;
 	$_precision: 10;
@@ -64,10 +68,6 @@
 	
 	@function tan($angle){
 		@return sin($angle) / cos($angle);
-	}
-	
-	body {
-		--accent-color: var(--color-accent-teal);
 	}
 	
 	$shadowCount : 6;
