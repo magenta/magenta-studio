@@ -82,7 +82,7 @@ export function Generate(parentElement) {
 	})
 	
 	render(html`
-		<div id="generate">
+		<div id="generate-plugin">
 			<div id="title" class="${ANIMATE ? 'animate' : ''}">
 				<span>
 					GENERATE

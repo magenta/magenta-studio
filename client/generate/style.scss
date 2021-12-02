@@ -5,11 +5,9 @@
 //      http://japborst.net/posts/sass-sines-and-cosines //
 ///////////////////////////////////////////////////////////
 
-body #generate {
+#generate-plugin {
 	--accent-color: var(--color-accent-teal);
-}
 
-#generate {
 	$pi: 3.14159265359;
 	$_precision: 10;
 	
