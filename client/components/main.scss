@@ -94,9 +94,9 @@ nav {
 		}
 	}
 
-	.about-button {
-		background-color: var(--color-gray);
-	}
+	// .about-button {
+	// 	background-color: var(--color-gray);
+	// }
 
 	.continue-button {
 		background-color: var(--color-magenta);
@@ -135,4 +135,19 @@ nav {
 .plugin-panel__type {
 	margin-right: 15px;
 	min-width: 80px;
+}
+
+.logo-header {
+	margin: 0;
+	font-family: var(--font-family);
+	font-size: var(--font-size);
+}
+
+.logo-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	margin-right: 10px;
 }

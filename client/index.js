@@ -1,11 +1,12 @@
 import Navigo from 'navigo'
-import { LitElement, render, html, nothing } from 'lit'
+import { render, html, nothing } from 'lit'
 import { About } from './about'
 import { Continue } from './continue/Main'
 import { Drumify } from './drumify/Main'
 import { Generate } from './generate/Main'
 import { Groove } from './groove/Main'
 import { Interpolate } from './interpolate/Main'
+import logo from './magenta_logo.png'
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -39,8 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 render(html`
-  <nav>
+  <div class="logo-container">
+    <h1 class="logo-header">Magenta Studio</h1>
+    <img src="${logo}" alt="Magenta Logo" width="100" height="100">
     <a href="/" data-navigo class="about-button">About</a>
+  </div>
+  <nav>
     <a href="/continue" data-navigo class="continue-button">Continue</a>
     <a href="/drumify" data-navigo class="drumify-button">Drumify</a>
     <a href="/generate" data-navigo class="generate-button">Generate</a>
