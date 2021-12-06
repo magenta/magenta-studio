@@ -20,29 +20,19 @@ npm install
 
 ## Building
 
-The modules come as both standalone apps and Ableton integrated. To build all versions (Linux standalone and Mac, Windows in standalone and Max For Live formats) run:
+All of the modules are included in a Max for Live device. To build the device, run
 
 ```
 npm run build
 ```
 
-All of the build files will be put into the 'dist' folder.
+All of the build files will be placed into the folder `magenta4live.amxd/code/public`.
 
-You can also build a specific target by passing it as an argument:
-
+Then, run (on Mac)
 ```
-npm run build macos-standalone
+open magenta4live.amxd/magenta4live.amxd.maxproj
 ```
-
-The current options are:
-
-* windows-ableton
-* windows-standalone
-* linux-standalone
-* macos-ableton
-* macos-standalone
-
-*Note:* if you want to build Windows versions from Mac, you need to have [Wine](https://www.winehq.org/) installed.
+or simply open the Max project. Then select File > Export Max for Live Device..., and select a location to save the device. Once the dialog closes, the device has been built!
 
 ## License
 
