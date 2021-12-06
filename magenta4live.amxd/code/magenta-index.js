@@ -29,26 +29,26 @@ require('./src/Launch')
 ///////////////////////////////////////////////////////////////////////////////
 
 const PORT = 3333
-app.use(express.static('./public'));
-app.get('/continue', function (req, res) {
-	res.sendFile('./public/index.html', { root: __dirname });
-});
-app.get('/drumify', function (req, res) {
-	res.sendFile('./public/index.html', { root: __dirname });
-});
-app.get('/generate', function (req, res) {
-	res.sendFile('./public/index.html', { root: __dirname });
-});
-app.get('/groove', function (req, res) {
-	res.sendFile('./public/index.html', { root: __dirname });
-});
-app.get('/interpolate', function (req, res) {
-	res.sendFile('./public/index.html', { root: __dirname });
-});
-app.get('/studio', function (req, res) {
-	max.outlet('openWebsite');
-	res.send('success');
-});
+app.use(express.static('./public'))
+app.get('/continue', function(req, res){
+	res.sendFile('./public/index.html', { root : __dirname })
+})
+app.get('/drumify', function(req, res){
+	res.sendFile('./public/index.html', { root : __dirname })
+})
+app.get('/generate', function(req, res){
+	res.sendFile('./public/index.html', { root : __dirname })
+})
+app.get('/groove', function(req, res){
+	res.sendFile('./public/index.html', { root : __dirname })
+})
+app.get('/interpolate', function(req, res){
+	res.sendFile('./public/index.html', { root : __dirname })
+})
+app.get('/studio', function(req, res){
+	max.outlet('openWebsite')
+	res.send('success')
+})
 
 ///////////////////////////////////////////////////////////////////////////////
 // ROUTES

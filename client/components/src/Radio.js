@@ -27,8 +27,8 @@ customElements.define('magenta-radio-group', class MagentaRadio extends LitEleme
 		return {
 			values : { type : String },
 			selectedIndex : { type : Number },
-			disabled: { type: Boolean },
-			label : { type: String}
+			disabled : { type : Boolean },
+			label : { type : String }
 		}
 	}
 

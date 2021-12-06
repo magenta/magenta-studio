@@ -4,18 +4,11 @@
   "description": "Magenta Studio plugins as Standalone applications and for Ableton Live",
   "main": "wrong.js",
   "scripts": {
-    "watch": "concurrently \"npm run watch:plugin --dir $npm_config_dir\" \"npm run electron:plugin $npm_config_dir\"",
+    "build": "webpack --mode=production --env production",
+    "download:models": "node ./scripts/download_models",
+    "lint": "eslint client magenta4live.amxd/code",
     "postinstall": "npm run download:models; cd magenta4live.amxd; npm install",
-    "watch:standalone": "concurrently \"webpack -w --mode=development --env standalone --dir $npm_config_dir\" \"npm run electron:plugin $npm_config_dir\"",
-    "watch:plugin": "webpack -w --mode=development --env development",
-    "watch:all": "webpack -w --mode=development --env development",
-    "electron:plugin": "cd $npm_config_dir && electron ./build/Main.js",
-    "webpack:build": "webpack --mode=production --env production",
-    "webpack:standalone": "webpack --mode=production --env production --env standalone && npm run copy",
-    "copy": "node components/copy.js",
-    "build": "node electron/build.js --output $npm_config_output",
-    "test": "node test/Test.js",
-    "download:models": "node ./scripts/download_models"
+    "watch": "webpack -w --mode=development --env development"
   },
   "repository": {
     "type": "git",

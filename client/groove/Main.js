@@ -74,7 +74,7 @@ function setStatus(status, error=false){
 	}
 }
 
-export function Groove(parentElement) {
+export function Groove(parentElement){
 	model.load().then(() => {
 		setStatus('')
 	})

@@ -79,7 +79,7 @@ function setStatus(status, error=false){
 	}
 }
 
-export function Continue(parentElement) {
+export function Continue(parentElement){
 	const initialized = Promise.all([models.drums.load(), models.melody.load()])
 	initialized.then(() => {
 		setStatus('')

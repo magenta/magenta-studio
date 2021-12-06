@@ -71,7 +71,7 @@ function setStatus(status, error=false){
 	}
 }
 
-export function Drumify(parentElement) {
+export function Drumify(parentElement){
 	model.load().then(() => {
 		setStatus('')
 	})

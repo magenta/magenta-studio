@@ -115,16 +115,16 @@ export class AbletonFile extends LitElement {
 			paths = paths.slice(0, maxLen)
 			paths[maxLen-1] = `${len-(maxLen-1)} more...`
 		}
-		const title = `Overwrite clip${paths.length > 1 ? 's' : ''}?`;
+		const title = `Overwrite clip${paths.length > 1 ? 's' : ''}?`
 		const body = `
 		${title}
 		These clips will be saved over:
 			${paths.map(p => `• ${p}`).join('\n')}
-	`;
-		if (window.confirm(body, title)) {
-			return true;
+	`
+		if (window.confirm(body, title)){
+			return true
 		}
-		return false;
+		return false
 	}
 
 	get selectedTrackIndex(){

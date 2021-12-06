@@ -16,7 +16,7 @@
  */
 
 import { MusicVAE } from '@magenta/music'
-import { reconstructBySize } from '../shared';
+import { reconstructBySize } from '../shared'
 
 export class Model {
 	constructor(){
@@ -25,21 +25,21 @@ export class Model {
 			'/groove/models/groovae_humanize_2bar',
 			'/groove/models/groovae_humanize_3bar',
 			'/groove/models/groovae_humanize_4bar'
-		];
-		this.models = models.map(url => new MusicVAE(url));
+		]
+		this.models = models.map(url => new MusicVAE(url))
 	}
 
 	async load(){
 		try {
-			await Promise.all(this.models.map(m => m.initialize()));
+			await Promise.all(this.models.map(m => m.initialize()))
 		} catch (e){
-			const snackbar = document.createElement('magenta-snackbar');
-			snackbar.setAttribute('message', e);
-			document.body.appendChild(snackbar);
+			const snackbar = document.createElement('magenta-snackbar')
+			snackbar.setAttribute('message', e)
+			document.body.appendChild(snackbar)
 		}
 	}
 
 	async unquantize(inSeq, temperature=1){
-		return reconstructBySize(inSeq, this.models, temperature);
-  }
+		return reconstructBySize(inSeq, this.models, temperature)
+	}
 }

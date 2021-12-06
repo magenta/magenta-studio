@@ -22,13 +22,12 @@ const { quantizeNoteSequence, unquantizeSequence, clone } = sequences
 
 // tf.setBackend('tensorflow')
 
-
 export class Model {
 	constructor(drums=false){
 		// const drumUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/drum_kit_rnn'
 		// const melodyUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/melody_rnn'
-		const drumUrl = '/continue/models/drum_kit_rnn';
-		const melodyUrl = '/continue/models/melody_rnn';
+		const drumUrl = '/continue/models/drum_kit_rnn'
+		const melodyUrl = '/continue/models/melody_rnn'
 		this.model = new MusicRNN(drums ? drumUrl : melodyUrl)
 		this.tempo = 120
 		this.drums = drums

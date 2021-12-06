@@ -20,8 +20,8 @@ import { commonStyle } from './InputStyle'
 
 // Taken from p5.js
 // https://github.com/processing/p5.js/blob/v1.4.0/src/math/calculation.js#L409
-function scale(n, start1, stop1, start2, stop2) {
-	return (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
+function scale(n, start1, stop1, start2, stop2){
+	return (n - start1) / (stop1 - start1) * (stop2 - start2) + start2
 }
 
 customElements.define('magenta-slider', class MagentaSlider extends LitElement {

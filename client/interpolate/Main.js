@@ -87,7 +87,7 @@ if (ANIMATE){
 	}, 500)
 }
 
-export function Interpolate(parentElement) {
+export function Interpolate(parentElement){
 	const initialized = Promise.all([models.drums.load(), models.melody.load()])
 	initialized.then(() => {
 		setStatus('')

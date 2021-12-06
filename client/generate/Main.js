@@ -75,7 +75,7 @@ function setStatus(status, error=false){
 	}
 }
 
-export function Generate(parentElement) {
+export function Generate(parentElement){
 	const initialized = Promise.all([models.drums.load(), models.melody.load()])
 	initialized.then(() => {
 		setStatus('')

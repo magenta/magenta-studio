@@ -64,7 +64,7 @@ class CloseButton extends LitElement {
 				</svg>
 			</button>
 		`
-    return closeButton
+		return closeButton
 	}
 }
 customElements.define('magenta-close-button', CloseButton)

@@ -15,32 +15,32 @@
  * limitations under the License.
  */
 
-import { MusicVAE } from '@magenta/music';
-import { reconstructBySize } from '../shared';
+import { MusicVAE } from '@magenta/music'
+import { reconstructBySize } from '../shared'
 
 export class Model {
-	constructor() {
+	constructor(){
 		const models = [
 			'/drumify/models/groovae_tap2drum_1bar',
 			'/drumify/models/groovae_tap2drum_2bar',
 			'/drumify/models/groovae_tap2drum_3bar',
 			'/drumify/models/groovae_tap2drum_4bar'
-		];
-		this.models = models.map(url => new MusicVAE(url));
+		]
+		this.models = models.map(url => new MusicVAE(url))
 	}
 
-	async load() {
+	async load(){
 		try {
-			await Promise.all(this.models.map(m => m.initialize()));
+			await Promise.all(this.models.map(m => m.initialize()))
 		} catch (e){
-			const snackbar = document.createElement('magenta-snackbar');
-			snackbar.setAttribute('message', e);
-			document.body.appendChild(snackbar);
+			const snackbar = document.createElement('magenta-snackbar')
+			snackbar.setAttribute('message', e)
+			document.body.appendChild(snackbar)
 		}
 	}
 
-	async drumify(inSeq, temperature=1) {
-		return await reconstructBySize(inSeq, this.models, temperature);
+	async drumify(inSeq, temperature=1){
+		return await reconstructBySize(inSeq, this.models, temperature)
 	}
 }
 
