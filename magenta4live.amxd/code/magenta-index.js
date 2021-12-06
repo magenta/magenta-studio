@@ -29,17 +29,6 @@ require('./src/Launch')
 ///////////////////////////////////////////////////////////////////////////////
 
 const PORT = 3333
-// Run Webpack dev server in development mode
-// if (process.env.NODE_ENV === 'development') {
-	// const config = require('../../webpack.config');
-  // const compiler = webpack(config);
-  // app.use(
-  //   webpackDevMiddleware(compiler, {
-  //     publicPath: config.output.publicPath
-  //   })
-  // );
-  // app.use(webpackHotMiddleware(compiler));
-// }
 app.use(express.static('./public'));
 app.get('/continue', function (req, res) {
 	res.sendFile('./public/index.html', { root: __dirname });
@@ -55,6 +44,10 @@ app.get('/groove', function (req, res) {
 });
 app.get('/interpolate', function (req, res) {
 	res.sendFile('./public/index.html', { root: __dirname });
+});
+app.get('/studio', function (req, res) {
+	max.outlet('openWebsite');
+	res.send('success');
 });
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -101,13 +101,13 @@ export function Drumify(parentElement) {
 							label="Input ${ABLETON ? 'Clip' : 'File'}"
 							@change=${validate}></magenta-midi-file>
 					</div>
+					<div class="plugin-panel__generate">
+						<magenta-output-text></magenta-output-text>
+						<magenta-button disabled id="generate" label="Initializing..." @click=${generate}></magenta-button>
+					</div>
 					<div class="plugin-panel">
 						<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
 					</div>
-				</div>
-				<div class="plugin-panel">
-					<magenta-output-text></magenta-output-text>
-					<magenta-button disabled id="generate" label="Initializing..." @click=${generate}></magenta-button>
 				</div>
 			</div>
 		</div>

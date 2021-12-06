@@ -36,6 +36,12 @@ document.addEventListener('DOMContentLoaded', function () {
     render(nothing, pluginContainer)
     Interpolate(pluginContainer)
   })
+
+  setTimeout(() => {
+    window.history.pushState({}, '', '/continue');
+    render(nothing, pluginContainer)
+    Continue(pluginContainer)
+  }, 10);
 }, false);
 
 

@@ -1,6 +1,13 @@
 import { render, html } from 'lit';
 import './style.scss'
 
+//https://magenta.tensorflow.org/studio/
+
+function handleOpenWebsite(e) {
+  e.preventDefault();
+  fetch(e.target.href);
+}
+
 export function About(parentElement) {
   render(html`
     <div>
@@ -10,11 +17,11 @@ export function About(parentElement) {
       Magenta Studio is a MIDI plugin for Ableton Live built on Magenta’s open source tools and models.
       It uses cutting-edge machine learning techniques for music generation.
       </p>
-      <!--
       <p>
-        Find information and tutorials at
-        <a target="_blank" href="https://magenta.tensorflow.org/studio/">our website.</a>
+        Find more information and tutorials at
+        <a target="_blank" href="http://localhost:3333/studio" @click=${handleOpenWebsite}>our website.</a>
       </p>
+      <!--
       <p>
         <h3>License</h3>
         Copyright 2019 Google Inc.

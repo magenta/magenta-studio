@@ -119,14 +119,14 @@ export function Interpolate(parentElement) {
 					<div class="plugin-panel">
 						<magenta-midi-file label="Input ${ABLETON ? 'Clips' : 'Files'}" @change=${validate} inputs="2"></magenta-midi-file>
 					</div>
+					<div class="plugin-panel__generate">
+						<magenta-output-text></magenta-output-text>
+						<magenta-button id="generate" label="Initializing..." disabled @click=${generate}></magenta-button>
+					</div>
 					<div class="plugin-panel">
 						<magenta-slider id="variations" value="3" min="1" max="16" label="Steps"></magenta-slider>
 						<magenta-slider id="temperature" value="1" min="0" max="2" step="0.1" label="Temperature"></magenta-slider>
 					</div>
-				</div>
-				<div class="plugin-panel">
-					<magenta-output-text></magenta-output-text>
-					<magenta-button id="generate" label="Initializing..." disabled @click=${generate}></magenta-button>
 				</div>
 			</div>
 		</div>

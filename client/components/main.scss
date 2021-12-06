@@ -1,14 +1,14 @@
 body {
-	// position: absolute;
-	// top: 0px;
-	// left: 0px;
-	// overflow: hidden;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
 	--margin: 10px;
-	// width: calc(100% - var(--margin) * 2);
-	// height: calc(100% - var(--margin) * 2);
+	width: calc(100% - var(--margin) * 2);
+	height: calc(100% - var(--margin) * 2);
 	margin: var(--margin);
-	// -ms-overflow-style: scrollbar;
-	// -webkit-app-region:drag;
+	-ms-overflow-style: scrollbar;
+	-webkit-app-region:drag;
 	background-color: var(--background-color);
 	font-family: var(--font-family);
 	font-size: var(--font-size);
@@ -136,6 +136,13 @@ nav {
 	margin-right: 15px;
 	min-width: 80px;
 }
+
+.plugin-panel__generate {
+	margin-right: 15px;
+	min-width: 200px;
+	padding: 0 10px;
+}
+
 
 .logo-header {
 	margin: 0;
