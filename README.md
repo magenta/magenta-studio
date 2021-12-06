@@ -4,11 +4,9 @@ This is not a Google product.
 
 ## Overview and Organization
 
-The Magenta Studio plugins are Electron apps. Electron has the advantage of being a cross platform solution that works well with [magenta.js](https://github.com/tensorflow/magenta-js). The code for each of the plugins is located in a folder with the same name. 
+Magenta Studio is a set of plugins contained in a [Max for Live](https://www.ableton.com/en/live/max-for-live/) Device. They are contained in a single web application that runs in the Max environment via Chromium Embedded Framework (CEF). All of the front-end code is contained in the `client/` folder, which contains the five plugins, and common UI and communication components which can be found in the `client/components/` folder. These objects are built using [Polymer's LitElement](https://github.com/Polymer/lit-element). 
 
-All of the plugins share common UI and communication components which can be found in the 'components' folder. These objects are built using [Polymer's LitElement](https://github.com/Polymer/lit-element). 
-
-The Ableton integration is achieved through [Max4Live](https://www.ableton.com/en/live/max-for-live/). The object and related javascript files can be found in the folder called 'magenta4live.amxd'. The Max component and the Electron apps communication over a local server running on port 3333. 
+The communication between the web application and Live is handed through Max. This contains a local express server that runs on port 3333 in [Node for Max](https://cycling74.com/articles/node-for-max-intro-%E2%80%93-let%E2%80%99s-get-started). The Max patch and related JavaScript files can be found in the folder called `magenta4live.amxd/`.
 
 ## Installation
 
