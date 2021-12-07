@@ -43,12 +43,6 @@ class OutputText extends LitElement {
 		})
 	}
 
-	_choosePath(){
-		if (!ABLETON){
-			this.magentaMidiFile.chooseOutput()
-		}
-	}
-
 	render(){
 		const valid = this.magentaMidiFile.valid
 		let pathString = ''
@@ -56,18 +50,13 @@ class OutputText extends LitElement {
 		let outputType = ''
 		if (valid){
 			const path = this.magentaMidiFile.outputPath
-			if (ABLETON){
-				const startIndex = path+1
-				if (variations > 1){
-					pathString = `Clip Slots ${startIndex}-${startIndex+variations-1}`
-				} else {
-					pathString = `Clip Slot ${startIndex}`
-				}
-				outputType = variations > 1 ? 'clips' : 'clip'
+			const startIndex = path+1
+			if (variations > 1){
+				pathString = `Clip Slots ${startIndex}-${startIndex+variations-1}`
 			} else {
-				pathString = `${path && path.replace(process.env.HOME, '~')}`
-				outputType = variations > 1 ? 'files' : 'file'
+				pathString = `Clip Slot ${startIndex}`
 			}
+			outputType = variations > 1 ? 'clips' : 'clip'
 		}
 		return html`
 			<style>
@@ -104,9 +93,7 @@ class OutputText extends LitElement {
 			<div ?visible=${this.show}>
 				Output <span>${variations}</span> 
 				${outputType}
-				to <span 
-					?clickable=${!ABLETON}
-					@click=${this._choosePath.bind(this)}>${pathString}</span>
+				to <span>${pathString}</span>
 			</div>
 		`
 	}

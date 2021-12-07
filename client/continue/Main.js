@@ -102,7 +102,7 @@ export function Continue(parentElement){
 					<div class="plugin-panel">
 						</magenta-radio-group>
 						<magenta-midi-file 
-							label="Input ${ABLETON ? 'Clip' : 'File'}"
+							label="Input Clip"
 							@change=${validate}></magenta-midi-file>
 					</div>
 					<div class="plugin-panel__generate">

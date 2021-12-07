@@ -117,7 +117,7 @@ export function Interpolate(parentElement){
 							</magenta-radio-group>
 					</div>
 					<div class="plugin-panel">
-						<magenta-midi-file label="Input ${ABLETON ? 'Clips' : 'Files'}" @change=${validate} inputs="2"></magenta-midi-file>
+						<magenta-midi-file label="Input Clips" @change=${validate} inputs="2"></magenta-midi-file>
 					</div>
 					<div class="plugin-panel__generate">
 						<magenta-output-text></magenta-output-text>

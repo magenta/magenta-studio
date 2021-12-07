@@ -31,7 +31,6 @@ function getDefinitions(env, width=100, height=100){
 		ANIMATE : JSON.stringify(false),
 		INDEX_FILE : JSON.stringify('index.html'),
 		ABOUT_FILE : JSON.stringify('about.html'),
-		ABLETON : JSON.stringify(true),
 		WIDTH : JSON.stringify(width),
 		HEIGHT: JSON.stringify(height),
 		VERSION: JSON.stringify(require("./package.json").version),

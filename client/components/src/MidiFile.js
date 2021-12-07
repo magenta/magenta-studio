@@ -69,32 +69,14 @@ class MagentaFile extends LitElement {
 	}
 
 	render(){
-		let inner = null
-		if (ABLETON){
-			inner = html`
-				<magenta-ableton-file 
-					?output=${this.output}
-					numclips=${this.inputs.toString()}
-					@change=${this._testValid.bind(this)}
-					@disconnected=${() => this.connected = false}
-					@connected=${() => this.connected = true}>
-				</magenta-ableton-file>`
-		} else {
-			inner = []
-			let defaultValue = 'Choose file...'
-			if (this.output){
-				defaultValue = 'Choose folder...'
-			}
-			for (let i = 0; i < this.inputs; i++){
-				defaultValue = this.inputs > 1 ? `Choose file ${'AB'.charAt(i)}...` : defaultValue
-				inner.push(html`<magenta-file 
-					@change=${this._testValid.bind(this)}
-					?output=${this.output}
-					defaultvalue=${defaultValue}
-					?small=${this.inputs > 1}>
-					</magenta-file>`)
-			}
-		}
+		let inner = html`
+			<magenta-ableton-file 
+				?output=${this.output}
+				numclips=${this.inputs.toString()}
+				@change=${this._testValid.bind(this)}
+				@disconnected=${() => this.connected = false}
+				@connected=${() => this.connected = true}>
+			</magenta-ableton-file>`
 		return html`
 			${commonStyle}
 			<style>
