@@ -7,6 +7,8 @@ module.exports = {
 		"amd": false,
 	},
 	"globals": {
+		"ANIMATE": true,
+		"VERSION": true
 	},
 	"parserOptions": {
 		"ecmaVersion": 2017,
