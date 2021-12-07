@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		window.history.pushState({}, '', '/continue')
 		render(nothing, pluginContainer)
 		Continue(pluginContainer)
+		document.body.style.display = 'flex'
 	}, 10)
 }, false)
 

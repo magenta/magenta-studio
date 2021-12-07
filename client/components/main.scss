@@ -12,8 +12,8 @@ body {
 	background-color: var(--background-color);
 	font-family: var(--font-family);
 	font-size: var(--font-size);
-	display: flex;
 	height: 149px;
+	display: flex;
 	// border: 1px solid red;
 
 	#title {
@@ -25,11 +25,21 @@ body {
 		letter-spacing: 0.2em;
 		transition: letter-spacing 0.5s;
 		height: 16px;
-		margin: 0 auto;
-		display: inline-block;
-		left: 50%;
-		transform: translate(-50%, 0);
+		// margin: 0 auto;
+		// display: inline-block;
+		// left: 50%;
+		// transform: translate(-50%, 0);
 		cursor: default;
+		margin-bottom: 12px;
+	}
+	
+	#plugin-container > div {
+		// display: block;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		width: 720px;
+		height: 100%;
 	}
 
 	magenta-select {
@@ -121,6 +131,7 @@ nav {
 
 .plugin-content {
 	display: flex;
+	flex: 1;
 }
 
 #controls {
@@ -130,17 +141,31 @@ nav {
 .plugin-panel {
 	margin-right: 15px;
 	min-width: 180px;
+	// display: flex;
+	// flex-direction: column;
+	// justify-content: center;
+	// height: 100%;
 }
 
 .plugin-panel__type {
 	margin-right: 15px;
 	min-width: 80px;
+	// display: flex;
+	// flex-direction: column;
+	// justify-content: center;
+	// margin-top: -21px;
 }
 
 .plugin-panel__generate {
 	margin-right: 15px;
 	min-width: 200px;
 	padding: 0 10px;
+	// display: flex;
+	// flex-direction: column;
+	// justify-content: center;
+	// margin-top: -49px; // to center incl title
+	// margin-top: -28px; // to center incl title
+	margin-top: 3px;
 }
 
 
