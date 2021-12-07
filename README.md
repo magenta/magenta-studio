@@ -32,6 +32,16 @@ open magenta4live.amxd/magenta4live.amxd.maxproj
 ```
 or simply open the Max project. Then select File > Export Max for Live Device..., and select a location to save the device. Once the dialog closes, the device has been built!
 
+Lastly, you'll need to change the icon of the `magenta4live` device. You can do this by:
+1. Open the Magenta icon (`client/magenta_logo`) in Preview.
+2. Select Edit > Copy
+3. Right click on `magenta4live.amxd`, then select Get Info. 
+4. Select the tiny icon in the upper left of the window, and select Edit > Paste or enter Command + V. 
+5. Done!
+
+## Versioning
+You can update the version of the device by changing the version in the root `package.json`. When you build the device, this number will be visible when you click "About" in the interface.
+
 ## License
 
 Copyright 2018 Google Inc.
