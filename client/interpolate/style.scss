@@ -5,42 +5,7 @@ body #interpolate {
 }
 
 #interpolate {
-	// $interpolateShadowCount: 1;
 	$darkColor: rgba(255, 255, 255, 0.3);
-	
-	
-	// @mixin interpolateShadow($step){
-	// 	$outp: 0px 0px transparent;
-	// 	@for $i from 1 through $step {
-	// 		$inv_i: $interpolateShadowCount - $i;
-	// 		$offset: 15px;
-	// 		$outp: #{$outp}, $offset * $i 0px #{$darkColor};
-	// 	}
-	// 	text-shadow: $outp
-	// }
-	
-	
-	
-	// @keyframes text-extend {
-	
-	// 	@for $i from 0 through $interpolateShadowCount {
-	// 		#{$i/$interpolateShadowCount*100}% {
-	// 			@include interpolateShadow($i);
-	// 			width: $i/$interpolateShadowCount * 40px;
-	// 		}
-	// 	}
-	// }
-	
-	// @keyframes text-retract {
-	
-	// 	0% {
-	// 		@include interpolateShadow($interpolateShadowCount);
-	// 	}
-	
-	// 	100% {
-	// 		text-shadow: 0px 0px white;
-	// 	}
-	// }
 	
 	$letterWidth: 15px;
 	

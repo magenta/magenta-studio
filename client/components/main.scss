@@ -25,10 +25,6 @@ body {
 		letter-spacing: 0.2em;
 		transition: letter-spacing 0.5s;
 		height: 16px;
-		// margin: 0 auto;
-		// display: inline-block;
-		// left: 50%;
-		// transform: translate(-50%, 0);
 		cursor: default;
 		margin-bottom: 12px;
 	}
@@ -53,18 +49,6 @@ body {
 
 	magenta-midi-file {
 		display: block;
-	}
-
-	magenta-button {
-		// position: absolute;
-		// // bottom: var(--margin);
-		// // right: var(--margin);
-		// bottom: 0px;
-		// right: 0px;
-	}
-
-	magenta-slider {
-		// margin-left: 15px;
 	}
 
 	#status {
@@ -103,10 +87,6 @@ nav {
 			margin-bottom: 0;
 		}
 	}
-
-	// .about-button {
-	// 	background-color: var(--color-gray);
-	// }
 
 	.continue-button {
 		background-color: var(--color-magenta);
