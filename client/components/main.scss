@@ -163,3 +163,13 @@ nav {
 	position: relative;
 	margin-right: 10px;
 }
+
+.launch-button {
+	position: absolute;
+	right: 0;
+	cursor: pointer;
+	background: transparent;
+	outline: none;
+	border: none;
+	padding: 0;
+}

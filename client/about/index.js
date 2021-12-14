@@ -10,7 +10,7 @@ function handleOpenWebsite(e){
 
 export function About(parentElement){
 	render(html`
-    <div>
+    <div class="about">
       <h2 id="title">Magenta Studio</h2>
       <center><p>Version: ${VERSION}</p></center>
       <p>
