@@ -7,7 +7,7 @@ import { Generate } from './generate/Main'
 import { Groove } from './groove/Main'
 import { Interpolate } from './interpolate/Main'
 import logo from './magenta_logo.png'
-// import launchIcon from './launch_white_24dp.svg'
+import launchIcon from './launch_white_24dp.svg'
 
 document.addEventListener('DOMContentLoaded', function(){
 	const pluginContainer = document.getElementById('plugin-container')
@@ -53,7 +53,7 @@ function handleLaunchWindow(e) {
 render(html`
   <div class="logo-container">
     <h1 class="logo-header">Magenta Studio</h1>
-    <img src="${logo}" alt="Magenta Logo" width="100" height="100">
+    <img class="logo" src="${logo}" alt="Magenta Logo" width="50" height="50">
     <a href="/" data-navigo class="about-button">About</a>
   </div>
   <nav>
@@ -64,9 +64,7 @@ render(html`
     <a href="/interpolate" data-navigo class="interpolate-button">Interpolate</a>
   </nav>
   <div id="plugin-container"></div>
-`, document.body)
-
-
-{/* <button class="launch-button" @click=${handleLaunchWindow}>
+	<button class="launch-button" @click=${handleLaunchWindow}>
 		<img class="launch-icon" src="${launchIcon}" alt="Open in external window">
-	</button> */}
+	</button>
+`, document.body)
