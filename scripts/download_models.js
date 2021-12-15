@@ -1,4 +1,4 @@
-const apps = require('../apps.json')
+const models = require('./models.json')
 const fs = require('fs-extra')
 const { resolve, basename } = require('path')
 const { promisify } = require('util')
@@ -33,9 +33,9 @@ async function downloadZip(appName, url){
 }
 
 async function main(){
-	for (let appName in apps){
-		const url = apps[appName].models
-		await downloadZip(appName, url)
+	for (let modelName in models){
+		const url = models[modelName].models
+		await downloadZip(modelName, url)
 	}
 }
 
