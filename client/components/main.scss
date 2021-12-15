@@ -177,3 +177,7 @@ nav {
 	border: none;
 	padding: 0;
 }
+
+#generate {
+	--component-height: var(--medium-component-height);
+}
