@@ -22,7 +22,6 @@ app.use(require('body-parser').json())
 const kill = require('kill-port')
 const detect = require('detect-port')
 const max = require('max-api')
-require('./src/Launch')
 
 ///////////////////////////////////////////////////////////////////////////////
 // CONFIG

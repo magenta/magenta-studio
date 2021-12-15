@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	}, 10)
 }, false)
 
-function handleLaunchWindow(e) {
+function handleLaunchWindow(e){
 	e.preventDefault()
 	fetch('/launch')
 }
