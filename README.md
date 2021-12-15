@@ -1,4 +1,4 @@
-This repo is where the code to Magenta Studio is maintained. For information, support and installation instructions of the tools themselves go to [this website](https://magenta.tensorflow.org/studio/)
+This repo is where the code to Magenta Studio is maintained. For information, support and installation instructions of the tools themselves go to [this website](https://magenta.tensorflow.org/studio/).
 
 This is not a Google product. 
 
@@ -9,6 +9,8 @@ Magenta Studio is a set of plugins contained in a [Max for Live](https://www.abl
 The communication between the web application and Live is handed through Max. This contains a local express server that runs on port 3333 in [Node for Max](https://cycling74.com/articles/node-for-max-intro-%E2%80%93-let%E2%80%99s-get-started). The Max patch and related JavaScript files can be found in the folder called `magenta4live.amxd/`.
 
 ## Installation
+
+Tested with Node LTS v16.13.1. 
 
 If you have node.js and npm installed on your computer, all of the dependencies can be installed by running 
 
