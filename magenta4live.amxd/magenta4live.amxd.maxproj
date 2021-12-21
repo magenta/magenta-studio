@@ -2,7 +2,7 @@
 	"name" : "magenta4live.amxd",
 	"version" : 1,
 	"creationdate" : 3631616511,
-	"modificationdate" : 3722441631,
+	"modificationdate" : 3722954219,
 	"viewrect" : [ 1098.0, 153.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 0,
@@ -10,20 +10,15 @@
 	"autolocalize" : 0,
 	"contents" : 	{
 		"patchers" : 		{
-			"interface.maxpat" : 			{
+			"main.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1,
+				"toplevel" : 1,
 				"singleton" : 				{
 					"bootpath" : "~/Development/projects/magenta-studio/magenta4live.amxd/patchers",
 					"projectrelativepath" : "./patchers"
 				}
 
-			}
-,
-			"main.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1,
-				"toplevel" : 1
 			}
 
 		}
