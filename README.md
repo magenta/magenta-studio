@@ -18,6 +18,16 @@ If you have node.js and npm installed on your computer, all of the dependencies 
 npm install
 ```
 
+## Development
+
+To run the front-end web application in development mode, in which webpack will rebuild the app when changes are made, you can run
+
+```
+npm run watch
+```
+
+You will need to open the Max project to start the express server to test your changes. You can either view the app in the [`jweb`] object in Max, or load it in the browser at [http://localhost:3333](http://localhost:3333). Hot reloading is not enabled, so you will need to refresh to see changes.
+
 ## Building
 
 All of the modules are included in a Max for Live device. To build the device, run
@@ -28,13 +38,9 @@ npm run build
 
 All of the build files will be placed into the folder `magenta4live.amxd/code/public`.
 
-Then, run (on Mac)
-```
-open magenta4live.amxd/magenta4live.amxd.maxproj
-```
-or simply open the Max project. Then select File > Export Max for Live Device..., and select a location to save the device. Once the dialog closes, the device has been built!
+Open the Max project, then select File > Export Max for Live Device..., and then select a location to save the device. Once the dialog closes, the device has been built!
 
-Lastly, you'll need to change the icon of the `magenta4live` device. You can do this by:
+Lastly, you'll need to change the icon of the `magenta4live` device. You can do this (on Mac) by:
 1. Open the Magenta icon (`client/magenta_logo`) in Preview.
 2. Select Edit > Copy
 3. Right click on `magenta4live.amxd`, then select Get Info. 
