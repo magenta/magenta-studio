@@ -48,10 +48,6 @@ app.get('/studio', function(req, res){
 	max.outlet('openWebsite')
 	res.send('success')
 })
-app.get('/launch', function(req, res){
-	max.outlet('openWindow')
-	res.send('success')
-})
 
 ///////////////////////////////////////////////////////////////////////////////
 // ROUTES

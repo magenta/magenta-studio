@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -79.0, -856.0, 960.0, 723.0 ],
+		"rect" : [ 34.0, 87.0, 960.0, 663.0 ],
 		"openrect" : [ 0.0, 0.0, 960.0, 169.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -41,58 +41,52 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-11",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 364.0, 459.0, 218.0, 20.0 ],
-					"text" : "launch in external window"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-15",
+					"id" : "obj-14",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 321.5, 491.0, 35.0, 22.0 ],
-					"text" : "open"
+					"patching_rect" : [ 329.0, 100.0, 133.0, 22.0 ],
+					"text" : "url http://localhost:3333"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"bgmode" : 0,
-					"border" : 0,
-					"clickthrough" : 1,
-					"enablehscroll" : 0,
-					"enablevscroll" : 0,
-					"id" : "obj-1",
-					"lockeddragscroll" : 0,
-					"lockedsize" : 1,
-					"maxclass" : "bpatcher",
-					"name" : "interface.maxpat",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 41.0, 629.0, 960.0, 169.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 960.0, 169.0 ],
-					"viewvisibility" : 1
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-25",
+					"id" : "obj-12",
 					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 329.0, 73.0, 73.0, 22.0 ],
+					"text" : "route server"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 329.0, 42.0, 71.0, 22.0 ],
+					"text" : "r from-node"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-1",
+					"maxclass" : "jweb",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 321.5, 530.0, 51.0, 22.0 ],
-					"text" : "pcontrol"
+					"patching_rect" : [ 73.0, 142.0, 320.0, 240.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 0.0, 0.0, 960.0, 169.0 ],
+					"rendermode" : 1,
+					"url" : "http://localhost:3333"
 				}
 
 			}
@@ -170,11 +164,11 @@
 				"box" : 				{
 					"id" : "obj-19",
 					"maxclass" : "newobj",
-					"numinlets" : 3,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 259.0, 415.0, 182.0, 22.0 ],
-					"text" : "route openWebsite openWindow"
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 46.0, 429.0, 109.0, 22.0 ],
+					"text" : "route openWebsite"
 				}
 
 			}
@@ -185,7 +179,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 259.0, 383.0, 71.0, 22.0 ],
+					"patching_rect" : [ 46.0, 397.0, 71.0, 22.0 ],
 					"text" : "r from-node"
 				}
 
@@ -336,6 +330,8 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
+						"node_bin_path" : "",
+						"npm_bin_path" : "",
 						"watch" : 0
 					}
 ,
@@ -348,6 +344,20 @@
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
 					"source" : [ "obj-10", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-12", 0 ],
+					"source" : [ "obj-11", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-14", 0 ],
+					"source" : [ "obj-12", 0 ]
 				}
 
 			}
@@ -367,8 +377,8 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-25", 0 ],
-					"source" : [ "obj-15", 0 ]
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-14", 0 ]
 				}
 
 			}
@@ -395,13 +405,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-15", 0 ],
-					"source" : [ "obj-19", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-21", 0 ],
 					"source" : [ "obj-19", 0 ]
 				}
@@ -418,13 +421,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-22", 0 ],
 					"source" : [ "obj-21", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-25", 0 ]
 				}
 
 			}
@@ -485,13 +481,6 @@
 				"bootpath" : "~/Development/projects/magenta-studio/magenta4live.amxd/code",
 				"patcherrelativepath" : "../code",
 				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "interface.maxpat",
-				"bootpath" : "~/Development/projects/magenta-studio/magenta4live.amxd/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
 				"implicit" : 1
 			}
  ],

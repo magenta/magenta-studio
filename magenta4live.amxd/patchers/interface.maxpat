@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 62.0, 192.0, 960.0, 527.0 ],
+		"rect" : [ 62.0, 192.0, 960.0, 477.0 ],
 		"openrect" : [ 0.0, 0.0, 960.0, 169.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -41,29 +41,6 @@
 		"assistshowspatchername" : 0,
 		"title" : "Magenta Studio",
 		"boxes" : [ 			{
-				"box" : 				{
-					"id" : "obj-4",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 605.0, 462.0, 32.0, 22.0 ],
-					"text" : "print"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-3",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"patching_rect" : [ 605.0, 415.0, 40.0, 22.0 ],
-					"text" : "active"
-				}
-
-			}
-, 			{
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-2",
@@ -146,13 +123,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-14", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-4", 0 ],
-					"source" : [ "obj-3", 0 ]
 				}
 
 			}

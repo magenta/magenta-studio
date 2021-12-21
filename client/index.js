@@ -45,11 +45,6 @@ document.addEventListener('DOMContentLoaded', function(){
 	}, 10)
 }, false)
 
-function handleLaunchWindow(e){
-	e.preventDefault()
-	fetch('/launch')
-}
-
 render(html`
   <div class="logo-container">
     <h1 class="logo-header">Magenta Studio</h1>
@@ -64,7 +59,4 @@ render(html`
     <a href="/interpolate" data-navigo class="interpolate-button">Interpolate</a>
   </nav>
   <div id="plugin-container"></div>
-	<button class="launch-button" @click=${handleLaunchWindow}>
-		<img class="launch-icon" src="${launchIcon}" alt="Open in external window">
-	</button>
 `, document.body)
