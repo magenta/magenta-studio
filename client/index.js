@@ -7,7 +7,6 @@ import { Generate } from './generate/Main'
 import { Groove } from './groove/Main'
 import { Interpolate } from './interpolate/Main'
 import logo from './magenta_logo.png'
-import launchIcon from './launch_white_24dp.svg'
 
 document.addEventListener('DOMContentLoaded', function(){
 	const pluginContainer = document.getElementById('plugin-container')
