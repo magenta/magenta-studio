@@ -1,8 +1,10 @@
 import { render, html } from 'lit'
 import './style.scss'
 
-//https://magenta.tensorflow.org/studio/
-
+// This function sends an HTTP request to the server to open
+// https://magenta.tensorflow.org/studio/ in the default browser.
+// In CEF, you can't open links in the default browser, but it is
+// possible to do this in Max.
 function handleOpenWebsite(e){
 	e.preventDefault()
 	fetch(e.target.href)

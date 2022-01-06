@@ -16,7 +16,6 @@
  */
 
 import { LitElement, html } from 'lit'
-// import './File'
 import './Select'
 import './Tabs'
 import { toNoteSequence, fromNoteSequence } from './Convert'
