@@ -9,9 +9,9 @@
     "copy": "rm -rf ./.apps && cp -r ../dist ./.apps"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "detect-port": "^1.2.3",
-    "express": "^4.16.3",
+    "express": "^4.18.2",
     "kill-port": "^1.3.2",
     "tree-kill": "^1.2.0",
     "uniqid": "^5.0.3"

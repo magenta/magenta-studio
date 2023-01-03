@@ -58,6 +58,9 @@ module.exports = (env = {}) => {
 				'node_modules',
 				path.resolve(__dirname, '.'),
 			],
+			fallback: {
+				"buffer": require.resolve("buffer")
+			}
 		},
 		plugins: [
 			definitions,
