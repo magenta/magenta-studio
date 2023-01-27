@@ -33,6 +33,8 @@ export class Model {
 
     constructor(url) {
         this.api = new API(url, this.INTERFACE)
+        this.currentChunkEvents = undefined;
+        this.currentChunkSeq = undefined;
     }
 
     async newSequence() {
@@ -43,6 +45,25 @@ export class Model {
         const sequence = this.events2seq(events);
         console.log(sequence);
         return [sequence];
+    }
+
+    async continueSequence(seq) {
+        // this is assuming the clip is coming from live
+        // we'd also need to handle the case generated => live => back to server,
+        // bc then we'd want to process the events rather than the sequence, bc 
+        console.log(seq);
+        const events = this.seq2events(seq);
+        const raw = this.events2raw(events);
+        const response = await this.api.fetch("GENERATE", { prime: raw.rawEvents, total_steps: raw.totalSteps });
+
+        console.log("printing events!!!");
+        console.log(raw.rawEvents);
+        console.log(response.continuation);
+        const fullEvents = raw.rawEvents.concat(response.continuation);
+        const performance = this.parsePerformanceEvents(fullEvents, true);
+        const newEvents = performance.events;
+        const newSequence = this.events2seq(newEvents);
+        return [newSequence];
     }
 
     async connect() {
@@ -66,6 +87,45 @@ export class Model {
         seq.quantizationInfo = { stepsPerQuarter };
         seq.tempos = [{ time: 0, qpm: 120 }];
         return seq;
+    }
+
+    seq2events(seq) {
+        console.log("seqToEvents");
+        console.log(seq);
+        const perf = performance.Performance.fromNoteSequence(seq, 100, 32);
+        return perf.events;
+    }
+
+    events2raw(events) {
+        // converts js events to a format that python events can easily be derived
+        const rawEvents = [];
+        let totalSteps = 0;
+        for (let i = 0; i < events.length; i++) {
+            const event = events[i];
+            if (event.type == "time-shift") {
+                rawEvents.push({
+                    type: "TIME_SHIFT",
+                    value: event.steps,
+                });
+                totalSteps += event.steps;
+            } else if (event.type == "note-on") {
+                rawEvents.push({
+                    type: "NOTE_ON",
+                    value: event.pitch,
+                });
+            } else if (event.type == "note-off") {
+                rawEvents.push({
+                    type: "NOTE_OFF",
+                    value: event.pitch,
+                });
+            } else if (event.type == "velocity-change") {
+                rawEvents.push({
+                    type: "VELOCITY",
+                    value: event.velocityBin,
+                });
+            }
+        }
+        return { rawEvents, totalSteps };
     }
 
     // adapted from https://github.com/magenta/music-transformer-visualization/blob/6c828cbfa2c1d272b755f2d9432e63b56db38363/parser.js#L242

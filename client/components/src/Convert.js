@@ -19,10 +19,31 @@ const { sequences } = require('@magenta/music')
 const { quantizeNoteSequence, unquantizeSequence } = sequences
 
 export function toNoteSequence(notes, duration) {
+	// notes coming into here are in Ableton format
+	// const { pitch, startTime, endTime, velocity=100, muted=0 }
+	// startTime and endTime here are in beats
+	// need to convert startTime and endTime to seconds
+	// change these numbers to work with Transformer model
+	// e.q. qpm is 120
+	// duration needs to be in seconds, not beats
+	// what is ticksPerQuarter?
+	// stepsPerQuarter = 50
+
+	// also, could just remove quantizeNoteSequence
+	const QPM = 120;
+	const stepsPerQuarter = 50;
+	const durationInSeconds = duration / QPM * 60;
+	const newNotes = notes.map((note) => {
+		return {
+			...note,
+			startTime: note.startTime / QPM * 60,
+			endTime: note.endTime / QPM * 60,
+		};
+	});
 	return quantizeNoteSequence(
 		{
 			ticksPerQuarter: 220,
-			totalTime: duration,
+			totalTime: durationInSeconds,
 			timeSignatures: [
 				{
 					time: 0,
@@ -33,12 +54,12 @@ export function toNoteSequence(notes, duration) {
 			tempos: [
 				{
 					time: 0,
-					qpm: 60
+					qpm: QPM
 				}
 			],
-			notes: notes.filter(n => !n.muted)
+			notes: newNotes.filter(n => !n.muted)
 		},
-		4
+		stepsPerQuarter
 	)
 }
 

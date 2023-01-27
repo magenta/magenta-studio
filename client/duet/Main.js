@@ -23,6 +23,7 @@ let serverUrl = "";
 
 let model = undefined;
 
+let mode = "new";
 
 function setStatus(status, error = false) {
     const element = document.querySelector('#generate')
@@ -37,11 +38,16 @@ function setStatus(status, error = false) {
 }
 
 async function generate() {
-    // const modeValue = this._mode.value;
-    // const inputMidi = this._midiFile.read();
-    let sequence = await model.newSequence();
-    document.querySelector('magenta-midi-file').write(sequence, 'DUET');
-    setStatus('');
+    if (mode === "new") {
+        let sequence = await model.newSequence();
+        document.querySelector('magenta-midi-file').write(sequence, 'DUET');
+        setStatus('');
+    } else {
+        const inputMidi = await document.querySelector('magenta-midi-file').read()
+        let newSequence = await model.continueSequence(inputMidi);
+        document.querySelector('magenta-midi-file').write(newSequence, 'DUET');
+        setStatus('');
+    }
 }
 
 function validate() {
@@ -68,6 +74,13 @@ function handleConnect() {
     model.connect();
 }
 
+function setMode(event) {
+    mode = event.detail.value;
+    const midiFile = document.querySelector('magenta-midi-file');
+    const label = mode === "new" ? "Output Location" : "Input Clip";
+    midiFile.label = label;
+}
+
 export function Duet(parentElement) {
     setTimeout(() => {
         setStatus('')
@@ -89,7 +102,8 @@ export function Duet(parentElement) {
                     <magenta-radio-group
                         label="Type"
                         values=${JSON.stringify(['new', 'continue'])}
-                        id="mode">
+                        id="mode"
+                        @change=${setMode}>
                     </magenta-radio-group>
                 </div>
                 <div class="plugin-panel">

@@ -56,7 +56,11 @@ export class AbletonFile extends LitElement {
 			throw new Error('No clip in selected slot')
 		}
 		const notes = await Promise.all(clips.map(c => Live.getNotes(c.id)))
+		console.log("Ableton Notes");
+		console.log(notes);
 		const seqs = notes.map(({ notes, duration }) => toNoteSequence(notes, duration))
+		console.log("Magenta Notes");
+		console.log(seqs);
 		if (seqs.length > 1) {
 			return seqs
 		} else {
