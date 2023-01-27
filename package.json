@@ -5,9 +5,8 @@
   "main": "wrong.js",
   "scripts": {
     "build": "webpack --mode=production --env production",
-    "download:models": "node ./scripts/download_models",
     "lint": "eslint client magenta4live.amxd/code --ignore-pattern magenta4live.amxd/code/public",
-    "postinstall": "npm run download:models; cd magenta4live.amxd; npm install",
+    "postinstall": "cd magenta4live.amxd; npm install",
     "watch": "webpack -w --mode=development --env development"
   },
   "repository": {

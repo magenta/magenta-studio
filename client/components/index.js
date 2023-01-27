@@ -26,6 +26,7 @@ import './src/Snackbar'
 import './src/Radio'
 import './src/OutputText'
 import './src/Close'
+import './src/Input'
 
 //FORCE CPU BACKEND WHEN WEBGL IS VERSION !
 import { tf } from '@magenta/music'
