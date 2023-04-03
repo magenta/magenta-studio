@@ -1,0 +1,38 @@
+
+
+body #interpolate {
+	--accent-color: var(--color-accent-yellow);
+}
+
+#interpolate {
+	$darkColor: rgba(255, 255, 255, 0.3);
+	
+	$letterWidth: 15px;
+	
+	#title {
+		user-select: none;
+		-webkit-app-region: no-drag;
+	
+		span {
+			float: left;
+			text-align: left;
+			width: auto;
+		}
+	
+		&:hover span.expand, &.hover span.expand{
+			// animation: text-extend 0.7s ease-in;
+			// animation-fill-mode: forwards;
+			margin-right: $letterWidth;
+			text-shadow: $letterWidth 0 $darkColor;
+		}
+	
+		span.expand {
+			margin-right: 0px;
+			color: white;
+			text-shadow: $letterWidth 0 transparent;
+			$duration: 0.3s;
+			transition: color $duration, margin-right $duration, text-shadow $duration;
+		}
+	
+	}
+}

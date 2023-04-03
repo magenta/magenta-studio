@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto');
+
+html {
+
+	//colors names
+	--color-gray: rgba(248, 249, 250, 0.4);
+	--color-light-gray: rgba(248, 249, 250, 0.16);
+	--color-dark-gray: rgb(26, 26, 26);
+	--color-blue: #5195ea;
+	--color-dark-blue: rgb(81, 121, 182);
+	--color-black-blue: rgba(81, 121, 182, 0.2);
+	--color-light-blue: #9ec2ef;
+	--color-magenta: rgb(206, 61, 141);
+	--color-red: #ea4335;
+	--color-dark-red: rgb(196, 58, 50);
+	--color-magenta: rgb(222, 14, 244);
+	--color-orange: #f7943d;
+
+	--color-accent-magenta: #E73FF6;
+	--color-accent-yellow: #D88715;
+	--color-accent-orange: #F85A3E;
+	--color-accent-teal: #84DCC6;
+	--color-accent-blue: #5BC0EB;
+
+	//colors
+	--color-focused: rgb(218, 219, 220);
+	--color-hover: white;
+	--accent-color: var(--color-magenta);
+	--border-color: var(--color-light-gray);
+	--background-color: var(--color-dark-gray);
+	--shadow-color: white;
+	
+
+	//sizes
+	--component-height: 36px;
+	--medium-component-height: 46px;
+	--small-component-height: 26px;
+	--large-component-height: 66px;
+	--border-radius: 4px;
+
+	//font
+	--title-font-family: 'Open Sans', sans-serif;
+	--title-font-size: 14px;
+	--font-family: 'Roboto', sans-serif;
+	--font-size: 12px;
+}

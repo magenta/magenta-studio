@@ -22,13 +22,32 @@ app.use(require('body-parser').json())
 const kill = require('kill-port')
 const detect = require('detect-port')
 const max = require('max-api')
-require('./src/Launch')
 
 ///////////////////////////////////////////////////////////////////////////////
 // CONFIG
 ///////////////////////////////////////////////////////////////////////////////
 
 const PORT = 3333
+app.use(express.static('./public'))
+app.get('/continue', function(req, res){
+	res.sendFile('./public/index.html', { root : __dirname })
+})
+app.get('/drumify', function(req, res){
+	res.sendFile('./public/index.html', { root : __dirname })
+})
+app.get('/generate', function(req, res){
+	res.sendFile('./public/index.html', { root : __dirname })
+})
+app.get('/groove', function(req, res){
+	res.sendFile('./public/index.html', { root : __dirname })
+})
+app.get('/interpolate', function(req, res){
+	res.sendFile('./public/index.html', { root : __dirname })
+})
+app.get('/studio', function(req, res){
+	max.outlet('openWebsite')
+	res.send('success')
+})
 
 ///////////////////////////////////////////////////////////////////////////////
 // ROUTES

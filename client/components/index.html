@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>COMPONENTS</title>
+	<meta charset="UTF-8">
+	<script type="text/javascript" defer="defer" src="../../magenta4live.amxd/code/public/components.js"></script>n
+</head>
+<body>
+	<style type="text/css">
+		body {
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			left: 0px;
+			position: absolute;
+			margin: 0;
+			background-color: var(--background-color);
+		}
+
+	</style>
+	<div>
+		<magenta-select label="file">
+			<option>hi</option>
+			<option>bye</option>
+		</magenta-select>
+	</div>
+	<magenta-tabs-group label="Input File">
+		<magenta-tab label="Ableton">
+			<magenta-select label="file">
+				<option>hi</option>
+				<option>bye</option>
+			</magenta-select>
+		</magenta-tab>
+		<magenta-tab label="Desktop">
+		</magenta-tab>
+	</magenta-tabs-group>
+	<script type="text/javascript">
+		document.querySelector('magenta-select').addEventListener('change', () => {
+			console.log('input')
+		})
+
+	</script>
+</body>
+</html>

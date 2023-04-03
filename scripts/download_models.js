@@ -1,4 +1,4 @@
-const apps = require('../apps.json')
+const models = require('./models.json')
 const fs = require('fs-extra')
 const { resolve, basename } = require('path')
 const { promisify } = require('util')
@@ -25,17 +25,17 @@ async function downloadZip(appName, url){
 
 	//move to the proper location
 	const [sourceFolder] = await glob(resolve(tmpDir.path, '*/models'))
-	await fs.move(sourceFolder, resolve(__dirname, '../', appName, 'models'), {
-		overwrite : true
+	await fs.move(sourceFolder, resolve(__dirname, '../magenta4live.amxd/code/public', appName, 'models'), {
+		overwrite: true
 	})
 
 	tmpDir.cleanup()
 }
 
 async function main(){
-	for (let appName in apps){
-		const url = apps[appName].models
-		await downloadZip(appName, url)
+	for (let modelName in models){
+		const url = models[modelName].models
+		await downloadZip(modelName, url)
 	}
 }
 

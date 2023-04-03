@@ -1,0 +1,20 @@
+body {
+  color: white;
+  margin: 20px;
+  width: calc(100% - 40px);
+}
+
+h2, h3 {
+  margin-top: 20px;
+  font-family: var(--title-font-family);
+}
+
+a {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.about h2 {
+  margin-top: 0;
+}

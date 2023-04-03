@@ -1,16 +1,16 @@
-This repo is where the code to Magenta Studio is maintained. For information, support and installation instructions of the tools themselves go to [this website](https://magenta.tensorflow.org/studio/)
+This repo is where the code to Magenta Studio is maintained. For information, support and installation instructions of the tools themselves go to [this website](https://magenta.tensorflow.org/studio/).
 
 This is not a Google product. 
 
 ## Overview and Organization
 
-The Magenta Studio plugins are Electron apps. Electron has the advantage of being a cross platform solution that works well with [magenta.js](https://github.com/tensorflow/magenta-js). The code for each of the plugins is located in a folder with the same name. 
+Magenta Studio is a set of plugins contained in a [Max for Live](https://www.ableton.com/en/live/max-for-live/) Device. They are contained in a single web application that runs in the Max environment via Chromium Embedded Framework (CEF). All of the front-end code is contained in the `client/` folder, which contains the five plugins, and common UI and communication components which can be found in the `client/components/` folder. These objects are built using [lit](https://lit.dev/). 
 
-All of the plugins share common UI and communication components which can be found in the 'components' folder. These objects are built using [Polymer's LitElement](https://github.com/Polymer/lit-element). 
-
-The Ableton integration is achieved through [Max4Live](https://www.ableton.com/en/live/max-for-live/). The object and related javascript files can be found in the folder called 'magenta4live.amxd'. The Max component and the Electron apps communication over a local server running on port 3333. 
+The communication between the web application and Live is handed through Max. This contains a local express server that runs on port 3333 in [Node for Max](https://cycling74.com/articles/node-for-max-intro-%E2%80%93-let%E2%80%99s-get-started). The Max patch and related JavaScript files can be found in the folder called `magenta4live.amxd/`.
 
 ## Installation
+
+Tested with Node LTS v18.12.1. 
 
 If you have node.js and npm installed on your computer, all of the dependencies can be installed by running 
 
@@ -18,35 +18,41 @@ If you have node.js and npm installed on your computer, all of the dependencies 
 npm install
 ```
 
+## Development
+
+To run the front-end web application in development mode, in which webpack will rebuild the app when changes are made, you can run
+
+```
+npm run watch
+```
+
+You will need to open the Max project to start the express server to test your changes. You can either view the app in the [`jweb`] object in Max, or load it in the browser at [http://localhost:3333](http://localhost:3333). Hot reloading is not enabled, so you will need to refresh to see changes.
+
 ## Building
 
-The modules come as both standalone apps and Ableton integrated. To build all versions (Linux standalone and Mac, Windows in standalone and Max For Live formats) run:
+All of the modules are included in a Max for Live device. To build the device, run
 
 ```
 npm run build
 ```
 
-All of the build files will be put into the 'dist' folder.
+All of the build files will be placed into the folder `magenta4live.amxd/code/public`.
 
-You can also build a specific target by passing it as an argument:
+Open the Max project, then select File > Export Max for Live Device..., and then select a location to save the device. Once the dialog closes, the device has been built!
 
-```
-npm run build macos-standalone
-```
+Lastly, you'll need to change the icon of the `magenta4live` device. You can do this (on Mac) by:
+1. Open the Magenta icon (`client/magenta_logo`) in Preview.
+2. Select Edit > Copy
+3. Right click on `magenta4live.amxd`, then select Get Info. 
+4. Select the tiny icon in the upper left of the window, and select Edit > Paste or enter Command + V. 
+5. Done!
 
-The current options are:
-
-* windows-ableton
-* windows-standalone
-* linux-standalone
-* macos-ableton
-* macos-standalone
-
-*Note:* if you want to build Windows versions from Mac, you need to have [Wine](https://www.winehq.org/) installed.
+## Versioning
+You can update the version of the device by changing the version in the root `package.json`. When you build the device, this number will be visible when you click "About" in the interface.
 
 ## License
 
-Copyright 2018 Google Inc.
+Copyright 2023 Google Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

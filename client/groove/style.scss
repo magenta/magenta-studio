@@ -1,0 +1,67 @@
+body #groove {
+	--accent-color: var(--color-accent-orange);
+
+  #mode {
+		display: block;
+		margin: 0 auto;
+		pointer-events: none;
+	}
+
+	#title {
+    user-select: none;
+    -webkit-app-region: no-drag;
+
+		span {
+			float: left;
+			transition: margin 0.2s;
+			position: relative;
+		}
+
+		$letters: 7;
+
+		@for $i from 1 through $letters {
+			$delay: $i * 0.07s;
+			&:hover span:nth-child(#{$i}) {
+				animation: sweep 0.4s $delay ease-in-out;
+			}
+
+			&.animate span:nth-child(#{$i}){
+				animation: title-animation 1.0s $delay ease-in-out;
+				animation-iteration-count: infinite;
+			}
+		}
+
+	}
+}
+
+$displacement: 10px;
+
+@keyframes sweep {
+	0% {
+		top: 0px;
+	}
+	33% {
+		top: -$displacement;
+	}
+	66% {
+		top: $displacement;
+	}
+	100% {
+		top: 0px;
+	}
+}
+
+@keyframes title-animation {
+	0% {
+		top: 0px;
+	}
+	20% {
+		top: -$displacement;
+	}
+	40% {
+		top: $displacement;
+	}
+	60% {
+		top: 0px;
+	}
+}

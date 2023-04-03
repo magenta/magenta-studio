@@ -1,0 +1,86 @@
+body #drumify {
+  --accent-color: var(--color-accent-blue);
+
+  #mode {
+		display: block;
+		margin: 0 auto;
+		pointer-events: none;
+	}
+
+	#title {
+    user-select: none;
+    -webkit-app-region: no-drag;
+
+		span {
+			pointer-events: none;
+			float: left;
+			transition: margin 0.2s;
+			position: relative;
+		}
+
+    $letters: 1 3 5 6 7;
+    $hits: boot cat boot boot cat;
+		@for $i from 1 through length($letters) {
+      $letter: nth($letters, $i);
+      $hit: nth($hits, $i);
+      $delay: ($letter - 1) * 0.25s;
+			&:hover span:nth-child(#{$letter}) {
+				animation: $hit 0.2s $delay ease-out;
+			}
+
+			&.animate span:nth-child(#{$letter}) {
+				animation: #{$hit}-animate 2s $delay ease-out;
+				animation-iteration-count: infinite;
+			}
+		}
+	}
+}
+
+@keyframes boot {
+	0% {
+		top: 0px;
+	}
+	50% {
+		top: 10px;
+	}
+	100% {
+		top: 0px;
+	}
+}
+
+@keyframes cat {
+	0% {
+		top: 0px;
+	}
+	50% {
+		top: -12px;
+  }
+	100% {
+		top: 0px;
+	}
+}
+
+
+@keyframes boot-animate {
+	0% {
+		top: 0px;
+	}
+	5% {
+		top: 10px;
+	}
+	10% {
+		top: 0px;
+	}
+}
+
+@keyframes cat-animate {
+	0% {
+		top: 0px;
+	}
+	5% {
+		top: -12px;
+  }
+	10% {
+		top: 0px;
+	}
+}

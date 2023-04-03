@@ -22,134 +22,69 @@ const fs = require('fs')
 const { argv } = require('yargs')
 const { resolve } = require('path')
 const { version } = require('./package.json')
+const { ModuleFilenameHelpers } = require('webpack')
 
 function getDefinitions(env, width=100, height=100){
 	return new webpack.DefinePlugin({
 		PRODUCTION : JSON.stringify(Boolean(env.production)),
-		ANIMATE : JSON.stringify(Boolean(env.animate)),
+		// ANIMATE : JSON.stringify(Boolean(env.animate)),
+		ANIMATE : JSON.stringify(false),
 		INDEX_FILE : JSON.stringify('index.html'),
 		ABOUT_FILE : JSON.stringify('about.html'),
-		ABLETON : JSON.stringify(!env.standalone),
 		WIDTH : JSON.stringify(width),
-		HEIGHT : JSON.stringify(height)
+		HEIGHT: JSON.stringify(height),
+		VERSION: JSON.stringify(require("./package.json").version),
 	})
 }
 
-function getCommonConfig(name, mainFile, env, width, height){
-
-	const definitions = getDefinitions(env, width, height)
-
+module.exports = (env = {}) => {
+	const templateParameters = { version }
+	const definitions = getDefinitions(env)
+	const PRODUCTION = env.production;
 	return {
-		mode : env.production ? 'production' : 'development',
-		context : __dirname,
-		output : {
-			path : path.resolve(__dirname, name, './build'),
-			filename : '[name].js'
+		mode: PRODUCTION ? 'production' : 'development',
+		devtool: PRODUCTION ? undefined : 'eval-cheap-module-source-map',
+		entry: {
+			Renderer: [path.resolve(__dirname, 'client/index.js')],
+			components: [path.resolve(__dirname, 'client/components/index.js')]
 		},
-		resolve : {
-			modules : [
+		output: {
+			path: path.resolve(__dirname, 'magenta4live.amxd/code/public'),
+			filename: '[name].js',
+			publicPath: '/'
+		},
+		resolve: {
+			modules: [
 				'node_modules',
 				path.resolve(__dirname, '.'),
 			],
+			fallback: {
+				"buffer": require.resolve("buffer")
+			}
 		},
-		plugins : [definitions],
-		module : {
-			rules : [
+		plugins: [
+			definitions,
+			new HtmlWebpackPlugin({
+				title: 'Main',
+				filename: 'index.html',
+				template: path.resolve(__dirname, 'template.html'),
+				templateParameters
+			})],
+		module: {
+			rules: [
 				{
-					test : /\.js$/,
-					exclude : /node_modules/,
-					loader : 'babel-loader'
+					test: /\.scss$/,
+						use: ['style-loader', 'css-loader', 'sass-loader']
 				},
 				{
-					test : /\.scss$/,
-					loader : 'style-loader!css-loader!sass-loader'
+					test: /\.(png|jpe?g|gif|svg)$/i,
+					use: [
+						{
+							loader: 'file-loader',
+						},
+					],
 				},
 			]
-		},
-		devtool : env.production ? '' : 'source-map'
+		}
 	}
-}
-
-function componentConfig(name, mainFile, env, width, height){
-	const config = {}
-	Object.assign(config, getCommonConfig(name, mainFile, env, width, height), {
-		entry : {
-			components : ['core-js', mainFile],
-		},
-		output : {
-			path : path.resolve(__dirname, './build'),
-			filename : '[name].js'
-		},
-		target : 'electron-renderer',
-	})
-	return config
-}
-
-function makeConfig(name, mainFile, env, width=380, height=520){
-
-	const commonConfig = getCommonConfig(name, mainFile, env, width, height)
-
-	const definitions = getDefinitions(env, width, height)
-
-	const templateParameters = { components : env.production ? 'components.js' : '../../build/components.js', version }
-
-	return [
-		//electron main
-		Object.assign({}, commonConfig, {
-			entry : {
-				Main : './electron/Main.js',
-			},
-			target : 'electron-main',
-		}),
-		//electron renderer
-		Object.assign({}, commonConfig, {
-			entry : {
-				Renderer : [mainFile],
-			},
-			plugins : [
-				definitions,
-				new HtmlWebpackPlugin({ title : 'Main',
-					filename : 'index.html',
-					template : './electron/template.html',
-					templateParameters
-				}),
-				new HtmlWebpackPlugin({ title : 'About',
-          filename : 'about.html',
-          inject: false,
-					template : './electron/about.html',
-          templateParameters
-				}),
-				new HtmlWebpackPlugin({ title : 'Popup',
-					filename : 'popup.html',
-					inject : false,
-					template : './electron/popup.html',
-					templateParameters
-				}),
-			],
-			target : 'electron-renderer',
-		})
-	]
-}
-
-module.exports = (env={}) => {
-
-	const apps = JSON.parse(fs.readFileSync(resolve(__dirname, './apps.json')))
-	let configs = []
-
-	if (typeof argv.dir !== 'string'){
-		Object.entries(apps).forEach(([key, data]) => {
-			const config = makeConfig(key, `./${key}/Main.js`, env, data.width, data.height)
-			configs = configs.concat(config)
-		})
-	} else {
-		const data = apps[argv.dir]
-		const config = makeConfig(argv.dir, `./${argv.dir}/Main.js`, env, data.width, data.height)
-		configs = configs.concat(config)
-	}
-
-	//append the components to it
-	const componentsConfig = componentConfig('components', './components/index.js', env)
-	configs.push(componentsConfig)
-
-	return configs
 }

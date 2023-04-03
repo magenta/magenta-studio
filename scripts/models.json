@@ -1,0 +1,22 @@
+{
+	"continue" : {
+		"name" : "Continue",
+		"models" : "https://storage.googleapis.com/magenta-studio/models/continue.zip"
+	},
+	"groove": {
+		"name": "Groove",
+		"models": "https://storage.googleapis.com/magenta-studio/models/groove.zip"
+	},
+	"interpolate": {
+		"name": "Interpolate",
+		"models": "https://storage.googleapis.com/magenta-studio/models/interpolate.zip"
+	},
+	"drumify": {
+		"name": "Drumify",
+		"models": "https://storage.googleapis.com/magenta-studio/models/drumify.zip"
+	},
+	"generate": {
+		"name": "Generate",
+		"models": "https://storage.googleapis.com/magenta-studio/models/generate.zip"
+	}
+}
