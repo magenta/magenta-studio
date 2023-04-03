@@ -10,7 +10,7 @@ The communication between the web application and Live is handed through Max. Th
 
 ## Installation
 
-Tested with Node LTS v16.13.1. 
+Tested with Node LTS v18.12.1. 
 
 If you have node.js and npm installed on your computer, all of the dependencies can be installed by running 
 
