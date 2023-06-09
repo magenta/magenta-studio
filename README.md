@@ -6,7 +6,7 @@ This is not a Google product.
 
 Magenta Studio is a set of plugins contained in a [Max for Live](https://www.ableton.com/en/live/max-for-live/) Device. They are contained in a single web application that runs in the Max environment via Chromium Embedded Framework (CEF). All of the front-end code is contained in the `client/` folder, which contains the five plugins, and common UI and communication components which can be found in the `client/components/` folder. These objects are built using [lit](https://lit.dev/). 
 
-The communication between the web application and Live is handed through Max. This contains a local express server that runs on port 3333 in [Node for Max](https://cycling74.com/articles/node-for-max-intro-%E2%80%93-let%E2%80%99s-get-started). The Max patch and related JavaScript files can be found in the folder called `magenta4live.amxd/`.
+The communication between the web application and Live is handed through Max. This contains a local express server that runs on port 3333 (or 3334, 3335, etc if you have multiple instances open) in [Node for Max](https://cycling74.com/articles/node-for-max-intro-%E2%80%93-let%E2%80%99s-get-started). The Max patch and related JavaScript files can be found in the folder called `magenta4live.amxd/`.
 
 ## Installation
 
@@ -26,7 +26,7 @@ To run the front-end web application in development mode, in which webpack will 
 npm run watch
 ```
 
-You will need to open the Max project to start the express server to test your changes. You can either view the app in the [`jweb`] object in Max, or load it in the browser at [http://localhost:3333](http://localhost:3333). Hot reloading is not enabled, so you will need to refresh to see changes.
+You will need to open the Max project to start the express server to test your changes. You can either view the app in the [`jweb`] object in Max, or load it in the browser at [http://localhost:3333](http://localhost:3333) (again, 3334, 3335, etc. if there are multiple instances running). Hot reloading is not enabled, so you will need to refresh to see changes.
 
 ## Building
 

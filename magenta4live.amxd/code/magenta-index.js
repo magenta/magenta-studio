@@ -27,24 +27,24 @@ const max = require('max-api')
 // CONFIG
 ///////////////////////////////////////////////////////////////////////////////
 
-const PORT = 3333
+let PORT = 3333
 app.use(express.static('./public'))
-app.get('/continue', function(req, res){
-	res.sendFile('./public/index.html', { root : __dirname })
+app.get('/continue', function (req, res) {
+	res.sendFile('./public/index.html', { root: __dirname })
 })
-app.get('/drumify', function(req, res){
-	res.sendFile('./public/index.html', { root : __dirname })
+app.get('/drumify', function (req, res) {
+	res.sendFile('./public/index.html', { root: __dirname })
 })
-app.get('/generate', function(req, res){
-	res.sendFile('./public/index.html', { root : __dirname })
+app.get('/generate', function (req, res) {
+	res.sendFile('./public/index.html', { root: __dirname })
 })
-app.get('/groove', function(req, res){
-	res.sendFile('./public/index.html', { root : __dirname })
+app.get('/groove', function (req, res) {
+	res.sendFile('./public/index.html', { root: __dirname })
 })
-app.get('/interpolate', function(req, res){
-	res.sendFile('./public/index.html', { root : __dirname })
+app.get('/interpolate', function (req, res) {
+	res.sendFile('./public/index.html', { root: __dirname })
 })
-app.get('/studio', function(req, res){
+app.get('/studio', function (req, res) {
 	max.outlet('openWebsite')
 	res.send('success')
 })
@@ -53,7 +53,7 @@ app.get('/studio', function(req, res){
 // ROUTES
 ///////////////////////////////////////////////////////////////////////////////
 
-async function getId(path){
+async function getId(path) {
 	const id = await outlet('path', decodeURIComponent(path))
 	return parseInt(id)
 }
@@ -78,18 +78,20 @@ app.post('/call', async (req, res) => {
 
 let server = null
 
-async function startServer(){
+async function startServer() {
 	const availPort = await detect(PORT)
-	if (PORT !== availPort){
+	if (PORT !== availPort) {
 		//try and kill the port, and then try again
-		console.log(`killing server on ${PORT}`)
-		await kill(PORT)
+		// console.log(`killing server on ${PORT}`)
+		// await kill(PORT)
 		//try again
+		PORT = PORT + 1
 		max.outlet('server', 0)
-		setTimeout(() => startServer(), 1000)
+		// setTimeout(() => startServer(), 1000)
+		setTimeout(() => startServer(), 1)
 	} else {
 		server = app.listen(PORT, () => {
-			max.outlet('server', 1)
+			max.outlet('server', 1, PORT)
 			console.log(`server started on ${PORT}`)
 		})
 	}
@@ -97,8 +99,14 @@ async function startServer(){
 
 startServer()
 
+max.addHandler("closing", () => {
+	if (server) {
+		server.close()
+	}
+});
+
 process.on('exit', () => {
-	if (server){
+	if (server) {
 		server.close()
 	}
 })
