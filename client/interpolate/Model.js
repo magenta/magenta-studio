@@ -19,7 +19,7 @@ import { MusicVAE, sequences } from '@magenta/music'
 const { quantizeNoteSequence, unquantizeSequence, clone } = sequences
 
 export class Model {
-	constructor(drums=false){
+	constructor(drums = false) {
 		// const melodyUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/mel_4bar_med_q2'
 		// const drumsUrl = 'https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/drums_4bar_med_q2'
 		const drumUrl = '/interpolate/models/drums_4bar_med'
@@ -27,16 +27,16 @@ export class Model {
 		this.model = new MusicVAE(drums ? drumUrl : melodyUrl)
 	}
 
-	async load(){
+	async load() {
 		try {
 			await this.model.initialize()
-		} catch (e){
+		} catch (e) {
 			const snackbar = document.createElement('magenta-snackbar')
 			document.body.appendChild(snackbar)
 		}
 	}
 
-	validateSequence(seqA, seqB){
+	validateSequence(seqA, seqB) {
 		const maxBeats = 4 * 16
 		//make sure they're the same number of measures
 		const len = Math.min(seqA.totalQuantizedSteps, seqB.totalQuantizedSteps, maxBeats)
@@ -44,26 +44,25 @@ export class Model {
 		this.trim(seqB, len)
 	}
 
-	trim(sequence, beats){
+	trim(sequence, beats) {
 		sequence.totalQuantizedSteps = beats
 		sequence.totalTime = beats * 0.25
 		sequence.notes = sequence.notes.filter(n => n.quantizedEndStep < beats)
-		console.log(sequence)
 	}
 
-	trimOutput(inSequence, outSequences){
+	trimOutput(inSequence, outSequences) {
 		outSequences.forEach(seq => {
 			this.trim(seq, inSequence.totalQuantizedSteps)
 		})
 	}
 
-	setVelocities(sequences){
+	setVelocities(sequences) {
 		sequences.forEach(seq => {
 			seq.notes.forEach(n => n.velocity = 100)
 		})
 	}
 
-	async predict(inputSequenceA, inputSequenceB, steps=4, temp=1){
+	async predict(inputSequenceA, inputSequenceB, steps = 4, temp = 1) {
 		const quarterNoteSubdiv = 4
 		inputSequenceA = quantizeNoteSequence(inputSequenceA, quarterNoteSubdiv)
 		inputSequenceB = quantizeNoteSequence(inputSequenceB, quarterNoteSubdiv)
@@ -75,14 +74,14 @@ export class Model {
 		return outSequences
 	}
 
-	concat(...args){
-		if (args.length === 2){
+	concat(...args) {
+		if (args.length === 2) {
 			const [seqA, seqB] = args
 			const outputSequence = clone(seqA)
 			seqB.notes.forEach(note => {
 				const clonedNote = Object.assign({}, note)
-				clonedNote.startTime += outputSequence.totalQuantizedSteps/4
-				clonedNote.endTime += outputSequence.totalQuantizedSteps/4
+				clonedNote.startTime += outputSequence.totalQuantizedSteps / 4
+				clonedNote.endTime += outputSequence.totalQuantizedSteps / 4
 				clonedNote.quantizedStartStep += seqA.totalQuantizedSteps
 				clonedNote.quantizedEndStep += seqA.totalQuantizedSteps
 				outputSequence.notes.push(clonedNote)
@@ -90,7 +89,7 @@ export class Model {
 			outputSequence.totalQuantizedSteps = seqA.totalQuantizedSteps + seqB.totalQuantizedSteps
 			outputSequence.totalTime = outputSequence.totalQuantizedSteps / 4
 			return outputSequence
-		} else if (args.length > 2){
+		} else if (args.length > 2) {
 			//concat the last two
 			//get the first arg
 			const first = args.shift()
@@ -100,10 +99,10 @@ export class Model {
 		}
 	}
 
-	duplicate(seqs, repeats){
+	duplicate(seqs, repeats) {
 		const outSeq = []
 		seqs.forEach(s => {
-			for (let i = 0; i < repeats; i++){
+			for (let i = 0; i < repeats; i++) {
 				outSeq.push(s)
 			}
 		})

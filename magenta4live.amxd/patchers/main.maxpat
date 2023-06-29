@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
+			"minor" : 5,
 			"revision" : 1,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 960.0, 663.0 ],
+		"rect" : [ 34.0, 100.0, 1308.0, 983.0 ],
 		"openrect" : [ 0.0, 0.0, 960.0, 169.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -41,12 +41,60 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-25",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 479.0, 145.0, 75.0, 22.0 ],
+					"text" : "script reboot"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-42",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 275.0, 162.0, 162.0, 22.0 ],
+					"text" : "sprintf url http://localhost:%ld"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-32",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 275.0, 126.0, 50.0, 22.0 ],
+					"text" : "3333"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-30",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "int", "int" ],
+					"patching_rect" : [ 275.0, 85.0, 59.0, 22.0 ],
+					"text" : "unpack i i"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-14",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 329.0, 100.0, 133.0, 22.0 ],
+					"patching_rect" : [ 435.0, 42.0, 133.0, 22.0 ],
 					"text" : "url http://localhost:3333"
 				}
 
@@ -58,7 +106,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 329.0, 73.0, 73.0, 22.0 ],
+					"patching_rect" : [ 275.0, 49.0, 73.0, 22.0 ],
 					"text" : "route server"
 				}
 
@@ -70,7 +118,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 329.0, 42.0, 71.0, 22.0 ],
+					"patching_rect" : [ 275.0, 18.0, 71.0, 22.0 ],
 					"text" : "r from-node"
 				}
 
@@ -82,7 +130,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 73.0, 142.0, 320.0, 240.0 ],
+					"patching_rect" : [ 58.0, 252.0, 320.0, 240.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 960.0, 169.0 ],
 					"rendermode" : 1,
@@ -97,7 +145,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 41.0, 459.0, 218.0, 33.0 ],
+					"patching_rect" : [ 45.0, 592.0, 218.0, 33.0 ],
 					"text" : "open tutorials in separate browser, outside of jweb"
 				}
 
@@ -143,7 +191,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 41.0, 548.0, 129.0, 35.0 ],
+					"patching_rect" : [ 45.0, 681.0, 129.0, 35.0 ],
 					"text" : ";\rmax launchbrowser $1"
 				}
 
@@ -155,7 +203,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 41.0, 510.0, 208.0, 22.0 ],
+					"patching_rect" : [ 45.0, 643.0, 208.0, 22.0 ],
 					"text" : "https://magenta.tensorflow.org/studio/"
 				}
 
@@ -167,7 +215,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 46.0, 429.0, 109.0, 22.0 ],
+					"patching_rect" : [ 50.0, 562.0, 109.0, 22.0 ],
 					"text" : "route openWebsite"
 				}
 
@@ -179,7 +227,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 46.0, 397.0, 71.0, 22.0 ],
+					"patching_rect" : [ 50.0, 530.0, 71.0, 22.0 ],
 					"text" : "r from-node"
 				}
 
@@ -343,6 +391,7 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
+					"midpoints" : [ 499.5, 258.0, 499.5, 258.0 ],
 					"source" : [ "obj-10", 0 ]
 				}
 
@@ -350,13 +399,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-12", 0 ],
+					"midpoints" : [ 284.5, 42.0, 284.5, 42.0 ],
 					"source" : [ "obj-11", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
+					"destination" : [ "obj-30", 0 ],
+					"midpoints" : [ 284.5, 72.0, 284.5, 72.0 ],
 					"source" : [ "obj-12", 0 ]
 				}
 
@@ -364,6 +415,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-18", 0 ],
+					"midpoints" : [ 601.5, 123.0, 601.5, 123.0 ],
 					"source" : [ "obj-13", 0 ]
 				}
 
@@ -371,20 +423,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
+					"midpoints" : [ 661.5, 123.0, 687.0, 123.0, 687.0, 222.0, 477.0, 222.0, 477.0, 273.0, 499.5, 273.0 ],
 					"source" : [ "obj-13", 1 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-14", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-19", 0 ],
+					"midpoints" : [ 59.5, 555.0, 59.5, 555.0 ],
 					"source" : [ "obj-16", 0 ]
 				}
 
@@ -392,6 +439,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
+					"midpoints" : [ 499.5, 222.0, 477.0, 222.0, 477.0, 273.0, 499.5, 273.0 ],
 					"source" : [ "obj-17", 0 ]
 				}
 
@@ -399,6 +447,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
+					"midpoints" : [ 601.5, 222.0, 477.0, 222.0, 477.0, 273.0, 499.5, 273.0 ],
 					"source" : [ "obj-18", 0 ]
 				}
 
@@ -406,6 +455,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-21", 0 ],
+					"midpoints" : [ 59.5, 585.0, 30.0, 585.0, 30.0, 639.0, 54.5, 639.0 ],
 					"source" : [ "obj-19", 0 ]
 				}
 
@@ -413,6 +463,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
+					"midpoints" : [ 67.5, 57.0, 67.5, 57.0 ],
 					"source" : [ "obj-2", 0 ]
 				}
 
@@ -420,27 +471,71 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-22", 0 ],
+					"midpoints" : [ 54.5, 666.0, 54.5, 666.0 ],
 					"source" : [ "obj-21", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"midpoints" : [ 488.5, 177.0, 477.0, 177.0, 477.0, 273.0, 499.5, 273.0 ],
+					"source" : [ "obj-25", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-4", 0 ],
+					"midpoints" : [ 727.5, 189.0, 727.5, 189.0 ],
 					"source" : [ "obj-3", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-32", 1 ],
+					"midpoints" : [ 324.5, 108.0, 318.0, 108.0, 318.0, 120.0, 315.5, 120.0 ],
+					"source" : [ "obj-30", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-32", 0 ],
+					"midpoints" : [ 284.5, 108.0, 284.5, 108.0 ],
+					"source" : [ "obj-30", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-42", 0 ],
+					"midpoints" : [ 284.5, 150.0, 284.5, 150.0 ],
+					"source" : [ "obj-32", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-7", 0 ],
+					"midpoints" : [ 727.5, 225.0, 727.5, 225.0 ],
 					"source" : [ "obj-4", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"midpoints" : [ 284.5, 237.0, 67.5, 237.0 ],
+					"source" : [ "obj-42", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
+					"midpoints" : [ 499.5, 300.0, 477.0, 300.0, 477.0, 177.0, 705.0, 177.0, 705.0, 159.0, 727.5, 159.0 ],
 					"order" : 0,
 					"source" : [ "obj-6", 0 ]
 				}
@@ -449,6 +544,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-9", 0 ],
+					"midpoints" : [ 499.5, 300.0, 499.5, 300.0 ],
 					"order" : 1,
 					"source" : [ "obj-6", 0 ]
 				}
@@ -457,6 +553,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
+					"midpoints" : [ 727.5, 258.0, 558.0, 258.0, 558.0, 270.0, 499.5, 270.0 ],
 					"source" : [ "obj-7", 0 ]
 				}
 
@@ -464,6 +561,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-13", 0 ],
+					"midpoints" : [ 601.5, 90.0, 601.5, 90.0 ],
 					"source" : [ "obj-8", 0 ]
 				}
 
@@ -471,14 +569,14 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "magenta-index.js",
-				"bootpath" : "~/Development/projects/magenta-studio/magenta4live.amxd/code",
+				"bootpath" : "~/Development/magenta-studio/magenta4live.amxd/code",
 				"patcherrelativepath" : "../code",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "magenta-js.js",
-				"bootpath" : "~/Development/projects/magenta-studio/magenta4live.amxd/code",
+				"bootpath" : "~/Development/magenta-studio/magenta4live.amxd/code",
 				"patcherrelativepath" : "../code",
 				"type" : "TEXT",
 				"implicit" : 1

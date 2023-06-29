@@ -15,31 +15,31 @@
  * limitations under the License.
  */
 
-const ROUTE = 'http://localhost:3333'
+// const ROUTE = 'http://localhost:3333'
 import { encode, decode } from '../../../magenta4live.amxd/code/src/Notes'
 
-async function GET(path){
-	return await fetch(`${ROUTE}/${path}`)
+async function GET(path) {
+	return await fetch(`/${path}`)
 }
 
-async function POST(path, body){
-	return await fetch(`${ROUTE}/${path}`, {
-		method : 'POST',
-		body : JSON.stringify(body),
-		headers : {
-			Accept : 'application/json',
-			'Content-Type' : 'application/json'
+async function POST(path, body) {
+	return await fetch(`/${path}`, {
+		method: 'POST',
+		body: JSON.stringify(body),
+		headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json'
 		}
 	})
 }
 
-async function CALL(method, args){
-	const response = await fetch(`${ROUTE}/call`, {
-		method : 'POST',
-		body : JSON.stringify({ method, args }),
-		headers : {
-			Accept : 'application/json',
-			'Content-Type' : 'application/json'
+async function CALL(method, args) {
+	const response = await fetch(`/call`, {
+		method: 'POST',
+		body: JSON.stringify({ method, args }),
+		headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json'
 		}
 	})
 	return await response.json()
@@ -48,22 +48,22 @@ async function CALL(method, args){
 /**
  * Returns true if it's connected to Live
  */
-export async function connected(){
+export async function connected() {
 	try {
 		await GET('status')
 		return true
-	} catch (e){
+	} catch (e) {
 		return false
 	}
 }
 
-export async function setNotes(args){
+export async function setNotes(args) {
 	args.notes = encode(args.notes)
 	const response = await CALL('set_notes', args)
 	return response
 }
 
-export async function getNotes(id){
+export async function getNotes(id) {
 	const response = await CALL('get_notes', { id })
 	response.notes = decode(response.notes)
 	return response
@@ -72,20 +72,20 @@ export async function getNotes(id){
 /**
  * Get all the tracks
  */
-export async function tracks(){
+export async function tracks() {
 	return await CALL('tracks')
 }
 
 /**
  * Get all the clips in a track
  */
-export async function clips(id){
+export async function clips(id) {
 	return await CALL('clips', { id })
 }
 
 /**
  * Make sure a track has at least this many clips
  */
-export async function setTrackLength(id, length){
+export async function setTrackLength(id, length) {
 	return await CALL('set_track_length', { length, id })
 }

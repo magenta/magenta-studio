@@ -5,13 +5,13 @@ import './style.scss'
 // https://magenta.tensorflow.org/studio/ in the default browser.
 // In CEF, you can't open links in the default browser, but it is
 // possible to do this in Max.
-function handleOpenWebsite(e){
-	e.preventDefault()
-	fetch(e.target.href)
+function handleOpenWebsite(e) {
+  e.preventDefault()
+  fetch(e.target.href)
 }
 
-export function About(parentElement){
-	render(html`
+export function About(parentElement) {
+  render(html`
     <div class="about">
       <h2 id="title">Magenta Studio</h2>
       <center><p>Version: ${VERSION}</p></center>
@@ -21,7 +21,7 @@ export function About(parentElement){
       </p>
       <p>
         Find more information and tutorials at
-        <a target="_blank" href="http://localhost:3333/studio" @click=${handleOpenWebsite}>our website.</a>
+        <a target="_blank" href="/studio" @click=${handleOpenWebsite}>our website.</a>
       </p>
       <!--
       <p>
