@@ -1,0 +1,75 @@
+
+
+body {
+	--accent-color: var(--color-accent-yellow);
+	magenta-midi-file {
+		height: 150px;
+	}
+
+}
+
+$shadowCount: 1;
+$darkColor: rgba(255, 255, 255, 0.3);
+
+
+@mixin shadow($step){
+	$outp: 0px 0px transparent;
+	@for $i from 1 through $step {
+		$inv_i: $shadowCount - $i;
+		$offset: 15px;
+		$outp: #{$outp}, $offset * $i 0px #{$darkColor};
+	}
+	text-shadow: $outp
+}
+
+
+
+@keyframes text-extend {
+
+	@for $i from 0 through $shadowCount {
+		#{$i/$shadowCount*100}% {
+			@include shadow($i);
+			width: $i/$shadowCount * 40px;
+		}
+	}
+}
+
+@keyframes text-retract {
+
+	0% {
+		@include shadow($shadowCount);
+	}
+
+	100% {
+		text-shadow: 0px 0px white;
+	}
+}
+
+$letterWidth: 15px;
+
+#title {
+  user-select: none;
+  -webkit-app-region: no-drag;
+
+	span {
+		float: left;
+		text-align: left;
+		width: auto;
+	}
+
+	&:hover span.expand, &.hover span.expand{
+		// animation: text-extend 0.7s ease-in;
+		// animation-fill-mode: forwards;
+		margin-right: $letterWidth;
+		text-shadow: $letterWidth 0 $darkColor;
+	}
+
+	span.expand {
+		margin-right: 0px;
+		color: white;
+		text-shadow: $letterWidth 0 transparent;
+		$duration: 0.3s;
+		transition: color $duration, margin-right $duration, text-shadow $duration;
+	}
+
+}

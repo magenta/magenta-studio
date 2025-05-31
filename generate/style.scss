@@ -1,0 +1,118 @@
+///////////////////////////////////////////////////////////
+// Plain SASS Trigonometry Algorithm in Taylor Expansion //
+//                                                       //
+// Based on                                              //
+//      http://japborst.net/posts/sass-sines-and-cosines //
+///////////////////////////////////////////////////////////
+
+$pi: 3.14159265359;
+$_precision: 10;
+
+@function pow($base, $exp) {
+	$value: $base;
+	@if $exp > 1 {
+		@for $i from 2 through $exp {
+			$value: $value * $base;
+		}
+	}
+	@if $exp < 1{
+		@for $i from 0 through -$exp {
+			$value: $value / $base;
+		}
+	}
+	@return $value;
+}
+
+@function fact($num) {
+	$fact: 1;
+	@if $num > 0{
+		@for $i from 1 through $num {
+			$fact: $fact * $i;
+		}
+	}
+	@return $fact;
+}
+
+@function _to_unitless_rad($angle) {
+	@if unit($angle) == "deg" {
+		$angle: $angle / 180deg * $pi;
+	}
+	@if unit($angle) == "rad" {
+		$angle: $angle / 1rad;
+	}
+	@return $angle;
+}
+
+@function sin($angle){
+	$a: _to_unitless_rad($angle);
+	$sin: $a;
+	@for $n from 1 through $_precision {
+		$sin: $sin + (pow(-1, $n) / fact(2 * $n + 1) ) * pow($a, (2 * $n + 1));
+	}
+	@return $sin;
+}
+
+@function cos($angle){
+	$a: _to_unitless_rad($angle);
+	$cos: 1;
+	@for $n from 1 through $_precision {
+		$cos: $cos + ( pow(-1,$n) / fact(2*$n) ) * pow($a,2*$n);
+	}
+	@return $cos;
+}
+
+@function tan($angle){
+	@return sin($angle) / cos($angle);
+}
+
+body {
+	--accent-color: var(--color-accent-teal);
+}
+
+$shadowCount : 6;
+
+@mixin shadow($offset){
+	$outp: 0px 0px transparent;
+	@for $i from 1 through $shadowCount {
+		$col: rgba(255, 255, 255, 0.3);
+		$pos: $i/$shadowCount;
+		$x: $offset * sin($pi * 2 * $pos);
+		$y: $offset * cos($pi * 2 * $pos);
+		$outp: #{$outp}, $x $y #{$col};
+	}
+	text-shadow: $outp
+}
+
+@keyframes hover-animation {
+	0% {
+		@include shadow(0px);
+	}
+
+	50% {
+		@include shadow(16px);
+	}
+
+	100% {
+		@include shadow(0px);
+	}
+}
+
+#title {
+  -webkit-app-region: no-drag;
+  user-select: none;
+
+	span {
+		position: relative;
+		@include shadow(0px);
+		transition: text-shadow 0.2s;
+	}
+
+	&:hover span {
+		@include shadow(16px);
+	}
+
+	&.animate span {
+		animation: hover-animation 0.8s infinite;
+	}
+
+}

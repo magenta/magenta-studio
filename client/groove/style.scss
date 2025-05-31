@@ -1,13 +1,15 @@
-body #groove {
+body {
 	--accent-color: var(--color-accent-orange);
 
   #mode {
 		display: block;
-		margin: 0 auto;
+		margin: 0 auto 20px;
+		width: 90%;
 		pointer-events: none;
 	}
 
 	#title {
+		margin-bottom: 20px;
     user-select: none;
     -webkit-app-region: no-drag;
 

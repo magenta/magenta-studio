@@ -18,30 +18,68 @@
 const { sequences } = require('@magenta/music')
 const { quantizeNoteSequence, unquantizeSequence } = sequences
 
-export function toNoteSequence(notes, duration){
+export function toNoteSequence(notes, duration) {
+	// notes coming into here are in Ableton format
+	// const { pitch, startTime, endTime, velocity=100, muted=0 }
+	// startTime and endTime here are in beats
+	// need to convert startTime and endTime to seconds
+	// change these numbers to work with Transformer model
+	// e.q. qpm is 120
+	// duration needs to be in seconds, not beats
+	// what is ticksPerQuarter?
+	// stepsPerQuarter = 50
+
+	// also, could just remove quantizeNoteSequence
+	const QPM = 120;
+	const stepsPerQuarter = 50;
+	const durationInSeconds = duration / QPM * 60;
+	const newNotes = notes.map((note) => {
+		return {
+			...note,
+			startTime: note.startTime / QPM * 60,
+			endTime: note.endTime / QPM * 60,
+		};
+	});
 	return quantizeNoteSequence(
 		{
-			ticksPerQuarter : 220,
-			totalTime : duration,
-			timeSignatures : [
+			ticksPerQuarter: 220,
+			totalTime: durationInSeconds,
+			timeSignatures: [
 				{
-					time : 0,
-					numerator : 4,
-					denominator : 4
+					time: 0,
+					numerator: 4,
+					denominator: 4
 				}
 			],
-			tempos : [
+			tempos: [
 				{
-					time : 0,
-					qpm : 60
+					time: 0,
+					qpm: QPM
 				}
 			],
-			notes : notes.filter(n => !n.muted)
+			notes: newNotes.filter(n => !n.muted)
 		},
-		4
+		stepsPerQuarter
 	)
 }
 
-export function fromNoteSequence(sequence){
-	return sequence.notes
+export function fromNoteSequence(seq) {
+	const notes = seq.notes;
+	const stepsPerQuarter = seq.quantizationInfo.stepsPerQuarter
+	return notes.map((note) => {
+		return {
+			...note,
+			startTime: note.quantizedStartStep / stepsPerQuarter,
+			endTime: note.quantizedEndStep / stepsPerQuarter,
+			muted: 0
+		}
+	});
 }
+
+// seq.notes.forEach((note) => {
+// 	note.startTime = 
+// })
+
+// { pitch, startTime, endTime, velocity=100, muted=0 }
+// {pitch: 76, velocity: 53, quantizedStartStep: 20, quantizedEndStep: 47}
+// pitch, beats, beats, velocity, muted

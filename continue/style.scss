@@ -1,0 +1,89 @@
+.group {
+	width: 50%;
+	height: auto;
+	float: left;
+}
+
+magenta-midi-file {
+	height: 110px;
+}
+
+$shadowCount: 10;
+
+@mixin shadow($step){
+	$outp: 0px 0px transparent;
+	@for $i from 1 through $step {
+		$inv_i: $shadowCount - $i;
+		$col: rgba(255, 255, 255, $inv_i/$shadowCount);
+		$offset: 12px;
+		$outp: #{$outp}, $offset * $i 0px #{$col};
+	}
+	text-shadow: $outp;
+}
+
+#title {
+  user-select: none;
+  -webkit-app-region: no-drag;
+}
+
+#title span {
+	animation: text-retract 0.2s ease-out;
+	animation-fill-mode: forwards;
+}
+
+@keyframes text-extend {
+
+	0% {
+		text-shadow: 0px 0px white;
+	}
+
+	@for $i from 1 through $shadowCount {
+		#{$i/$shadowCount*100}% {
+			@include shadow($i);
+		}
+	}
+}
+
+@keyframes text-retract {
+
+	0% {
+		@include shadow($shadowCount);
+	}
+
+	100% {
+		text-shadow: 0px 0px white;
+	}
+}
+
+@keyframes text-animate {
+
+	0% {
+		text-shadow: 0px 0px white;
+	}
+
+	@for $i from 1 through $shadowCount {
+		#{$i/$shadowCount*70}% {
+			@include shadow($i);
+		}
+	}
+
+	100% {
+		text-shadow: 0px 0px white;
+	}
+}
+
+#title:hover span {
+	animation: text-extend 0.7s ease-in;
+	animation-fill-mode: forwards;
+}
+
+#title:hover span {
+	animation: text-extend 0.7s ease-in;
+	animation-fill-mode: forwards;
+}
+
+#title.animate span {
+	animation: text-animate 1.3s ease-in-out;
+	animation-fill-mode: forwards;
+	animation-iteration-count: infinite;
+}

@@ -25,22 +25,22 @@ import chroma from 'chroma-js'
 
 export class AbletonFile extends LitElement {
 
-	static get properties(){
+	static get properties() {
 		return {
-			connected : { type : String },
-			numclips : { type : Number },
-			output : { type : Boolean }
+			connected: { type: String },
+			numclips: { type: Number },
+			output: { type: Boolean }
 		}
 	}
 
-	constructor(){
+	constructor() {
 		super()
 		this.connected = false
 		this.output = false
 		this.numclips = 1
 		this.tracks = []
 		this.clips = []
-		
+
 		setInterval(() => this.testConnection(), 2000)
 		//test the connection initially
 		this.testConnection()
@@ -49,43 +49,47 @@ export class AbletonFile extends LitElement {
 		this._throttledClipUpdate = throttle(2000, this.updateClips.bind(this))
 	}
 
-	async read(){
+	async read() {
 		await this.sync()
 		const clips = this.selectedClips
-		if (!clips){
+		if (!clips) {
 			throw new Error('No clip in selected slot')
 		}
-		const notes = await Promise.all(clips.map(c => Live.getNotes(c.id))) 
+		const notes = await Promise.all(clips.map(c => Live.getNotes(c.id)))
+		console.log("Ableton Notes");
+		console.log(notes);
 		const seqs = notes.map(({ notes, duration }) => toNoteSequence(notes, duration))
-		if (seqs.length > 1){
+		console.log("Magenta Notes");
+		console.log(seqs);
+		if (seqs.length > 1) {
 			return seqs
 		} else {
 			return seqs[0]
 		}
 	}
 
-	async write(sequences, prefix){
+	async write(sequences, prefix) {
 		await this.sync()
 		const selectedClips = this.selectedClips
-		const lastClip = selectedClips[selectedClips.length-1]
-		if (!lastClip){
+		const lastClip = selectedClips[selectedClips.length - 1]
+		if (!lastClip) {
 			return
 		}
 		const totalLength = this.outputPath + sequences.length
 		const overwrittenClips = []
 		//test if there are any clips to overwrite
-		for (let i = this.outputPath; i < totalLength; i++){
+		for (let i = this.outputPath; i < totalLength; i++) {
 			const clip = this.clips.filter(c => !c.empty).find(c => c.index === i)
-			if (clip){
+			if (clip) {
 				overwrittenClips.push(clip)
 			}
 		}
 		let writeClips = true
-		if (overwrittenClips.length){
+		if (overwrittenClips.length) {
 			writeClips = await this._overwriteClips(overwrittenClips.filter(c => c && !c.empty))
 		}
-		
-		if (writeClips){
+
+		if (writeClips) {
 			const clipNames = this.selectedClips.map(c => c.name).join('+')
 			const trackId = this.tracks[this.selectedTrackIndex].id
 			await Live.setTrackLength(trackId, totalLength)
@@ -95,24 +99,25 @@ export class AbletonFile extends LitElement {
 				const clip = outputClips[i]
 				const notes = fromNoteSequence(seq)
 				const trackName = this.output ? prefix : `[${clipNames}]`
+				const duration = seq.totalQuantizedSteps / seq.quantizationInfo.stepsPerQuarter;
 				return Live.setNotes({
-					id : clip.id,
+					id: clip.id,
 					notes,
-					duration : seq.totalTime,
-					name : `${i+1}/${sequences.length} ${trackName}`,
-					color : chroma(color).num()
+					duration,
+					name: `${i + 1}/${sequences.length} ${trackName}`,
+					color: chroma(color).num()
 				})
-			})) 
+			}))
 		}
 	}
 
-	async _overwriteClips(paths){
+	async _overwriteClips(paths) {
 		const maxLen = 6
 		paths = paths.map(p => p.name)
-		if (paths.length > maxLen){
+		if (paths.length > maxLen) {
 			const len = paths.length
 			paths = paths.slice(0, maxLen)
-			paths[maxLen-1] = `${len-(maxLen-1)} more...`
+			paths[maxLen - 1] = `${len - (maxLen - 1)} more...`
 		}
 		const title = `Overwrite clip${paths.length > 1 ? 's' : ''}?`
 		const body = `
@@ -120,15 +125,15 @@ export class AbletonFile extends LitElement {
 		These clips will be saved over:
 			${paths.map(p => `• ${p}`).join('\n')}
 	`
-		if (window.confirm(body, title)){
+		if (window.confirm(body, title)) {
 			return true
 		}
 		return false
 	}
 
-	get selectedTrackIndex(){
-		if (this.shadowRoot.querySelector('#track')){
-			if (this.shadowRoot.querySelector('#track').selectedIndex === -1){
+	get selectedTrackIndex() {
+		if (this.shadowRoot.querySelector('#track')) {
+			if (this.shadowRoot.querySelector('#track').selectedIndex === -1) {
 				return 0
 			} else {
 				return this.shadowRoot.querySelector('#track').selectedIndex - 1
@@ -138,20 +143,20 @@ export class AbletonFile extends LitElement {
 		}
 	}
 
-	updated(props){
-		if (props.has('connected')){
+	updated(props) {
+		if (props.has('connected')) {
 			this.dispatchEvent(new CustomEvent(this.connected ? 'connected' : 'disconnected'))
 			this._emitChange()
 		}
 		super.updated()
 	}
 
-	async testConnection(){
+	async testConnection() {
 		this.connected = await Live.connected()
 	}
 
-	async sync(){
-		if (this.connected){
+	async sync() {
+		if (this.connected) {
 			await this.updateTracks()
 			await this.updateClips()
 		} else {
@@ -159,63 +164,63 @@ export class AbletonFile extends LitElement {
 		}
 	}
 
-	async _trackChanged(){
+	async _trackChanged() {
 		this.clearClips()
 		await this.updateClips()
 		this._emitChange()
 	}
 
-	async updateTracks(){
+	async updateTracks() {
 		this.tracks = await Live.tracks()
 		this.requestUpdate()
 	}
 
-	_emitChange(){
-		this.dispatchEvent(new CustomEvent('change', { bubbles : true, composed : true }))
+	_emitChange() {
+		this.dispatchEvent(new CustomEvent('change', { bubbles: true, composed: true }))
 	}
 
-	async updateClips(){
+	async updateClips() {
 		const index = this.selectedTrackIndex
-		if (this.tracks[index]){
+		if (this.tracks[index]) {
 			const trackId = this.tracks[index].id
 			this.clips = await Live.clips(trackId)
 			this.clips.forEach((c, i) => {
-				if (c.name === ''){
+				if (c.name === '') {
 					c.name = `Slot ${i + 1}`
 				}
 				c.index = i
 			})
-			if (!this.output){
+			if (!this.output) {
 				this.clips = this.clips.filter(c => !c.empty)
 			}
 			this.requestUpdate()
 		}
 	}
 
-	get valid(){
+	get valid() {
 		return Array.from(this.shadowRoot.querySelectorAll('magenta-select')).every(s => s.valid) && this.connected
 	}
 
-	get selectedClips(){
+	get selectedClips() {
 		const indices = Array.from(this.shadowRoot.querySelectorAll('.clip')).map(s => s.selectedIndex)
-		return indices.map(i => this.clips[i-1])
+		return indices.map(i => this.clips[i - 1])
 	}
 
-	clearClips(){
+	clearClips() {
 		Array.from(this.shadowRoot.querySelectorAll('.clip')).forEach(s => s.selectedIndex = 0)
 	}
 
-	get outputPath(){
-		if (this.valid){
+	get outputPath() {
+		if (this.valid) {
 			const selected = this.selectedClips
 			const indices = selected.map(s => s.index)
 			return Math.max(...indices) + (this.output ? 0 : 1)
 		}
 	}
 
-	render(){
+	render() {
 		const clips = []
-		for (let i = 0; i < this.numclips; i++){
+		for (let i = 0; i < this.numclips; i++) {
 			let clipLabel = this.numclips > 1 ? 'AB'.charAt(i) : ''
 			clips.push(html`
 				<magenta-select 

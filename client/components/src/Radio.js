@@ -23,39 +23,39 @@ import { commonStyle } from './InputStyle'
  */
 customElements.define('magenta-radio-group', class MagentaRadio extends LitElement {
 
-	static get properties(){
+	static get properties() {
 		return {
-			values : { type : String },
-			selectedIndex : { type : Number },
-			disabled : { type : Boolean },
-			label : { type : String }
+			values: { type: String },
+			selectedIndex: { type: Number },
+			disabled: { type: Boolean },
+			label: { type: String }
 		}
 	}
 
-	constructor(){
+	constructor() {
 		super()
 		this.label = ''
 		this.selectedIndex = 0
 	}
 
-	updated(changed){
-		if (changed.has('selectedIndex')){
+	updated(changed) {
+		if (changed.has('selectedIndex')) {
 			this.dispatchEvent(new CustomEvent('change', {
-				details : {
-					selectedIndex : this.selectedIndex,
-					value : this.value
+				detail: {
+					selectedIndex: this.selectedIndex,
+					value: this.value
 				},
-				bubbles : true,
-				composed : true
+				bubbles: true,
+				composed: true
 			}))
 		}
 	}
 
-	get value(){
+	get value() {
 		return JSON.parse(this.values)[this.selectedIndex]
 	}
 
-	render(){
+	render() {
 		const buttons = JSON.parse(this.values).map((label, i) => html`
 			<button 
 				outlined 
