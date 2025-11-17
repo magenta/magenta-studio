@@ -47,7 +47,7 @@
     "string-to-dom": "^0.1.5",
     "style-loader": "^3.3.1",
     "throttle-debounce": "^3.0.1",
-    "tmp": "0.2.1",
+    "tmp": "0.2.5",
     "webpack": "^5.76.0",
     "webpack-cli": "^5.0.1",
     "whatwg-fetch": "^3.6.2",
